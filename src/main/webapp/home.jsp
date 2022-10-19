@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-auto font-weight-bold" href="#">
-                    <img id="logo" src="./IMG/banner.png"></a>
+                    <img id="logo" src="./IMG/logo.png"></a>
                 <span class="v-line"></span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
