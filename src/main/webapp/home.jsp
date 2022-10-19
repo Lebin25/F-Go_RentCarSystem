@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
-        <<link rel="stylesheet" href="/CSS/homeStyle.css"/>
+        <<link rel="stylesheet" href="CSS/homeStyle.css"/>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -38,7 +38,7 @@
                         </li>
                     </ul>
                     <span class="navbar-nav d-flex justify-content-end">
-                        <a class="nav-link" href="#">Đăng nhập</a>
+                        <a class="nav-link" href="login.jsp">Đăng nhập</a>
                         <a class="nav-link" href="#">Đăng ký</a>
                     </span>
                 </div>
