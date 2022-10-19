@@ -1,34 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Login F-GO</title>
+        <title>Sign up F-Go</title>
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="CSS/loginStyle.css">
+        <link rel="stylesheet" href="/CSS/signupStyle.css">
     </head>
+
     <body>
         <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             <div class="container">
-                <div class="card login-card">
+                <div class="card signup-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="IMG/login.jpg" alt="login" class="login-card-img">
+                            <img src="IMG/login.jpg" alt="signup" class="signup-card-img">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <div class="brand-wrapper">
                                     <img src="IMG/logo.png" alt="logo" class="logo">
                                 </div>
-                                <p class="login-card-description">Đăng nhập vào F-Go</p>
-                                <form action="LoginControl" method="post">
+                                <p class="signup-card-description">Đăng ký tài khoản F-Go</p>
+                                <form action="#!">
                                     <div class="form-group">
-                                        <label for="text" class="sr-only">Tài khoản</label>
-                                        <input type="text" name="account" id="account" class="form-control"
+                                        <label for="email" class="sr-only">Tài khoản</label>
+                                        <input type="email" name="email" id="email" class="form-control"
                                                placeholder="Tài khoản">
                                     </div>
                                     <div class="form-group mb-4">
@@ -36,21 +39,24 @@
                                         <input type="password" name="password" id="password" class="form-control"
                                                placeholder="Mật khẩu">
                                     </div>
-                                    <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
-                                    <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit"
-                                           value="Đăng nhập">
+                                    <div class="form-group mb-4">
+                                        <label for="password" class="sr-only">Nhập Lại Mật Khẩu</label>
+                                        <input type="password" name="password" id="password" class="form-control"
+                                               placeholder="Nhập lại mật khẩu">
+                                    </div>
+
+                                    <input name="signup" id="signup" class="btn btn-block signup-btn mb-4" type="button"
+                                           value="Đăng ký">
                                 </form>
 
-                                <p class="login-card-footer-text">Chưa có tải khoản? <a href="signup.jsp" class="text-reset">Đăng ký
-                                        tại đây!</a></p>
+                                <p class="signup-card-footer-text">Đã có tải khoản? <a href="login.jsp" class="text-reset">Trở lại đăng nhập</a></p>
 
                                 <p>Hoặc</p>
-                                <div class="social-login row">
+                                <div class="social-signup row">
                                     <div class="col-md-6 mb-2">
-                                        <a class="btn btn-outline-dark social-login-btn" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/loginGoogle/GoogleSigninServlet&response_type=code
-                                           &client_id=232345260601-tkgeu01pblme49pruq8qpl65lmoikj54.apps.googleusercontent.com&approval_prompt=force" role="button">
+                                        <a class="btn btn-outline-dark social-signup-btn" href="#" role="button">
                                             <img width="20px" alt="Google sign-in"
-                                                 src="IMG/google_logo.png" />
+                                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                             Đăng nhập bằng Google
                                         </a>
                                     </div>
@@ -65,4 +71,5 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     </body>
+
 </html>

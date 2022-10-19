@@ -39,7 +39,7 @@
                     </ul>
                     <span class="navbar-nav d-flex justify-content-end">
                         <a class="nav-link" href="login.jsp">Đăng nhập</a>
-                        <a class="nav-link" href="#">Đăng ký</a>
+                        <a class="nav-link" href="signup.jsp">Đăng ký</a>
                     </span>
                 </div>
             </div>
