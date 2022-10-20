@@ -12,12 +12,12 @@ public class DBContext {
         return DriverManager.getConnection(url, userID, password);
     }   
 
-    private final String serverName = "LAPTOP-E1Q7CNU3";
-    private final String dbName = "F-Go_SWP391";
+    private final String serverName = "LAPTOP-EB1S6LNB";
+    private final String dbName = "F-Go_Main";
     private final String portNumber = "1433";
     private final String instance="";
     private final String userID = "sa";
-    private final String password = "25112201";
+    private final String password = "12345";
     
     public static void main(String[] args) {
         try {

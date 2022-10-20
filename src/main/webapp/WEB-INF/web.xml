@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>GoogleSigninServlet</servlet-name>
-        <url-pattern>/GoogleSigninServlet</url-pattern>
+        <url-pattern>/loginGoogle/GoogleSigninServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

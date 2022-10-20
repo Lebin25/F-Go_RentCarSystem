@@ -28,25 +28,24 @@
                                     <img src="IMG/logo.png" alt="logo" class="logo">
                                 </div>
                                 <p class="signup-card-description">Đăng ký tài khoản F-Go</p>
-                                <form action="#!">
+                                <form action="signup" method="post">
                                     <div class="form-group">
-                                        <label for="email" class="sr-only">Tài khoản</label>
-                                        <input type="email" name="email" id="email" class="form-control"
+                                        <label for="user" class="sr-only">Tài khoản</label>
+                                        <input type="text" name="user"  class="form-control"
                                                placeholder="Tài khoản">
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="password" class="sr-only">Mật Khẩu</label>
-                                        <input type="password" name="password" id="password" class="form-control"
+                                        <input type="password" name="pass" id="password" class="form-control"
                                                placeholder="Mật khẩu">
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="password" class="sr-only">Nhập Lại Mật Khẩu</label>
-                                        <input type="password" name="password" id="password" class="form-control"
+                                        <input type="password" name="repass" id="password" class="form-control"
                                                placeholder="Nhập lại mật khẩu">
                                     </div>
 
-                                    <input name="signup" id="signup" class="btn btn-block signup-btn mb-4" type="button"
-                                           value="Đăng ký">
+                                    <button class="btn btn-block signup-btn mb-4" type="submit">Đăng kí</button>>
                                 </form>
 
                                 <p class="signup-card-footer-text">Đã có tải khoản? <a href="login.jsp" class="text-reset">Trở lại đăng nhập</a></p>
