@@ -11,19 +11,29 @@ public class Product {
     private String productImg;
     private float price;
     private String productStatus;
-    private int categoryID;
+    private String seat;
+    private String gear;
+    private String color;
+    private String licensePlate;
+    private String fuel;
+    private String yearRelease;
 
     public Product() {
     }
 
-    public Product(int productID, String productName, String productTitle, String productImg, float price, String productStatus, int categoryID) {
+    public Product(int productID, String productName, String productTitle, String productImg, float price, String productStatus, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease) {
         this.productID = productID;
         this.productName = productName;
         this.productTitle = productTitle;
         this.productImg = productImg;
         this.price = price;
         this.productStatus = productStatus;
-        this.categoryID = categoryID;
+        this.seat = seat;
+        this.gear = gear;
+        this.color = color;
+        this.licensePlate = licensePlate;
+        this.fuel = fuel;
+        this.yearRelease = yearRelease;
     }
 
     public int getProductID() {
@@ -74,13 +84,59 @@ public class Product {
         this.productStatus = productStatus;
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public String getSeat() {
+        return seat;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setSeat(String seat) {
+        this.seat = seat;
     }
+
+    public String getGear() {
+        return gear;
+    }
+
+    public void setGear(String gear) {
+        this.gear = gear;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public String getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(String fuel) {
+        this.fuel = fuel;
+    }
+
+    public String getYearRelease() {
+        return yearRelease;
+    }
+
+    public void setYearRelease(String yearRelease) {
+        this.yearRelease = yearRelease;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "productID=" + productID + ", productName=" + productName + ", productTitle=" + productTitle + ", productImg=" + productImg + ", price=" + price + ", productStatus=" + productStatus + ", seat=" + seat + ", gear=" + gear + ", color=" + color + ", licensePlate=" + licensePlate + ", fuel=" + fuel + ", yearRelease=" + yearRelease + '}';
+    }
+
     
     
 }

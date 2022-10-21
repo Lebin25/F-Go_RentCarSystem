@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
-        <dependencies>
+    <dependencies>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -63,7 +63,11 @@
             <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+    <groupId>javax.servlet.jsp.jstl</groupId>
+    <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+    <version>1.2.1</version>
+</dependency>
     </dependencies>
 
     <build>
