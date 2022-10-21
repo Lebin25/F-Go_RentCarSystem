@@ -45,7 +45,7 @@
                                                placeholder="Nhập lại mật khẩu">
                                     </div>
 
-                                    <button class="btn btn-block signup-btn mb-4" type="submit">Đăng kí</button>>
+                                    <button class="btn btn-block signup-btn mb-4" type="submit">Đăng kí</button>
                                 </form>
 
                                 <p class="signup-card-footer-text">Đã có tải khoản? <a href="login.jsp" class="text-reset">Trở lại đăng nhập</a></p>

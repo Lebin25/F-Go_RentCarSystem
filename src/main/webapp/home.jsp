@@ -527,7 +527,7 @@
                         </div>
                     </div>
                     <div class="watchmore-btn">
-                        <button class="click-button">Xem thêm toàn bộ xe</button>
+                        <a href="allProducts.jsp" class="button">Xem thêm toàn bộ xe</a>
                     </div>
                 </div>
             </div>

@@ -35,6 +35,7 @@ body {
 .signup-card .card-body {
     padding: 85px 60px 60px;
     text-align: center;
+    min-height: 700px;
 }
 
 @media (max-width: 422px) {
