@@ -1,6 +1,5 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -274,57 +273,56 @@
 
                 <div class="row">
                     <c:forEach items="${listP}" var="o">
-                    <div class="col-sm-4">
-                        <div class="product-card">
-                            <div class="card-thumbnail">
-                                <img class="img-responsive" src="${o.productImg}">
-                            </div>
-                            <div class="card-content">
-                                <div class="order-btn">
-                                    <p class="order-btn-text">Đặt xe</p>
+                        <div class="col-sm-4">
+                            <div class="product-card">
+                                <div class="card-thumbnail">
+                                    <img class="img-responsive" src="/IMG/${o.productImg}">
                                 </div>
-                                <h1 class="card-title">
-                                    ${o.productName}
-                                </h1>
-                                <h2 class="card-sub-title">
-                                    ${o.yearRelease}
-                                </h2>
-                                <div class="description">
-                                    <ul>
-                                        <li>
-                                            <i class="fa fa-th hidden-xs hidden-sm"></i>
-                                            <span>
-                                                <span class="attri">${o.licensePlate}</span> </span>
+                                <div class="card-content">
+                                    <div class="order-btn">
+                                        <p class="order-btn-text">Đặt xe</p>
+                                    </div>
+                                    <h1 class="card-title">
+                                        ${o.productName}
+                                    </h1>
+                                    <h2 class="card-sub-title">
+                                        ${o.yearRelease}
+                                    </h2>
+                                    <div class="description">
+                                        <ul>
+                                            <li>
+                                                <i class="fa fa-th hidden-xs hidden-sm"></i>
+                                                <span>
+                                                    <span class="attri">${o.licensePlate}</span> </span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-users hidden-xs hidden-sm"></i>
+                                                <span>
+                                                    <span class="attri">${o.seat}</span> </span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-cogs hidden-xs hidden-sm"></i>
+                                                <span>
+                                                    <span class="attri">${o.gear}</span> </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="price">
+                                        <div class="price-text">${o.price}</div>
+                                    </div>
+                                    <ul class="list-inline post-meta">
+                                        <li class="time-stamp">
+                                            <i class="fa fa-star"></i> 5
                                         </li>
-                                        <li>
-                                            <i class="fa fa-users hidden-xs hidden-sm"></i>
-                                            <span>
-                                                <span class="attri">${o.seat}</span> </span>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-cogs hidden-xs hidden-sm"></i>
-                                            <span>
-                                                <span class="attri">${o.gear}</span> </span>
+                                        <li class="card-comment">
+                                            <i class="fa fa-comments"></i><a href="#"> 22 bình luận</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="price">
-                                    <div class="price-text">${o.price}</div>
-                                </div>
-                                <ul class="list-inline post-meta">
-                                    <li class="time-stamp">
-                                        <i class="fa fa-star"></i> 5
-                                    </li>
-                                    <li class="card-comment">
-                                        <i class="fa fa-comments"></i><a href="#"> 22 bình luận</a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
-                    
                     </c:forEach>
-                    
+
                 </div>
                 <div class="watchmore-btn">
                     <button class="click-button">Xem thêm</button>

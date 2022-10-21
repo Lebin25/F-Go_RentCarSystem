@@ -38,7 +38,7 @@ public class AllProduct extends HttpServlet {
         List<Product> list = productdao.getAllProduct();
         
         request.setAttribute("listP", list);
-        request.getRequestDispatcher("allProducts.jsp");
+        request.getRequestDispatcher("allProducts.jsp").forward(request, response);
         
     }
 

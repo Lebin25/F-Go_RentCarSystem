@@ -10,7 +10,8 @@ public class Product {
     private String productTitle;
     private String productImg;
     private float price;
-    private String productStatus;
+    private int productStatus;
+    private int categoryID;
     private String seat;
     private String gear;
     private String color;
@@ -21,13 +22,14 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productID, String productName, String productTitle, String productImg, float price, String productStatus, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease) {
+    public Product(int productID, String productName, String productTitle, String productImg, float price, int productStatus, int categoryID, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease) {
         this.productID = productID;
         this.productName = productName;
         this.productTitle = productTitle;
         this.productImg = productImg;
         this.price = price;
         this.productStatus = productStatus;
+        this.categoryID = categoryID;
         this.seat = seat;
         this.gear = gear;
         this.color = color;
@@ -76,12 +78,20 @@ public class Product {
         this.price = price;
     }
 
-    public String getProductStatus() {
+    public int getProductStatus() {
         return productStatus;
     }
 
-    public void setProductStatus(String productStatus) {
+    public void setProductStatus(int productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
     public String getSeat() {

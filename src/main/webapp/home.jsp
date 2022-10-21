@@ -336,7 +336,8 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div><div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
                                     <img class="img-responsive" src="./IMG/accent-trang.jpg">
@@ -383,7 +384,8 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div><div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
                                     <img class="img-responsive" src="./IMG/accent-trang.jpg">
@@ -430,7 +432,8 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div><div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
                                     <img class="img-responsive" src="./IMG/accent-trang.jpg">
@@ -477,7 +480,8 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div><div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
                                     <img class="img-responsive" src="./IMG/accent-trang.jpg">
@@ -527,7 +531,9 @@
                         </div>
                     </div>
                     <div class="watchmore-btn">
-                        <a href="allProducts.jsp" class="button">Xem thêm toàn bộ xe</a>
+                        <form action="allproduct" method="POST">
+                            <button type="submit" class="button">Xem thêm toàn bộ xe</button>
+                        </form>
                     </div>
                 </div>
             </div>
