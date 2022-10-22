@@ -245,20 +245,21 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="category-list">
-                            <li><a href="" class="all" data-filter="all">Tất cả</a></li>
-                            <li><a href="" class="javascript" data-filter="javascript">VinFast</a></li>
-                            <li><a href="" class="css" data-filter="css">Hyundai</a></li>
-                            <li><a href="" class="wordpress" data-filter="wordpress">Mazda</a></li>
-                            <li><a href="" class="wordpress" data-filter="wordpress">Honda</a></li>
-                            <li><a href="" class="wordpress" data-filter="wordpress">Toyota</a></li>
+                            <li><a href="allproduct" class="all" data-filter="all">Tất cả</a></li>
+                            <c:forEach items="${listC}" var="o">
+                            <li><a href="category?cid=${o.categoryId}" class="javascript" data-filter="javascript">${o.categoryName}</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6 offset-2">
-                        <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
-                    </div>
+                    <form action="search" method="post" class="col-sm-6 offset-2">
+                        <input oninput="searchByName(this)" name="txt" type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
+                        <button type="submit" class="btn btn-secondary btn-number">
+                                <i class="fa fa-search"></i>
+                        </button>
+                    </form>
                     <div class="col-sm-2">
                         <div class="dropdown">
                             <button class="dropdown-btn">Sắp xếp theo</button>
@@ -271,9 +272,9 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div id="content" class="row">
                     <c:forEach items="${listP}" var="o">
-                        <div class="col-sm-4">
+                        <div class="product col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
                                     <img class="img-responsive" src="/IMG/${o.productImg}">
@@ -324,14 +325,50 @@
                     </c:forEach>
 
                 </div>
-                <div class="watchmore-btn">
-                    <button class="click-button">Xem thêm</button>
-                </div>
+                    <button onclick="loadMore()" class="click-button">Xem thêm</button>
             </div>
         </div>
     </div>
 
     <footer style="height: 50px"></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function loadMore(){
+            var ammount = document.getElementsByClassName("product").length;
+            $.ajax({
+                url: "load",
+                type: "get",
+                data: { 
+                    exits: ammount
+                 },
+                success: function(data) {
+                    var row = document.getElementById("content");
+                    row.innerHTML += data;
+                },
+                error: function(xhr) {
+                  //Do Something to handle error
+                }
+              });
+        }
+        function searchByName(param) {
+                            var txtSearch = param.value;
+                            $.ajax({
+                                url: "SearchByAjax",
+                                type: "get", //send it through get method
+                                data: {
+                                    txt: txtSearch
+                                },
+                                success: function (data) {
+                                    var row = document.getElementById("content");
+                                    row.innerHTML = data;
+                                },
+                                error: function (xhr) {
+                                    //Do Something to handle error
+                                }
+                            });
+                        }
+        
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"
     integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>

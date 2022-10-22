@@ -5,7 +5,6 @@
 package Control;
 
 import dao.ProductDAO;
-import entity.Category;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-@WebServlet(name = "AllProduct", urlPatterns = {"/allproduct"})
-public class AllProduct extends HttpServlet {
+@WebServlet(name = "SearchControl", urlPatterns = {"/search"})
+public class SearchControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,14 +34,15 @@ public class AllProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String txtSearch = request.getParameter("txt");
         ProductDAO productdao = new ProductDAO();
-        List<Product> list = productdao.getTop6();
-        List<Category> listC = productdao.getAllCategory();
-        
+        List<Product> list = productdao.searchProductByName(txtSearch);
+//        List<Category> listC = dao.getAllCategory();
+
         request.setAttribute("listP", list);
-        request.setAttribute("listC", listC);
+//        request.setAttribute("listC", listC);
         request.getRequestDispatcher("allProducts.jsp").forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
