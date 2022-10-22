@@ -295,11 +295,8 @@
                 </div>
 
                 <div class="row">
-                    <form action="search" method="post" class="col-sm-6 offset-2">
+                    <form action="search" method="post" class="searchForm col-sm-6 offset-2">
                         <input oninput="searchByName(this)" name="txt" type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
-                        <button type="submit" class="btn btn-secondary btn-number">
-                                <i class="fa fa-search"></i>
-                        </button>
                     </form>
                     <div class="col-sm-2">
                         <div class="dropdown">
