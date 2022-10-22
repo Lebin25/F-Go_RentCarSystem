@@ -42,6 +42,47 @@
                         <a class="nav-link" href="signup.jsp">Đăng ký</a>
                     </span>
                 </div>
+                <img src="./IMG/user.png" alt="" class="user-pic" onClick="toggleMenu()">
+                <div class="sub-menu-wrap" id="subMenu">
+                    <div class="sub-menu">
+                        <a href="#" class="sub-menu-link">
+                            <p>Thống kê chính</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Theo dõi doanh thu</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Quản lý admin</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Quản lý tài khoản</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Quản lý khách hàng</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Quản lý đơn thuê</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Quản lý xe</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Quản lý loại xe</p>
+                        </a>
+                        <!-- <a href="#" class="sub-menu-link">
+                                <p>Thông tin cá nhân</p>
+                            </a>
+                            <a href="#" class="sub-menu-link">
+                                <p>Thông tin thuê xe</p>
+                            </a> -->
+                        <a href="#" class="sub-menu-link">
+                            <p>Đổi mật khẩu</p>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <p>Đăng xuất</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -550,14 +591,25 @@
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
         <script>
-            $(function () {
-                $('.product-card').hover(function () {
-                    $(this).find('.description').animate({
-                        height: "toggle",
-                        opacity: "toggle"
-                    }, 300);
-                });
-            });
+                    $(function () {
+                        $('.product-card').hover(function () {
+                            $(this).find('.description').animate({
+                                height: "toggle",
+                                opacity: "toggle"
+                            }, 300);
+                        });
+                    });
+                    let subMenu = document.getElementById("subMenu");
+                    const $menu = $('.sub-menu-wrap');
+                    function toggleMenu() {
+                        subMenu.classList.toggle("open-menu");
+                    }
+                    $(document).mouseup(function (e) {
+                        var container = $(".user-pic");
+                        if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+                            subMenu.classList.toggle("open-menu");
+                        }
+                    });
         </script>
     </body>
 </html>
