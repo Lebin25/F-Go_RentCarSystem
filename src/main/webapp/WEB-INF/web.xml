@@ -4,9 +4,17 @@
         <servlet-name>GoogleSigninServlet</servlet-name>
         <servlet-class>Controllers.Authenication.GoogleSignin.GoogleSigninServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Static</servlet-name>
+        <servlet-class>Control.Static</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GoogleSigninServlet</servlet-name>
         <url-pattern>/loginGoogle/GoogleSigninServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Static</servlet-name>
+        <url-pattern>/Static</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -17,4 +25,3 @@
         <welcome-file>home.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
-
