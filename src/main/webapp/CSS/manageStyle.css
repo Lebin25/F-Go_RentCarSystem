@@ -17,6 +17,14 @@ body {
     color: var(--primary-color) !important;
 }
 
+a {
+  transition: all 0.3s ease;
+}
+a:focus,
+a:hover {
+  text-decoration: none!important;
+}
+
 #logo {
     height: 30px;
     border-radius: 4px;
@@ -86,7 +94,8 @@ body {
     width: 40px;
     border-radius: 50%;
     cursor: pointer;
-    margin-left: 8px;
+    margin-left: auto;
+    margin-right: auto;
     z-index: 999;
 }
 
@@ -137,14 +146,16 @@ body {
 }
 
 .header {
-    text-align: center;
-    padding-top: 30px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 30px;
+    text-align:center;
+    margin-top: 140px;
+
 }
 
 .group-function {
-    /* display: flex;
-    justify-content: flex-end; */
-    margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
     padding-right: 15px;
@@ -152,7 +163,7 @@ body {
     max-width: 1140px;
 }
 
-.add-btn button {
+.add-btn a {
     background-color: var(--primary-color) !important;
     color: #fff !important;
     padding: 12px;

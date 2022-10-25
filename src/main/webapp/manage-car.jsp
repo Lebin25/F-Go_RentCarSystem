@@ -14,7 +14,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-auto font-weight-bold" href="#">
-                    <img id="logo" src="./img/logo.png"></a>
+                    <img id="logo" src="./IMG/logo.png"></a>
                 <span class="v-line"></span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
                         <a class="nav-link" href="#">Đăng ký</a>
                     </span>
                 </div>
-                <img src="./img/user.png" alt="" class="user-pic" onClick="toggleMenu()">
+                <img src="./IMG/user.png" alt="" class="user-pic" onClick="toggleMenu()">
                 <div class="sub-menu-wrap" id="subMenu">
                     <div class="sub-menu">
                         <a href="#" class="sub-menu-link">
@@ -93,7 +93,7 @@
                 </div> -->
 
                 <div class="add-btn">
-                    <button>Thêm xe mới</button>
+                    <a href="addCar.jsp">Thêm xe mới</a>
                 </div>
 
 
