@@ -176,5 +176,54 @@ public class ProductDAO {
         }
         return null;
     }
-    
+    public void deleteProduct(String pid) {
+        String query = "delete from PRODUCT\n"
+                + "where productID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, pid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    public void editProduct(String name, String des, String image, String price, String status,
+            String cateId, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease, String pid) {
+        String query = "update PRODUCT\n"
+                + "set productName = ?,\n"
+                + "productTitle = ?,\n"
+                + "productImg = ?,\n"
+                + "productPrice = ?,\n"
+                + "productStatus = ?,\n"
+                + "categoryID = ?,\n"
+                + "seat = ?,\n"
+                + "gear = ?,\n"
+                + "color = ?,\n"
+                + "licensePlate = ?,\n"
+                + "fuel = ?,\n"
+                + "yearRelease = ?\n"
+                + "where productID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, des);
+            ps.setString(3, image);
+            ps.setString(4, price);
+            ps.setString(5, status);
+            ps.setString(6, cateId);
+            ps.setString(7, seat);
+            ps.setString(8, gear);
+            ps.setString(9, color);
+            ps.setString(10, licensePlate);
+            ps.setString(11, fuel);
+            ps.setString(12, yearRelease);
+            ps.setString(13, pid);
+
+
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }

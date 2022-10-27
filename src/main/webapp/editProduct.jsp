@@ -26,6 +26,11 @@
                             <div class="row tm-edit-product-row">
                                 <div class="col-xl-6 col-lg-6 col-md-12">
                                     <div class="form-group mb-3">
+                                        <label for="id">ID
+                                        </label>
+                                        <input name="id" type="text" class="form-control validate" value="${edit.productID}" required readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
                                         <label for="name">Tên xe
                                         </label>
                                         <input id="name" name="name" type="text" class="form-control validate" value="${edit.productName}" required />

@@ -155,7 +155,7 @@
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                         <span><strong>Xem chi tiết</strong></span>
                                     </a>
-                                    <a href="#" class="btn">
+                                    <a href="delete_product?pid=${o.productID}" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xoá</strong></span>
                                     </a>
