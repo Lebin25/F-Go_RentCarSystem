@@ -315,7 +315,7 @@
                         <div class="product col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
-                                    <img class="img-responsive" src="/IMG/${o.productImg}">
+                                    <img class="img-responsive" src="/images/${o.productImg}">
                                 </div>
                                 <div class="card-content">
                                     <div class="order-btn">

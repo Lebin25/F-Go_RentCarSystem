@@ -33,7 +33,7 @@ import javax.servlet.http.Part;
 @WebServlet(name = "AddProductControl", urlPatterns = {"/addproduct"})
 public class AddProductControl extends HttpServlet {
     private static final long SerialVersionUID = 1L;
-    private static final String  UPLOAD_DIR = "IMG";
+    private static final String  UPLOAD_DIR = "images";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.

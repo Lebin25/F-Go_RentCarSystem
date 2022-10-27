@@ -5,6 +5,7 @@ package entity;
  * @author Bin
  */
 public class Product {
+
     private int productID;
     private String productName;
     private String productTitle;
@@ -147,6 +148,4 @@ public class Product {
         return "Product{" + "productID=" + productID + ", productName=" + productName + ", productTitle=" + productTitle + ", productImg=" + productImg + ", price=" + price + ", productStatus=" + productStatus + ", seat=" + seat + ", gear=" + gear + ", color=" + color + ", licensePlate=" + licensePlate + ", fuel=" + fuel + ", yearRelease=" + yearRelease + '}';
     }
 
-    
-    
 }

@@ -128,7 +128,7 @@
                             <tr>
                                 <td>${o.productID}</td>
                                 <td>${o.productName}</td>
-                                <td style=" text-align: center"><img src="IMG/${o.productImg}" width= "100"/></td>
+                                <td style=" text-align: center"><img src="images/${o.productImg}" width= "100"/></td>
                                     <c:if test="${o.categoryID == 1}">
                                     <td>Hyundai</td>
                                 </c:if>
@@ -151,7 +151,7 @@
                                     <td>Hết xe</td>
                                 </c:if>
                                 <td style="text-align:center;">
-                                    <a href="#" class="btn">
+                                    <a href="load_to_view?pid=${o.productID}" class="btn">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                         <span><strong>Xem chi tiết</strong></span>
                                     </a>

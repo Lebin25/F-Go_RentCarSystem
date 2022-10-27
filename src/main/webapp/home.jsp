@@ -285,7 +285,7 @@
                         <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
-                                    <img class="img-responsive" src="./IMG/accent-trang.jpg">
+                                    <img class="img-responsive" src="./images/accent-trang.jpg">
                                 </div>
                                 <div class="card-content">
                                     <div class="order-btn">
@@ -333,7 +333,7 @@
                         <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
-                                    <img class="img-responsive" src="./IMG/accent-trang.jpg">
+                                    <img class="img-responsive" src="./images/accent-trang.jpg">
                                 </div>
                                 <div class="card-content">
                                     <div class="order-btn">
@@ -381,7 +381,7 @@
                         <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
-                                    <img class="img-responsive" src="./IMG/accent-trang.jpg">
+                                    <img class="img-responsive" src="./images/accent-trang.jpg">
                                 </div>
                                 <div class="card-content">
                                     <div class="order-btn">
@@ -429,7 +429,7 @@
                         <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
-                                    <img class="img-responsive" src="./IMG/accent-trang.jpg">
+                                    <img class="img-responsive" src="./images/accent-trang.jpg">
                                 </div>
                                 <div class="card-content">
                                     <div class="order-btn">
@@ -477,7 +477,7 @@
                         <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
-                                    <img class="img-responsive" src="./IMG/accent-trang.jpg">
+                                    <img class="img-responsive" src="./images/accent-trang.jpg">
                                 </div>
                                 <div class="card-content">
                                     <div class="order-btn">
@@ -525,7 +525,7 @@
                         <div class="col-sm-4">
                             <div class="product-card">
                                 <div class="card-thumbnail">
-                                    <img class="img-responsive" src="./IMG/accent-trang.jpg">
+                                    <img class="img-responsive" src="./images/accent-trang.jpg">
                                 </div>
                                 <div class="card-content">
                                     <div class="order-btn">
