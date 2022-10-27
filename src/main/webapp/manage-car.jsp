@@ -117,6 +117,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Tên xe</th>
+                            <th>Hình ảnh</th>
                             <th>Loại xe</th>
                             <th>Trình trạng</th>
                             <th>Chức năng</th>
@@ -127,11 +128,12 @@
                             <tr>
                                 <td>${o.productID}</td>
                                 <td>${o.productName}</td>
-                                <c:if test="${o.categoryID == 1}">
+                                <td style=" text-align: center"><img src="IMG/${o.productImg}" width= "100"/></td>
+                                    <c:if test="${o.categoryID == 1}">
                                     <td>Hyundai</td>
                                 </c:if>
                                 <c:if test="${o.categoryID == 2}">
-                                    <td>Vinfast</td>
+                                    <td>VinFast</td>
                                 </c:if>
                                 <c:if test="${o.categoryID == 3}">
                                     <td>Mazda</td>
@@ -142,7 +144,12 @@
                                 <c:if test="${o.categoryID == 5}">
                                     <td>Honda</td>
                                 </c:if>
-                                <td>${o.productStatus}</td>
+                                <c:if test="${o.productStatus == 1}">
+                                    <td>Còn xe</td>
+                                </c:if>
+                                <c:if test="${o.productStatus == 0}">
+                                    <td>Hết xe</td>
+                                </c:if>
                                 <td style="text-align:center;">
                                     <a href="#" class="btn">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -170,9 +177,9 @@
                                     <h2 class="tm-block-title">Thêm xe mới</h2>
                                 </div>
                             </div>
-                            <div class="row tm-edit-product-row">
-                                <div class="col-xl-6 col-lg-6 col-md-12">
-                                    <form action="addproduct" class="tm-edit-product-form" enctype="multipart/form-data">
+                            <form action="addproduct" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
+                                <div class="row tm-edit-product-row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="name">Tên xe
                                             </label>
@@ -205,54 +212,54 @@
                                             <input id="gear" name="gear" type="text" class="form-control validate" required />
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="licensePlate">Biển số
-                                            </label>
-                                            <input id="licensePlate" name="licensePlate" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
                                             <label for="fuel">Nhiên liệu
                                             </label>
                                             <input id="fuel" name="fuel" type="text" class="form-control validate" required />
                                         </div>
 
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                                        <!--                                <div class="tm-product-img-dummy mx-auto">
+                                                                            <i class="fa fa-cloud-upload tm-upload-icon"
+                                                                               onclick="document.getElementById('fileInput').click();"></i>
+                                                                        </div>-->
+                                        <!--                                <div class="custom-file mt-3 mb-3">
+                                                                            <input name="image" id="fileInput" type="file" />
+                                                                            <input name="image" type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE"
+                                                                                   onclick="document.getElementById('fileInput').click();" />
+                                                                        </div>-->
+                                        <div class="form-group mb-3">
+                                            <label>Hình Ảnh</label>
+                                            <input name="image" type="file" class="form-control" required>
+                                        </div>
+                                        <div class="form-group mt-3 mb-3">
+                                            <label for="color">Màu
+                                            </label>
+                                            <input id="color" name="color" type="text" class="form-control validate" required />
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="licensePlate">Biển số
+                                            </label>
+                                            <input id="licensePlate" name="licensePlate" type="text" class="form-control validate" required />
+                                        </div>
+                                        <div class="form-group mt-3 mb-3">
+                                            <label for="yearRelease">Năm sản xuất
+                                            </label>
+                                            <input id="yearRelease" name="yearRelease" type="text" class="form-control validate" required />
+                                        </div>
+                                        <div class="form-group mt-3 mb-3">
+                                            <label for="description">Mô tả</label>
+                                            <textarea name="des" class="form-control validate" rows="3" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 offset-3 mt-3">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm xe mới</button>
+                                    </div>  
+                                    <div class="col-3 mt-3">
+                                        <button type="button" class="btn btn-back">Trở lại</button>
+                                    </div>  
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                                    <!--                                <div class="tm-product-img-dummy mx-auto">
-                                                                        <i class="fa fa-cloud-upload tm-upload-icon"
-                                                                           onclick="document.getElementById('fileInput').click();"></i>
-                                                                    </div>-->
-                                    <!--                                <div class="custom-file mt-3 mb-3">
-                                                                        <input name="image" id="fileInput" type="file" />
-                                                                        <input name="image" type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE"
-                                                                               onclick="document.getElementById('fileInput').click();" />
-                                                                    </div>-->
-                                    <div class="form-group mt-3 mb-3">
-                                        <label>Image</label>
-                                        <input name="image" type="file" class="form-control validate" required>
-                                    </div>
-                                    <div class="form-group mt-3 mb-3">
-                                        <label for="color">Màu
-                                        </label>
-                                        <input id="color" name="color" type="text" class="form-control validate" required />
-                                    </div>
-                                    <div class="form-group mt-3 mb-3">
-                                        <label for="yearRelease">Năm sản xuất
-                                        </label>
-                                        <input id="yearRelease" name="yearRelease" type="text" class="form-control validate" required />
-                                    </div>
-                                    <div class="form-group mt-3 mb-3">
-                                        <label for="description">Mô tả</label>
-                                        <textarea name="des" class="form-control validate" rows="3" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-3 offset-3 mt-3">
-                                    <button type="submit" class="btn btn-primary text-uppercase">Thêm xe mới</button>
-                                </div>  
-                                <div class="col-3 mt-3">
-                                    <button type="button" class="btn btn-back">Trở lại</button>
-                                </div>  
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -266,51 +273,52 @@
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script>
-                    let modal = document.querySelector(".add-modal");
-                    var btnOpen = document.querySelector(".add-btn");
-                    var btnCancel = document.querySelector(".btn-back");
-                    function toggleModal(e) {
-                        console.log(e.target);
-                        modal.classList.toggle("hide")
-                    }
-                    btnOpen.addEventListener('click', toggleModal);
-                    btnCancel.addEventListener('click', toggleModal);
+                        let modal = document.querySelector(".add-modal");
+                        var btnOpen = document.querySelector(".add-btn");
+                        var btnCancel = document.querySelector(".btn-back");
+                        function toggleModal(e) {
+                            console.log(e.target);
+                            modal.classList.toggle("hide")
+                        }
+                        btnOpen.addEventListener('click', toggleModal);
+                        btnCancel.addEventListener('click', toggleModal);
 
-                    $(function () {
-                        $('.product-card').hover(function () {
-                            $(this).find('.description').animate({
-                                height: "toggle",
-                                opacity: "toggle"
-                            }, 300);
+                        $(function () {
+                            $('.product-card').hover(function () {
+                                $(this).find('.description').animate({
+                                    height: "toggle",
+                                    opacity: "toggle"
+                                }, 300);
+                            });
                         });
-                    });
-                    let subMenu = document.getElementById("subMenu");
-                    const $menu = $('.sub-menu-wrap')
-                    function toggleMenu() {
-                        subMenu.classList.toggle("open-menu")
-                    }
-                    $(document).mouseup(function (e) {
-                        var container = $(".user-pic");
-                        if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+                        let subMenu = document.getElementById("subMenu");
+                        const $menu = $('.sub-menu-wrap')
+                        function toggleMenu() {
                             subMenu.classList.toggle("open-menu")
                         }
-                    });
-                    $('.mydatatable').DataTable({
-                        aoColumns: [
-                            null,
-                            null,
-                            null,
-                            null,
-                            {orderSequence: false},
-                        ],
-                        language: {
-                            lengthMenu: 'Hiển thị _MENU_ xe',
-                            zeroRecords: 'Không tìm thấy xe nào - sorry',
-                            info: 'Trang _PAGE_ trên _PAGES_',
-                            infoEmpty: 'No records available',
-                            infoFiltered: '(filtered from _MAX_ total records)',
-                        },
-                    });
+                        $(document).mouseup(function (e) {
+                            var container = $(".user-pic");
+                            if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+                                subMenu.classList.toggle("open-menu")
+                            }
+                        });
+                        $('.mydatatable').DataTable({
+                            aoColumns: [
+                                null,
+                                null,
+                                {orderSequence: false},
+                                null,
+                                null,
+                                {orderSequence: false},
+                            ],
+                            language: {
+                                lengthMenu: 'Hiển thị _MENU_ xe',
+                                zeroRecords: 'Không tìm thấy xe nào',
+                                info: 'Trang _PAGE_ trên _PAGES_',
+                                infoEmpty: 'No records available',
+                                infoFiltered: '(filtered from _MAX_ total records)',
+                            },
+                        });
         </script>
     </body>
 </html>

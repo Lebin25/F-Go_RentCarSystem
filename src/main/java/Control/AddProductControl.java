@@ -33,7 +33,7 @@ import javax.servlet.http.Part;
 @WebServlet(name = "AddProductControl", urlPatterns = {"/addproduct"})
 public class AddProductControl extends HttpServlet {
     private static final long SerialVersionUID = 1L;
-    private static final String  UPLOAD_DIR = "images";
+    private static final String  UPLOAD_DIR = "IMG";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,6 +46,7 @@ public class AddProductControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String pname = request.getParameter("name");
         String pcategory = request.getParameter("category");
         String pprice = request.getParameter("price");
@@ -58,6 +59,9 @@ public class AddProductControl extends HttpServlet {
         String pyearRelease = request.getParameter("yearRelease");
         String pdes = request.getParameter("des");
         String pstatus = "1";
+        
+        
+        
         System.out.println(pname + " " + pcategory + " " +pprice + " " +pseat+ " " +pgear + " " +plicensePlate+ " " +pfuel+ " " +pcolor+ " " +pimage+ " " +pyearRelease+ " " +pdes+ " " +pstatus);
         
         ProductDAO productdao = new ProductDAO();
@@ -113,7 +117,7 @@ public class AddProductControl extends HttpServlet {
                     outputStream.close();
                 }
             }
-
+            
         }catch(Exception e){
             fileName = "";
         }
@@ -121,7 +125,7 @@ public class AddProductControl extends HttpServlet {
     }
     private String  getFileName(Part part){
         final String  partHeader = part.getHeader("content-disposition");
-        System.out.println("*partHeader :"+ partHeader);
+        System.out.println("*****partHeader :"+ partHeader);
         for(String content : part.getHeader("content-disposition").split(";")){
             if(content.trim().startsWith("filename")){
                 return content.substring(content.indexOf('=')+1).trim().replace("\"", "" );
