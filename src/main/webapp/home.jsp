@@ -63,7 +63,7 @@
                         <a href="#" class="sub-menu-link">
                             <p>Quản lý đơn thuê</p>
                         </a>
-                        <a href="#" class="sub-menu-link">
+                        <a href="manageproduct" class="sub-menu-link">
                             <p>Quản lý xe</p>
                         </a>
                         <a href="#" class="sub-menu-link">

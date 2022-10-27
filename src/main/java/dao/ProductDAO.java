@@ -132,5 +132,30 @@ public class ProductDAO {
         return list;
     }
     
+    public void addProduct(String name, String des, String image, String price, String status, 
+            String cateId, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease) {
+        String query = "insert into PRODUCT\n"
+                + "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, des);
+            ps.setString(3, image);
+            ps.setString(4, price);
+            ps.setString(5, status);
+            ps.setString(6, cateId);
+            ps.setString(7, seat);
+            ps.setString(8, gear);
+            ps.setString(9, color);
+            ps.setString(10, licensePlate);
+            ps.setString(11, fuel);
+            ps.setString(12, yearRelease);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+
+    }
     
 }
