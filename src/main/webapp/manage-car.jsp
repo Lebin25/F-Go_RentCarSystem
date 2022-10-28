@@ -129,7 +129,7 @@
                                 <td>${o.productID}</td>
                                 <td>${o.productName}</td>
                                 <td style=" text-align: center"><img src="images/${o.productImg}" width= "100"/></td>
-                                    <c:if test="${o.categoryID == 1}">
+                                <c:if test="${o.categoryID == 1}">
                                     <td>Hyundai</td>
                                 </c:if>
                                 <c:if test="${o.categoryID == 2}">

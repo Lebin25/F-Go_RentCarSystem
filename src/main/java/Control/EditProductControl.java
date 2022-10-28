@@ -30,8 +30,10 @@ import javax.servlet.http.Part;
 )
 @WebServlet(name = "EditProductControl", urlPatterns = {"/edit_product"})
 public class EditProductControl extends HttpServlet {
+
     private static final long SerialVersionUID = 1L;
-    private static final String  UPLOAD_DIR = "images";
+    private static final String UPLOAD_DIR = "images";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,10 +46,12 @@ public class EditProductControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("id");
         String pname = request.getParameter("name");
         String pcategory = request.getParameter("category");
         String pprice = request.getParameter("price");
+        String pstatus = request.getParameter("status");
         String pseat = request.getParameter("seat");
         String pgear = request.getParameter("gear");
         String plicensePlate = request.getParameter("licensePlate");
@@ -56,10 +60,9 @@ public class EditProductControl extends HttpServlet {
         String pimage = uploadFile(request);
         String pyearRelease = request.getParameter("yearRelease");
         String pdes = request.getParameter("des");
-        String pstatus = "1";
         ProductDAO pdao = new ProductDAO();
         pdao.editProduct(pname, pdes, pimage, pprice, pstatus, pcategory, pseat, pgear, pcolor, plicensePlate, pfuel, pyearRelease, pid);
-        System.out.println(pname + " " + pcategory + " " +pprice + " " +pseat+ " " +pgear + " " +plicensePlate+ " " +pfuel+ " " +pcolor+ " " +pimage+ " " +pyearRelease+ " " +pdes+ " " +pstatus +" "+ pid);
+        System.out.println(pname + " " + pcategory + " " + pprice + " " + pseat + " " + pgear + " " + plicensePlate + " " + pfuel + " " + pcolor + " " + pimage + " " + pyearRelease + " " + pdes + " " + pstatus + " " + pid);
         response.sendRedirect("manageproduct");
     }
 
@@ -78,16 +81,15 @@ public class EditProductControl extends HttpServlet {
         processRequest(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
-    private String uploadFile(HttpServletRequest request) throws IOException, ServletException{
-        String fileName="";
-        try{
+
+    private String uploadFile(HttpServletRequest request) throws IOException, ServletException {
+        String fileName = "";
+        try {
             Part filePart = request.getPart("image");
             fileName = (String) getFileName(filePart);
             String applicationPath = request.getServletContext().getRealPath("");
@@ -95,43 +97,43 @@ public class EditProductControl extends HttpServlet {
             InputStream inputStream = null;
             OutputStream outputStream = null;
             try {
-                File outputFilePath = new  File(basePath + fileName);
+                File outputFilePath = new File(basePath + fileName);
                 inputStream = filePart.getInputStream();
                 outputStream = new FileOutputStream(outputFilePath);
                 int read = 0;
-                final byte[] bytes =  new  byte[1024];
-                while((read = inputStream.read(bytes)) != -1){
+                final byte[] bytes = new byte[1024];
+                while ((read = inputStream.read(bytes)) != -1) {
                     outputStream.write(bytes, 0, read);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 fileName = "";
-            }finally{
-                if(inputStream != null){
+            } finally {
+                if (inputStream != null) {
                     inputStream.close();
                 }
-                if(outputStream != null){
+                if (outputStream != null) {
                     outputStream.close();
                 }
             }
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             fileName = "";
         }
         return fileName;
     }
-    private String  getFileName(Part part){
-        final String  partHeader = part.getHeader("content-disposition");
-        System.out.println("*****partHeader :"+ partHeader);
-        for(String content : part.getHeader("content-disposition").split(";")){
-            if(content.trim().startsWith("filename")){
-                return content.substring(content.indexOf('=')+1).trim().replace("\"", "" );
+
+    private String getFileName(Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        System.out.println("*****partHeader :" + partHeader);
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
             }
         }
         return null;
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";
