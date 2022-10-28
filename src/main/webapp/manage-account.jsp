@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Manage Car</title>
+        <title>Manage Account</title>
         <link rel="stylesheet" href="./CSS/manageStyle.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -89,7 +89,7 @@
         
         <div class="content">
             <div class="header">
-                <h2>Quản lý Xe</h2>
+                <h2>Quản lý tài khoản</h2>
             </div>
             <div class="group-function">
 
@@ -97,7 +97,7 @@
                     <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
                 </div> -->
 
-                <button class="add-btn btn btn-primary text-uppercase">Thêm xe mới</button>
+                <button class="add-btn btn btn-primary text-uppercase">Thêm tài khoản</button>
 
 
 
@@ -117,46 +117,31 @@
                     <thead style="text-align:center;">
                         <tr>
                             <th>ID</th>
-                            <th>Tên xe</th>
-                            <th>Hình ảnh</th>
-                            <th>Loại xe</th>
-                            <th>Trình trạng</th>
+                            <th>Tên tài khoản</th>
+                            <th>Mật khẩu</th>
+                            <th>Quyền hạn</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${listP}" var="o">
+                        <c:forEach items="${listA}" var="o">
                             <tr>
-                                <td>${o.productID}</td>
-                                <td>${o.productName}</td>
-                                <td style=" text-align: center"><img src="images/${o.productImg}" width= "100"/></td>
-                                <c:if test="${o.categoryID == 1}">
-                                    <td>Hyundai</td>
+                                <td>${o.accountID}</td>
+                                <td>${o.account}</td>
+                                <td>${o.password}</td>
+                                
+                                <c:if test="${o.role == 0}">
+                                    <td>User</td>
                                 </c:if>
-                                <c:if test="${o.categoryID == 2}">
-                                    <td>VinFast</td>
+                                <c:if test="${o.role == 1}">
+                                    <td>Admin</td>
                                 </c:if>
-                                <c:if test="${o.categoryID == 3}">
-                                    <td>Mazda</td>
+                                <c:if test="${o.role == 2}">
+                                    <td>Web-owner</td>
                                 </c:if>
-                                <c:if test="${o.categoryID == 4}">
-                                    <td>Toyota</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 5}">
-                                    <td>Honda</td>
-                                </c:if>
-                                <c:if test="${o.productStatus == 1}">
-                                    <td>Còn xe</td>
-                                </c:if>
-                                <c:if test="${o.productStatus == 0}">
-                                    <td>Hết xe</td>
-                                </c:if>
+                                
                                 <td style="text-align:center;">
-                                    <a href="load_to_view?pid=${o.productID}" class="btn">
-                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                        <span><strong>Xem chi tiết</strong></span>
-                                    </a>
-                                    <a href="delete_product?pid=${o.productID}" class="btn">
+                                    <a href="delete_account?aid=${o.accountID}" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xoá</strong></span>
                                     </a>
@@ -175,86 +160,39 @@
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="tm-block-title">Thêm xe mới</h2>
+                                    <h2 class="tm-block-title">Thêm tài khoản mới</h2>
                                 </div>
                             </div>
-                            <form action="addproduct" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
+                            <form action="addaccount" method="post" class="tm-edit-product-form">
                                 <div class="row tm-edit-product-row">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="name">Tên xe
+                                            <label for="username">Tên tài khoản
                                             </label>
-                                            <input id="name" name="name" type="text" class="form-control validate" required />
+                                            <input id="username" name="username" type="text" class="form-control validate" required />
+                                        </div>
+                                        
+                                        <div class="form-group mb-3">
+                                            <label for="pass">Mật khẩu
+                                            </label>
+                                            <input id="pass" name="pass" type="text" class="form-control validate" required />
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label for="category">Loại xe</label>
-                                            <select name = "category" class="custom-select tm-select-accounts" id="category">
-                                                <option selected>Chọn loại xe</option>
-                                                <c:forEach items="${listCC}" var="o">
-                                                    <option value="${o.categoryId}">${o.categoryName}</option>
+                                            <label for="role">Quyền hạn</label>
+                                            <select name = "role" class="custom-select tm-select-accounts" id="role">
+                                                <option selected>Chọn quyền hạn</option>
+                                                <c:forEach items="${listRR}" var="o">
+                                                    <option value="${o.roleId}">${o.roleName}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
 
-                                        <div class="form-group mb-3">
-                                            <label for="price">Giá thuê
-                                            </label>
-                                            <input id="price" name="price" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="seat">Chỗ ngồi
-                                            </label>
-                                            <input id="seat" name="seat" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="gear">Hộp số
-                                            </label>
-                                            <input id="gear" name="gear" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="fuel">Nhiên liệu
-                                            </label>
-                                            <input id="fuel" name="fuel" type="text" class="form-control validate" required />
-                                        </div>
-
+                                        
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                                        <!--                                <div class="tm-product-img-dummy mx-auto">
-                                                                            <i class="fa fa-cloud-upload tm-upload-icon"
-                                                                               onclick="document.getElementById('fileInput').click();"></i>
-                                                                        </div>-->
-                                        <!--                                <div class="custom-file mt-3 mb-3">
-                                                                            <input name="image" id="fileInput" type="file" />
-                                                                            <input name="image" type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE"
-                                                                                   onclick="document.getElementById('fileInput').click();" />
-                                                                        </div>-->
-                                        <div class="form-group mb-3">
-                                            <label>Hình Ảnh</label>
-                                            <input name="image" type="file" class="form-control" required>
-                                        </div>
-                                        <div class="form-group mt-3 mb-3">
-                                            <label for="color">Màu
-                                            </label>
-                                            <input id="color" name="color" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="licensePlate">Biển số
-                                            </label>
-                                            <input id="licensePlate" name="licensePlate" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mt-3 mb-3">
-                                            <label for="yearRelease">Năm sản xuất
-                                            </label>
-                                            <input id="yearRelease" name="yearRelease" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mt-3 mb-3">
-                                            <label for="description">Mô tả</label>
-                                            <textarea name="des" class="form-control validate" rows="3" required></textarea>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-3 offset-3 mt-3">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm xe mới</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm tài khoản mới</button>
                                     </div>  
                                     <div class="col-3 mt-3">
                                         <button type="button" class="btn btn-back">Trở lại</button>
@@ -308,8 +246,7 @@
                                 null,
                                 null,
                                 {orderSequence: false},
-                                null,
-                                null,
+                                {orderSequence: false},
                                 {orderSequence: false},
                             ],
                             language: {

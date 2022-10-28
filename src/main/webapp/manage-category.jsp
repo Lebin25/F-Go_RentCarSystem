@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Manage Car</title>
+        <title>Manage Category</title>
         <link rel="stylesheet" href="./CSS/manageStyle.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -89,7 +89,7 @@
         
         <div class="content">
             <div class="header">
-                <h2>Quản lý Xe</h2>
+                <h2>Quản lý loại xe</h2>
             </div>
             <div class="group-function">
 
@@ -97,7 +97,7 @@
                     <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
                 </div> -->
 
-                <button class="add-btn btn btn-primary text-uppercase">Thêm xe mới</button>
+                <button class="add-btn btn btn-primary text-uppercase">Thêm loại xe mới</button>
 
 
 
@@ -117,46 +117,24 @@
                     <thead style="text-align:center;">
                         <tr>
                             <th>ID</th>
-                            <th>Tên xe</th>
-                            <th>Hình ảnh</th>
                             <th>Loại xe</th>
-                            <th>Trình trạng</th>
+                            <th>Hình ảnh</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${listP}" var="o">
+                        <c:forEach items="${listC}" var="o">
                             <tr>
-                                <td>${o.productID}</td>
-                                <td>${o.productName}</td>
-                                <td style=" text-align: center"><img src="images/${o.productImg}" width= "100"/></td>
-                                <c:if test="${o.categoryID == 1}">
-                                    <td>Hyundai</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 2}">
-                                    <td>VinFast</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 3}">
-                                    <td>Mazda</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 4}">
-                                    <td>Toyota</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 5}">
-                                    <td>Honda</td>
-                                </c:if>
-                                <c:if test="${o.productStatus == 1}">
-                                    <td>Còn xe</td>
-                                </c:if>
-                                <c:if test="${o.productStatus == 0}">
-                                    <td>Hết xe</td>
-                                </c:if>
+                                <td>${o.categoryId}</td>
+                                <td>${o.categoryName}</td>
+                                <td style=" text-align: center"><img src="images/${o.categoryImg}" width= "100"/></td>
+                                
                                 <td style="text-align:center;">
-                                    <a href="load_to_view?pid=${o.productID}" class="btn">
+                                    <a href="load_to_view_category?cid=${o.categoryId}" class="btn">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                         <span><strong>Xem chi tiết</strong></span>
                                     </a>
-                                    <a href="delete_product?pid=${o.productID}" class="btn">
+                                    <a href="delete_category?cid=${o.categoryId}" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xoá</strong></span>
                                     </a>
@@ -175,48 +153,24 @@
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="tm-block-title">Thêm xe mới</h2>
+                                    <h2 class="tm-block-title">Thêm loại xe mới</h2>
                                 </div>
                             </div>
-                            <form action="addproduct" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
+                            <form action="addcategory" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
                                 <div class="row tm-edit-product-row">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="name">Tên xe
+                                            <label for="catename">Tên loại xe
                                             </label>
-                                            <input id="name" name="name" type="text" class="form-control validate" required />
+                                            <input id="catename" name="catename" type="text" class="form-control validate" required />
                                         </div>
 
-                                        <div class="form-group mb-3">
-                                            <label for="category">Loại xe</label>
-                                            <select name = "category" class="custom-select tm-select-accounts" id="category">
-                                                <option selected>Chọn loại xe</option>
-                                                <c:forEach items="${listCC}" var="o">
-                                                    <option value="${o.categoryId}">${o.categoryName}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
+                                       
 
-                                        <div class="form-group mb-3">
-                                            <label for="price">Giá thuê
-                                            </label>
-                                            <input id="price" name="price" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="seat">Chỗ ngồi
-                                            </label>
-                                            <input id="seat" name="seat" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="gear">Hộp số
-                                            </label>
-                                            <input id="gear" name="gear" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="fuel">Nhiên liệu
-                                            </label>
-                                            <input id="fuel" name="fuel" type="text" class="form-control validate" required />
-                                        </div>
+                                        
+                                        
+                                        
+                                        
 
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
@@ -233,25 +187,10 @@
                                             <label>Hình Ảnh</label>
                                             <input name="image" type="file" class="form-control" required>
                                         </div>
-                                        <div class="form-group mt-3 mb-3">
-                                            <label for="color">Màu
-                                            </label>
-                                            <input id="color" name="color" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="licensePlate">Biển số
-                                            </label>
-                                            <input id="licensePlate" name="licensePlate" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mt-3 mb-3">
-                                            <label for="yearRelease">Năm sản xuất
-                                            </label>
-                                            <input id="yearRelease" name="yearRelease" type="text" class="form-control validate" required />
-                                        </div>
-                                        <div class="form-group mt-3 mb-3">
-                                            <label for="description">Mô tả</label>
-                                            <textarea name="des" class="form-control validate" rows="3" required></textarea>
-                                        </div>
+                                        
+                                        
+                                        
+                                        
                                     </div>
                                     <div class="col-3 offset-3 mt-3">
                                         <button type="submit" class="btn btn-primary text-uppercase">Thêm xe mới</button>
@@ -308,8 +247,6 @@
                                 null,
                                 null,
                                 {orderSequence: false},
-                                null,
-                                null,
                                 {orderSequence: false},
                             ],
                             language: {

@@ -26,7 +26,7 @@ public class SignupDAO {
             ps.setString(1, acc);
             rs = ps.executeQuery();
             while(rs.next()){
-                Account a = new Account(rs.getInt(1) ,rs.getString(2), rs.getString(3)); 
+                Account a = new Account(rs.getInt(1) ,rs.getString(2), rs.getString(3), rs.getString(4));
                 return a;
             }
         } catch (Exception e) {
@@ -35,15 +35,16 @@ public class SignupDAO {
         return null;
     }
     
-    public void signup(String user, String pass){
-        String query = "insert into ACCOUNT values(?,?)";
+    public void signup(String user, String pass, String role){
+        String query = "insert into ACCOUNT values(?,?,?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, user);
             ps.setString(2, pass);
+            ps.setString(3, role);
             ps.executeUpdate();
-            
+
         } catch (Exception e) {
         }
     }

@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Authenication.Signup;
+package Control;
 
-import dao.SignupDAO;
-import entity.Account;
+import dao.ProductDAO;
+import entity.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-@WebServlet(name = "SignupControl", urlPatterns = {"/signup"})
-public class SignupControl extends HttpServlet {
+@WebServlet(name = "ManageCategoryControl", urlPatterns = {"/managecategory"})
+public class ManageCategoryControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +34,11 @@ public class SignupControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        String repass = request.getParameter("repass");
-        String role = "0";
-        if(!pass.equals(repass)){
-            response.sendRedirect("login.jsp");
-        } else {
-            SignupDAO signupdao = new SignupDAO();
-            Account a = signupdao.checkAccountExist(user);
-            if(a == null){
-                signupdao.signup(user,pass,role);
-                response.sendRedirect("home.jsp");
+        ProductDAO productdao = new ProductDAO();
+        List<Category> list = productdao.getAllCategory();
+        request.setAttribute("listC", list);
+        request.getRequestDispatcher("manage-category.jsp").forward(request, response);
 
-            }else {
-                response.sendRedirect("login.jsp");
-
-            }
-        }
 
     }
 

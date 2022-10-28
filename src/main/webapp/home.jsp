@@ -54,7 +54,7 @@
                         <a href="#" class="sub-menu-link">
                             <p>Quản lý admin</p>
                         </a>
-                        <a href="#" class="sub-menu-link">
+                        <a href="manageaccount" class="sub-menu-link">
                             <p>Quản lý tài khoản</p>
                         </a>
                         <a href="#" class="sub-menu-link">
@@ -66,7 +66,7 @@
                         <a href="manageproduct" class="sub-menu-link">
                             <p>Quản lý xe</p>
                         </a>
-                        <a href="#" class="sub-menu-link">
+                        <a href="managecategory" class="sub-menu-link">
                             <p>Quản lý loại xe</p>
                         </a>
                         <!-- <a href="#" class="sub-menu-link">

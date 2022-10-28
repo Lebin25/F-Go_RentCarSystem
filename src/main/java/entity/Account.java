@@ -8,14 +8,16 @@ public class Account {
     private int accountID;
     private String account;
     private String password;
+    private String role;
 
     public Account() {
     }
 
-    public Account(int accountID, String account, String password) {
+    public Account(int accountID, String account, String password, String role) {
         this.accountID = accountID;
         this.account = account;
         this.password = password;
+        this.role = role;
     }
 
     public int getAccountID() {
@@ -42,7 +44,12 @@ public class Account {
         this.password = password;
     }
 
-    
-    
-    
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+   
 }

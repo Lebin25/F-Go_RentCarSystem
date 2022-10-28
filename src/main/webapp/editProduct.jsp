@@ -39,7 +39,7 @@
                                     <div class="form-group mb-3">
                                         <label for="category">Loại xe</label>
                                         <select name = "category" class="custom-select tm-select-accounts" id="category">
-                                            <option selected disabled hidden>
+                                            <option value="${edit.categoryID}" selected hidden>
                                                 <c:if test="${edit.categoryID == 1}">
                                                     Hyundai
                                                 </c:if>
@@ -54,12 +54,14 @@
                                                 </c:if>
                                                 <c:if test="${edit.categoryID == 5}">
                                                     Honda
-                                                </c:if></option>
+                                                </c:if>
+                                            </option>
                                             <c:forEach items="${listCC}" var="o">
                                                 <option value="${o.categoryId}">${o.categoryName}</option>
                                             </c:forEach>
-
                                         </select>
+
+                                        
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -101,17 +103,16 @@
                                     <div class="form-group mb-3">
                                         <label for="category">Tình trạng</label>
                                         <select name = "status" class="custom-select tm-select-accounts" id="status">
-                                            <option selected disabled hidden>
-                                                <c:if test="${edit.productStatus == 1}">
-                                                    Còn xe
-                                                </c:if>
+                                            <option value="${edit.productStatus}" selected hidden>
                                                 <c:if test="${edit.productStatus == 0}">
                                                     Hết xe
                                                 </c:if>
-                                                
+                                                <c:if test="${edit.productStatus == 1}">
+                                                    Còn xe
+                                                </c:if>
+                                            </option>
                                                 <option value="0">Hết xe</option>
                                                 <option value="1">Còn xe</option>
-
                                         </select>
                                     </div>
                                     <div class="form-group mt-3 mb-3">
