@@ -24,6 +24,7 @@ import javax.servlet.http.Part;
  * @author ADMIN
  */
 @MultipartConfig(
+        location = "E:\\study\\Semester_5\\SWP391\\Project_FGO\\F-Go\\src\\main\\webapp\\images",
         fileSizeThreshold = 1024 * 1024 * 10,
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
@@ -32,7 +33,6 @@ import javax.servlet.http.Part;
 public class EditProductControl extends HttpServlet {
 
     private static final long SerialVersionUID = 1L;
-    private static final String UPLOAD_DIR = "images";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,24 +57,24 @@ public class EditProductControl extends HttpServlet {
         String plicensePlate = request.getParameter("licensePlate");
         String pfuel = request.getParameter("fuel");
         String pcolor = request.getParameter("color");
-        String pimage = uploadFile(request);
         String pyearRelease = request.getParameter("yearRelease");
         String pdes = request.getParameter("des");
+        
+        Part partImg = request.getPart("image");
+        String pimage = getFileName(partImg);
+        try {
+            Part partUpload = request.getPart("image");
+            partUpload.write(getFileName(partUpload));
+        } catch (Exception e) {
+        }
+        
         ProductDAO pdao = new ProductDAO();
         pdao.editProduct(pname, pdes, pimage, pprice, pstatus, pcategory, pseat, pgear, pcolor, plicensePlate, pfuel, pyearRelease, pid);
         System.out.println(pname + " " + pcategory + " " + pprice + " " + pseat + " " + pgear + " " + plicensePlate + " " + pfuel + " " + pcolor + " " + pimage + " " + pyearRelease + " " + pdes + " " + pstatus + " " + pid);
         response.sendRedirect("manageproduct");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -87,41 +87,6 @@ public class EditProductControl extends HttpServlet {
         processRequest(request, response);
     }
 
-    private String uploadFile(HttpServletRequest request) throws IOException, ServletException {
-        String fileName = "";
-        try {
-            Part filePart = request.getPart("image");
-            fileName = (String) getFileName(filePart);
-            String applicationPath = request.getServletContext().getRealPath("");
-            String basePath = applicationPath + File.separator + UPLOAD_DIR + File.separator;
-            InputStream inputStream = null;
-            OutputStream outputStream = null;
-            try {
-                File outputFilePath = new File(basePath + fileName);
-                inputStream = filePart.getInputStream();
-                outputStream = new FileOutputStream(outputFilePath);
-                int read = 0;
-                final byte[] bytes = new byte[1024];
-                while ((read = inputStream.read(bytes)) != -1) {
-                    outputStream.write(bytes, 0, read);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                fileName = "";
-            } finally {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-            }
-
-        } catch (Exception e) {
-            fileName = "";
-        }
-        return fileName;
-    }
 
     private String getFileName(Part part) {
         final String partHeader = part.getHeader("content-disposition");

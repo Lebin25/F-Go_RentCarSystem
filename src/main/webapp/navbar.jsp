@@ -43,7 +43,7 @@
                         <a href="manageaccount" class="sub-menu-link">
                             <p>Quản lý tài khoản</p>
                         </a>
-                        <a href="#" class="sub-menu-link">
+                        <a href="managecustomer" class="sub-menu-link">
                             <p>Quản lý khách hàng</p>
                         </a>
                         <a href="#" class="sub-menu-link">

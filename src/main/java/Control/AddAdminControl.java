@@ -24,14 +24,15 @@ import javax.servlet.http.Part;
  * @author ADMIN
  */
 @MultipartConfig(
+        location = "E:\\study\\Semester_5\\SWP391\\Project_FGO\\F-Go\\src\\main\\webapp\\images",
         fileSizeThreshold = 1024 * 1024 * 10,
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
 )
 @WebServlet(name = "AddAdminControl", urlPatterns = {"/addadmin"})
 public class AddAdminControl extends HttpServlet {
+
     private static final long SerialVersionUID = 1L;
-    private static final String  UPLOAD_DIR = "images";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,12 +47,20 @@ public class AddAdminControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+
         String aname = request.getParameter("name");
         String aphone = request.getParameter("phone");
         String aaccountId = request.getParameter("accountID");
-        String aimage = uploadFile(request);
-                System.out.println(aname + " " + aphone + " " + aimage + " " + aaccountId);
+
+        Part partImg = request.getPart("image");
+        String aimage = getFileName(partImg);
+        try {
+            Part partUpload = request.getPart("image");
+            partUpload.write(getFileName(partUpload));
+        } catch (Exception e) {
+        }
+
+        System.out.println(aname + " " + aphone + " " + aimage + " " + aaccountId);
 
         AdminDAO admindao = new AdminDAO();
         admindao.addAdmin(aname, aphone, aimage, aaccountId);
@@ -59,75 +68,29 @@ public class AddAdminControl extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
-    private String uploadFile(HttpServletRequest request) throws IOException, ServletException{
-        String fileName="";
-        try{
-            Part filePart = request.getPart("image");
-            fileName = (String) getFileName(filePart);
-            String applicationPath = request.getServletContext().getRealPath("");
-            String basePath = applicationPath + File.separator + UPLOAD_DIR + File.separator;
-            InputStream inputStream = null;
-            OutputStream outputStream = null;
-            try {
-                File outputFilePath = new  File(basePath + fileName);
-                inputStream = filePart.getInputStream();
-                outputStream = new FileOutputStream(outputFilePath);
-                int read = 0;
-                final byte[] bytes =  new  byte[1024];
-                while((read = inputStream.read(bytes)) != -1){
-                    outputStream.write(bytes, 0, read);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                fileName = "";
-            }finally{
-                if(inputStream != null){
-                    inputStream.close();
-                }
-                if(outputStream != null){
-                    outputStream.close();
-                }
-            }
-            
-        }catch(Exception e){
-            fileName = "";
-        }
-        return fileName;
-    }
-    private String  getFileName(Part part){
-        final String  partHeader = part.getHeader("content-disposition");
-        System.out.println("*****partHeader :"+ partHeader);
-        for(String content : part.getHeader("content-disposition").split(";")){
-            if(content.trim().startsWith("filename")){
-                return content.substring(content.indexOf('=')+1).trim().replace("\"", "" );
+
+    private String getFileName(Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        System.out.println("*****partHeader :" + partHeader);
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
             }
         }
         return null;
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";
