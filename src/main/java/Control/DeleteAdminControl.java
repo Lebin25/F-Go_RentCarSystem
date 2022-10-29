@@ -4,7 +4,7 @@
  */
 package Control;
 
-import dao.AccountDAO;
+import dao.AdminDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-@WebServlet(name = "AddAccountControl", urlPatterns = {"/addaccount"})
-public class AddAccountControl extends HttpServlet {
+@WebServlet(name = "DeleteAdminControl", urlPatterns = {"/delete_admin"})
+public class DeleteAdminControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +32,10 @@ public class AddAccountControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-
-        String ausername = request.getParameter("username");
-        String apass = request.getParameter("pass");
-        String arole = request.getParameter("role");
-                System.out.println(ausername + " " + apass + " " + arole );
-
-        AccountDAO adao = new AccountDAO();
-        adao.addAccount(ausername,apass,arole);
-        response.sendRedirect("manageaccount");
-
+        String aid = request.getParameter("aid");
+        AdminDAO admindao = new AdminDAO();
+        admindao.deleteAdmin(aid);
+        response.sendRedirect("manageadmin");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

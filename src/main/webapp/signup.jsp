@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Sign up F-Go</title>
-        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="/CSS/signupStyle.css">
@@ -59,6 +58,9 @@
                                             Đăng nhập bằng Google
                                         </a>
                                     </div>
+                                </div>
+                                <div style=" margin-top: 20px;">
+                                    <a class="btn-back" href="home.jsp">Quay lại Trang chủ</a>
                                 </div>
                             </div>
                         </div>

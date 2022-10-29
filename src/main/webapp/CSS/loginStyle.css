@@ -132,3 +132,13 @@ body {
     margin-right:5px;
 }
 
+.btn-back{
+    background-color:transparent!important;
+    color: #000000!important;
+}
+
+.btn-back:active,
+.btn-back:hover{
+    color: var(--primary-color)!important;
+    text-decoration: none;
+}

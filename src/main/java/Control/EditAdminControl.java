@@ -4,7 +4,7 @@
  */
 package Control;
 
-import dao.CategoriesDAO;
+import dao.AdminDAO;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,8 +28,8 @@ import javax.servlet.http.Part;
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
 )
-@WebServlet(name = "EditCategoryControl", urlPatterns = {"/edit_category"})
-public class EditCategoryControl extends HttpServlet {
+@WebServlet(name = "EditAdminControl", urlPatterns = {"/edit_admin"})
+public class EditAdminControl extends HttpServlet {
     private static final long SerialVersionUID = 1L;
     private static final String UPLOAD_DIR = "images";
 
@@ -45,14 +45,15 @@ public class EditCategoryControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String cid = request.getParameter("id");
-        String cname = request.getParameter("catename");
-        String pimage = uploadFile(request);
+        String aid = request.getParameter("id");
+        String aname = request.getParameter("name");
+        String aphone = request.getParameter("phone");
+        String aimage = uploadFile(request);
+        String aaccountId = request.getParameter("accountId");
         
-        CategoriesDAO cdao = new CategoriesDAO();
-        cdao.editCategory(cname, pimage, cid);
-                response.sendRedirect("managecategory");
+        AdminDAO admindao = new AdminDAO();
+        admindao.editAdmin(aname, aphone, aimage, aid);
+                response.sendRedirect("manageadmin");
 
     }
 

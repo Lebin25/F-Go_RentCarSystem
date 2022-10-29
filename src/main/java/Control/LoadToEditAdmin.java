@@ -4,8 +4,8 @@
  */
 package Control;
 
-import dao.CategoriesDAO;
-import entity.Category;
+import dao.AdminDAO;
+import entity.Admin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-@WebServlet(name = "LoadToViewCategory", urlPatterns = {"/load_to_view_category"})
-public class LoadToViewCategory extends HttpServlet {
+@WebServlet(name = "LoadToEditAdmin", urlPatterns = {"/load_to_edit_admin"})
+public class LoadToEditAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +33,16 @@ public class LoadToViewCategory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("cid");
-                CategoriesDAO cdao = new CategoriesDAO();
-                Category c = cdao.getCategoryById(id);
-                request.setAttribute("detail", c);
-                request.getRequestDispatcher("viewCategoryDetail.jsp").forward(request, response);
-
-
-
-
+        String id = request.getParameter("aid");
+        AdminDAO admindao = new AdminDAO();
+        
+        Admin a = admindao.getAdminById(id);
+//        List<Admin> listA = pdao.getAllCategory();
+        
+        request.setAttribute("edit", a);
+//        request.setAttribute("listCC", listC);
+        
+        request.getRequestDispatcher("editAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

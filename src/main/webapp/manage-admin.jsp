@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Manage Category</title>
+        <title>Manage Admin</title>
         <link rel="stylesheet" href="./CSS/manageStyle.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -19,7 +19,7 @@
         
         <div class="content">
             <div class="header">
-                <h2>Quản lý loại xe</h2>
+                <h2>Quản lý Admin</h2>
             </div>
             <div class="group-function">
 
@@ -27,7 +27,7 @@
                     <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
                 </div> -->
 
-                <button class="add-btn btn btn-primary text-uppercase">Thêm loại xe mới</button>
+                <button class="add-btn btn btn-primary text-uppercase">Thêm Adnin mới</button>
 
 
 
@@ -47,24 +47,28 @@
                     <thead style="text-align:center;">
                         <tr>
                             <th>ID</th>
-                            <th>Loại xe</th>
-                            <th>Hình ảnh</th>
+                            <th>Tên Admin</th>
+                            <th>Số điện thoại</th>
+                            <th>Căn cước công dân</th>
+                            <th>Mã tài khoản</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${listC}" var="o">
+                        <c:forEach items="${listAdmin}" var="o">
                             <tr>
-                                <td>${o.categoryId}</td>
-                                <td>${o.categoryName}</td>
-                                <td style=" text-align: center"><img src="images/${o.categoryImg}" width= "100"/></td>
-                                
+                                <td>${o.adminId}</td>
+                                <td>${o.adminName}</td>
+                                <td>${o.phone}</td>
+                                <td style=" text-align: center"><img src="images/${o.nationalId}" width= "100"/></td>
+                                <td>${o.accountId}</td>
+
                                 <td style="text-align:center;">
-                                    <a href="load_to_edit_category?cid=${o.categoryId}" class="btn">
+                                    <a href="load_to_edit_admin?aid=${o.adminId}" class="btn">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                         <span><strong>Chỉnh sửa</strong></span>
                                     </a>
-                                    <a href="delete_category?cid=${o.categoryId}" class="btn">
+                                    <a href="delete_admin?aid=${o.adminId}" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xoá</strong></span>
                                     </a>
@@ -83,21 +87,22 @@
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="tm-block-title">Thêm loại xe mới</h2>
+                                    <h2 class="tm-block-title">Thêm xe mới</h2>
                                 </div>
                             </div>
-                            <form action="addcategory" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
+                            <form action="addadmin" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
                                 <div class="row tm-edit-product-row">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="catename">Tên loại xe
+                                            <label for="name">Tên Admin
                                             </label>
-                                            <input id="catename" name="catename" type="text" class="form-control validate" required />
+                                            <input id="name" name="name" type="text" class="form-control validate" required />
                                         </div>
-
-                                       
-
-                                        
+                                        <div class="form-group mb-3">
+                                            <label for="phone">Số điện thoại
+                                            </label>
+                                            <input id="phone" name="phone" type="text" class="form-control validate" required />
+                                        </div>
                                         
                                         
                                         
@@ -114,16 +119,18 @@
                                                                                    onclick="document.getElementById('fileInput').click();" />
                                                                         </div>-->
                                         <div class="form-group mb-3">
-                                            <label>Hình Ảnh</label>
+                                            <label>Căn cước công dân</label>
                                             <input name="image" type="file" class="form-control" required>
                                         </div>
-                                        
-                                        
-                                        
+                                        <div class="form-group mb-3">
+                                            <label for="accountID">Mã tài khoản
+                                            </label>
+                                            <input id="accountID" name="accountID" type="text" class="form-control validate" required />
+                                        </div>
                                         
                                     </div>
                                     <div class="col-3 offset-3 mt-3">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm xe mới</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm Admin mới</button>
                                     </div>  
                                     <div class="col-3 mt-3">
                                         <button type="button" class="btn btn-back">Trở lại</button>
@@ -175,8 +182,10 @@
                         $('.mydatatable').DataTable({
                             aoColumns: [
                                 null,
-                                null,
                                 {orderSequence: false},
+                                {orderSequence: false},
+                                {orderSequence: false},
+                                null,
                                 {orderSequence: false},
                             ],
                             language: {

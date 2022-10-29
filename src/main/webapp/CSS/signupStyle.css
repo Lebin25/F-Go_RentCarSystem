@@ -3,7 +3,6 @@
 }
 
 body {
-    font-family: "Karla", sans-serif;
     background-color: #d0d0ce;
     min-height: 100vh;
 }
@@ -130,5 +129,16 @@ body {
 .social-signup-btn img{
     margin-bottom:3px; 
     margin-right:5px;
+}
+
+.btn-back{
+    background-color:transparent!important;
+    color: #000000!important;
+}
+
+.btn-back:active,
+.btn-back:hover{
+    color: var(--primary-color)!important;
+    text-decoration: none;
 }
 

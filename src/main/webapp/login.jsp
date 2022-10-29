@@ -55,6 +55,9 @@
                                         </a>
                                     </div>
                                 </div>
+                                <div style=" margin-top: 20px;">
+                                    <a class="btn-back" href="home.jsp">Quay lại Trang chủ</a>
+                                </div>
                             </div>
                         </div>
                     </div>
