@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>Static</servlet-name>
-        <servlet-class>Control.Static</servlet-class>
+        <servlet-class>AdminControl.Static</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GoogleSigninServlet</servlet-name>

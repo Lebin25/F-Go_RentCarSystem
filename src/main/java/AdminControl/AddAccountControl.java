@@ -1,8 +1,12 @@
-package Controllers.Authenication.Login;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package AdminControl;
 
-import AuthenicationDAO.LoginDAO;
-import entity.Account;
+import AdminDAO.AccountDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Bin
+ * @author ADMIN
  */
-@WebServlet(name = "LoginControl", urlPatterns = {"/LoginControl"})
-public class LoginControl extends HttpServlet {
+@WebServlet(name = "AddAccountControl", urlPatterns = {"/addaccount"})
+public class AddAccountControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,18 +32,17 @@ public class LoginControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            String acc = request.getParameter("account");
-            String pass = request.getParameter("password");
-            LoginDAO loginDAO = new LoginDAO();
-            Account a = loginDAO.checkLogin(acc, pass);
-            if(a == null){
-                response.sendRedirect("signup.jsp");
-            }else{
-                response.sendRedirect("home.jsp");
-            }
-        } catch (Exception e) {
-        }
+        request.setCharacterEncoding("UTF-8");
+
+        String ausername = request.getParameter("username");
+        String apass = request.getParameter("pass");
+        String arole = request.getParameter("role");
+                System.out.println(ausername + " " + apass + " " + arole );
+
+        AccountDAO adao = new AccountDAO();
+        adao.addAccount(ausername,apass,arole);
+        response.sendRedirect("manageaccount");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

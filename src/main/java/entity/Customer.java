@@ -12,24 +12,24 @@ public class Customer {
     private int customerId;
     private String customerName;
     private String phone;
+    private String email;
     private String nationalId;
     private String drivingLicense;
     private int accountId;
     private int isVerify;
-    private String email;
 
     public Customer() {
     }
 
-    public Customer(int customerId, String customerName, String phone, String nationalId, String drivingLicense, int accountId, int isVerify, String email) {
+    public Customer(int customerId, String customerName, String phone, String email, String nationalId, String drivingLicense, int accountId, int isVerify) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.phone = phone;
+        this.email = email;
         this.nationalId = nationalId;
         this.drivingLicense = drivingLicense;
         this.accountId = accountId;
         this.isVerify = isVerify;
-        this.email = email;
     }
 
     
@@ -97,7 +97,5 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
+
 }

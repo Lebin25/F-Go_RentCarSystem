@@ -13,7 +13,7 @@ public class DBContext {
     }   
 
     private final String serverName = "LAPTOP-E1Q7CNU3";
-    private final String dbName = "F-Go_SWP391";
+    private final String dbName = "F-Go";
     private final String portNumber = "1433";
     private final String instance="";
     private final String userID = "sa";
