@@ -16,65 +16,55 @@
     </head>
     <body>
         <jsp:include page="navbar.jsp"></jsp:include>
-        
-        <div class="content">
-            <div class="header">
-                <h2>Quản lý Xe</h2>
-            </div>
-            <div class="group-function">
 
-                <!-- <div class="searchBar">
-                    <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
-                </div> -->
+            <div class="content">
+                <div class="header">
+                    <h2>Quản lý Xe</h2>
+                </div>
+                <div class="group-function">
 
-                <button class="add-btn btn btn-primary text-uppercase">Thêm xe mới</button>
+                    <!-- <div class="searchBar">
+                        <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
+                    </div> -->
+
+                    <button class="add-btn btn btn-primary text-uppercase">Thêm xe mới</button>
 
 
 
-                <!-- <div class="sortby">
-                    <div class="dropdown">
-                        <button class="dropdown-btn">Sắp xếp theo</button>
-                        <div class="dropdown-content">
-                            <a href="#">Chỗ ngồi</a>
-                            <a href="#">Giá tiền</a>
-                            <a href="#">Năm sản xuất</a>
+                    <!-- <div class="sortby">
+                        <div class="dropdown">
+                            <button class="dropdown-btn">Sắp xếp theo</button>
+                            <div class="dropdown-content">
+                                <a href="#">Chỗ ngồi</a>
+                                <a href="#">Giá tiền</a>
+                                <a href="#">Năm sản xuất</a>
+                            </div>
                         </div>
-                    </div>
-                </div> -->
-            </div>
-            <div class="container mb-3 mt-3">
-                <table class="table table-striped table-bordered mydatatable" style="width: 100%">
-                    <thead style="text-align:center;">
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên xe</th>
-                            <th>Hình ảnh</th>
-                            <th>Loại xe</th>
-                            <th>Trình trạng</th>
-                            <th>Chức năng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    </div> -->
+                </div>
+                <div class="container mb-3 mt-3">
+                    <table class="table table-striped table-bordered mydatatable" style="width: 100%">
+                        <thead style="text-align:center;">
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên xe</th>
+                                <th>Hình ảnh</th>
+                                <th>Loại xe</th>
+                                <th>Trình trạng</th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <c:forEach items="${listP}" var="o">
                             <tr>
                                 <td>${o.productID}</td>
                                 <td>${o.productName}</td>
                                 <td style=" text-align: center"><img src="images/${o.productImg}" width= "100"/></td>
-                                <c:if test="${o.categoryID == 1}">
-                                    <td>Hyundai</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 2}">
-                                    <td>VinFast</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 3}">
-                                    <td>Mazda</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 4}">
-                                    <td>Toyota</td>
-                                </c:if>
-                                <c:if test="${o.categoryID == 5}">
-                                    <td>Honda</td>
-                                </c:if>
+                                <c:forEach items="${listCC}" var="a">
+                                    <c:if test="${o.categoryID == a.categoryId}">
+                                        <td>${a.categoryName}</td>
+                                    </c:if>
+                                </c:forEach>
                                 <c:if test="${o.productStatus == 1}">
                                     <td>Còn xe</td>
                                 </c:if>
@@ -204,52 +194,52 @@
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script>
-                        let modal = document.querySelector(".add-modal");
-                        var btnOpen = document.querySelector(".add-btn");
-                        var btnCancel = document.querySelector(".btn-back");
-                        function toggleModal(e) {
-                            console.log(e.target);
-                            modal.classList.toggle("hide")
-                        }
-                        btnOpen.addEventListener('click', toggleModal);
-                        btnCancel.addEventListener('click', toggleModal);
+            let modal = document.querySelector(".add-modal");
+            var btnOpen = document.querySelector(".add-btn");
+            var btnCancel = document.querySelector(".btn-back");
+            function toggleModal(e) {
+                console.log(e.target);
+                modal.classList.toggle("hide")
+            }
+            btnOpen.addEventListener('click', toggleModal);
+            btnCancel.addEventListener('click', toggleModal);
 
-                        $(function () {
-                            $('.product-card').hover(function () {
-                                $(this).find('.description').animate({
-                                    height: "toggle",
-                                    opacity: "toggle"
-                                }, 300);
-                            });
-                        });
-                        let subMenu = document.getElementById("subMenu");
-                        const $menu = $('.sub-menu-wrap')
-                        function toggleMenu() {
-                            subMenu.classList.toggle("open-menu")
-                        }
-                        $(document).mouseup(function (e) {
-                            var container = $(".user-pic");
-                            if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
-                                subMenu.classList.toggle("open-menu")
-                            }
-                        });
-                        $('.mydatatable').DataTable({
-                            aoColumns: [
-                                null,
-                                null,
-                                {orderSequence: false},
-                                null,
-                                null,
-                                {orderSequence: false},
-                            ],
-                            language: {
-                                lengthMenu: 'Hiển thị _MENU_ xe',
-                                zeroRecords: 'Không tìm thấy kết quả nào!',
-                                info: 'Trang _PAGE_ trên _PAGES_',
-                                infoEmpty: 'No records available',
-                                infoFiltered: '(filtered from _MAX_ total records)',
-                            },
-                        });
+            $(function () {
+                $('.product-card').hover(function () {
+                    $(this).find('.description').animate({
+                        height: "toggle",
+                        opacity: "toggle"
+                    }, 300);
+                });
+            });
+            let subMenu = document.getElementById("subMenu");
+            const $menu = $('.sub-menu-wrap')
+            function toggleMenu() {
+                subMenu.classList.toggle("open-menu")
+            }
+            $(document).mouseup(function (e) {
+                var container = $(".user-pic");
+                if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+                    subMenu.classList.toggle("open-menu")
+                }
+            });
+            $('.mydatatable').DataTable({
+                aoColumns: [
+                    null,
+                    null,
+                    {orderSequence: false},
+                    null,
+                    null,
+                    {orderSequence: false},
+                ],
+                language: {
+                    lengthMenu: 'Hiển thị _MENU_ xe',
+                    zeroRecords: 'Không tìm thấy kết quả nào!',
+                    info: 'Trang _PAGE_ trên _PAGES_',
+                    infoEmpty: 'No records available',
+                    infoFiltered: '(filtered from _MAX_ total records)',
+                },
+            });
         </script>
     </body>
 </html>
