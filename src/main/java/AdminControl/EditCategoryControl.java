@@ -54,8 +54,6 @@ public class EditCategoryControl extends HttpServlet {
         try {
             Part partUpload = request.getPart("image");
             partUpload.write(getFileName(partUpload));
-            CategoriesDAO categoriesDAO = new CategoriesDAO();
-            categoriesDAO.addCategory(cname, pimage);
         } catch (Exception e) {
         }
         
