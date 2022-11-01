@@ -24,7 +24,7 @@ import javax.servlet.http.Part;
  * @author ADMIN
  */
 @MultipartConfig(
-        location = "E:\\study\\Semester_5\\SWP391\\Project_FGO\\F-Go\\src\\main\\webapp\\images",        
+        location = "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\F-GO\\F-Go\\src\\main\\webapp\\images",        
         fileSizeThreshold = 1024 * 1024 * 10,
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100

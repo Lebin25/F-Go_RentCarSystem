@@ -178,6 +178,26 @@ public class ProductDAO {
         return null;
     }
 
+    public Product getProductByName(String name) {
+        String sql = "Select * from PRODUCT\n"
+                + "where productName = " + "N" + "?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Product(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
+                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+
     public void deleteProduct(String pid) {
         String query = "delete from PRODUCT\n"
                 + "where productID = ?";

@@ -4,34 +4,25 @@
  */
 package AdminControl;
 
-import AdminDAO.AdminDAO;
-import java.io.File;
-import java.io.FileOutputStream;
+import AdminDAO.CustomerDAO;
+import AdminDAO.OrderDAO;
+import entity.Customer;
+import entity.Order;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 /**
  *
  * @author ADMIN
  */
-@MultipartConfig(
-        location = "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\F-GO\\F-Go\\src\\main\\webapp\\images",
-        fileSizeThreshold = 1024 * 1024 * 10,
-        maxFileSize = 1024 * 1024 * 50,
-        maxRequestSize = 1024 * 1024 * 100
-)
-@WebServlet(name = "EditAdminControl", urlPatterns = {"/edit_admin"})
-public class EditAdminControl extends HttpServlet {
-    private static final long SerialVersionUID = 1L;
+@WebServlet(name = "ManageOrderControl", urlPatterns = {"/manageorder"})
+public class ManageOrderControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,23 +36,19 @@ public class EditAdminControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String aid = request.getParameter("id");
-        String aname = request.getParameter("name");
-        String aphone = request.getParameter("phone");
-        String aaccountId = request.getParameter("accountId");
         
-        Part partImg = request.getPart("image");
-        String aimage = getFileName(partImg);
-        try {
-            Part partUpload = request.getPart("image");
-            partUpload.write(getFileName(partUpload));
-        } catch (Exception e) {
-        }
+        OrderDAO orderdao = new OrderDAO();
+        CustomerDAO custormerdao = new CustomerDAO();
+        List<Order> listo = orderdao.getAllOrder();
+        List<Customer> listc = custormerdao.getAllCustomer();
         
-        AdminDAO admindao = new AdminDAO();
-        admindao.editAdmin(aname, aphone, aimage, aid);
-                response.sendRedirect("manageadmin");
+        request.setAttribute("listO", listo);
+        request.setAttribute("listC", listc);
+        
+        request.getRequestDispatcher("manage-order.jsp").forward(request, response);
 
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -79,24 +66,25 @@ public class EditAdminControl extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-
-    private String getFileName(Part part) {
-        final String partHeader = part.getHeader("content-disposition");
-        System.out.println("*****partHeader :" + partHeader);
-        for (String content : part.getHeader("content-disposition").split(";")) {
-            if (content.trim().startsWith("filename")) {
-                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-        return null;
-    }
-
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";

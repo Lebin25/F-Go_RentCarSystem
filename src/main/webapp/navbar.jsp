@@ -46,7 +46,7 @@
                         <a href="managecustomer" class="sub-menu-link">
                             <p>Quản lý khách hàng</p>
                         </a>
-                        <a href="#" class="sub-menu-link">
+                        <a href="manageorder" class="sub-menu-link">
                             <p>Quản lý đơn thuê</p>
                         </a>
                         <a href="manageproduct" class="sub-menu-link">
