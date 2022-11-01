@@ -48,7 +48,12 @@
                         <tr>
                             <th>ID</th>
                             <th>Tên khách hàng</th>
-                            <th>Trạng thái đơn</th>
+                            <th>Số điện thoại</th>
+                            <th>Tên xe thuê</th>
+                            <th>Ngày nhận</th>
+                            <th>Ngày hẹn trả</th>
+                            <th>Tổng số tiền</th>
+                            <th>Trạng thái</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
@@ -61,11 +66,24 @@
                                         <td>${a.customerName}</td>
                                     </c:if>
                                 </c:forEach>
+                                <c:forEach items="${listC}" var="a">
+                                    <c:if test="${o.customerID == a.customerId}">
+                                        <td>${a.phone}</td>
+                                    </c:if>
+                                </c:forEach>
+                                <c:forEach items="${listP}" var="p">
+                                    <c:if test="${o.productId == p.productID}">
+                                        <td>${p.productName}</td>
+                                    </c:if>
+                                </c:forEach>
+                                <td>${o.timeBegin}</td>       
+                                <td>${o.timeEnd}</td>         
+                                <td>${o.totalMoney}</td>       
                                 <c:if test="${o.status == 0}">
-                                    <td>Thuê chưa thành công</td>
+                                    <td>Đã trả xe</td>
                                 </c:if>
                                 <c:if test="${o.status == 1}">
-                                    <td>Thuê thành công</td>
+                                    <td>Đang thuê</td>
                                 </c:if>
                                 <td style="text-align:center;">
                                     <a href="" class="btn">
@@ -103,15 +121,19 @@
                                             <input id="name" name="name" type="text" class="form-control validate" required />
                                         </div>    
                                         <div class="form-group mb-3">
-                                            <label for="namecar">Tên xe thuê
+                                            <label for="namecar">Id xe thuê
                                             </label>
-                                            <input id="namecar" name="namecar" type="text" class="form-control validate" required />
+                                            <input id="carid" name="carid" type="text" class="form-control validate" required />
                                         </div>  
                                         <div class="form-group mb-3">
                                             <label for="phone">Số điện thoại
                                             </label>
                                             <input id="phone" name="phone" type="text" class="form-control validate" required />
                                         </div>  
+                                        
+
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                                         <div class="form-group mb-3">
                                             <label for="timeBegin">Ngày bắt đầu
                                             </label>
@@ -122,22 +144,13 @@
                                             </label>
                                             <input id="timeEnd" name="timeEnd" type="date" class="form-control validate" required />
                                         </div>  
-
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                                          <div class="form-group mt-3 mb-3">
                                             <label for="address">Địa chỉ nhận xe</label>
                                             <textarea name="address" class="form-control validate" rows="3" required></textarea>
                                         </div>
-                                        <div class="form-group mb-3">
-                                            <label for="money">Tổng tiền
-                                            </label>
-                                            <input id="money" name="money" type="text" class="form-control validate" required readonly />
-                                        </div>
-
                                     </div>
                                     <div class="col-3 offset-3 mt-3">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm đơn thuê mới</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm đơn thuê</button>
                                     </div>  
                                     <div class="col-3 mt-3">
                                         <button type="button" class="btn btn-back">Trở lại</button>

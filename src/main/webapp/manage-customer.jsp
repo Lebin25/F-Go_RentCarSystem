@@ -69,11 +69,11 @@
                                 </c:if>
 
                                 <td style="text-align:center;">
-                                    <a href="" class="btn">
+                                    <a href="load_to_view_customer?cusid=${o.customerId}" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xem chi tiết</strong></span>
                                     </a>
-                                    <a href="" class="btn">
+                                    <a href="delete_customer" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xoá</strong></span>
                                     </a>

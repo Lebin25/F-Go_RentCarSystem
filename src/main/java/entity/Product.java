@@ -10,7 +10,7 @@ public class Product {
     private String productName;
     private String productTitle;
     private String productImg;
-    private float price;
+    private int price;
     private int productStatus;
     private int categoryID;
     private String seat;
@@ -23,7 +23,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productID, String productName, String productTitle, String productImg, float price, int productStatus, int categoryID, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease) {
+    public Product(int productID, String productName, String productTitle, String productImg, int price, int productStatus, int categoryID, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease) {
         this.productID = productID;
         this.productName = productName;
         this.productTitle = productTitle;
@@ -71,11 +71,11 @@ public class Product {
         this.productImg = productImg;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

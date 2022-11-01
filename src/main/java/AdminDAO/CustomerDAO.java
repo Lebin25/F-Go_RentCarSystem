@@ -58,12 +58,12 @@ public class CustomerDAO {
 
     }
     
-    public Customer getCustomerByName(String name) {
-        String query = "Select * From CUSTOMER where customerName = ?";
+    public Customer getCustomerById(String id) {
+        String query = "Select * From CUSTOMER where customerID = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, name);
+            ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Customer(rs.getInt(1),
@@ -72,6 +72,34 @@ public class CustomerDAO {
         } catch (Exception e) {
         }
         return null;
+    }
+    
+    public Customer getCustomerByPhone(String phone) {
+        String query = "select * from CUSTOMER WHERE phone = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, phone);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Customer(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public void deleteCustomer (String cusid) {
+        String query = "delete from CUSTOMER\n"
+                + "where customerID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, cusid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
     
 }

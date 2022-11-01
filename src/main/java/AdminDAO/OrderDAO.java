@@ -39,14 +39,14 @@ public class OrderDAO {
         return list;
     }
 
-    public void addOrder(int customerId, int productID, String dateBegin, String dateEnd, String address, Float totalMoney, String status) {
+    public void addOrder(int customerId, String productID, String dateBegin, String dateEnd, String address, int totalMoney, String status) {
         String query = "insert into [ORDER]\n"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setInt(1, customerId);
-            ps.setInt(2, productID);
+            ps.setString(2, productID);
             ps.setString(3, dateBegin);
             ps.setString(4, dateEnd);
             ps.setString(5, address);

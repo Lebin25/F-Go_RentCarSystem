@@ -6,8 +6,10 @@ package AdminControl;
 
 import AdminDAO.CustomerDAO;
 import AdminDAO.OrderDAO;
+import AdminDAO.ProductDAO;
 import entity.Customer;
 import entity.Order;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -37,13 +39,16 @@ public class ManageOrderControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        OrderDAO orderdao = new OrderDAO();
+        OrderDAO odao = new OrderDAO();
         CustomerDAO custormerdao = new CustomerDAO();
-        List<Order> listo = orderdao.getAllOrder();
+        ProductDAO pdao = new ProductDAO();
+        List<Order> listo = odao.getAllOrder();
         List<Customer> listc = custormerdao.getAllCustomer();
+        List<Product> listp = pdao.getAllProduct();
         
         request.setAttribute("listO", listo);
         request.setAttribute("listC", listc);
+        request.setAttribute("listP", listp);
         
         request.getRequestDispatcher("manage-order.jsp").forward(request, response);
 

@@ -98,4 +98,11 @@ public class Customer {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" + "customerId=" + customerId + ", customerName=" + customerName + ", phone=" + phone + ", email=" + email + ", nationalId=" + nationalId + ", drivingLicense=" + drivingLicense + ", accountId=" + accountId + ", isVerify=" + isVerify + '}';
+    }
+    
+    
+    
 }
