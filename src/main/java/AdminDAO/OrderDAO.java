@@ -56,4 +56,62 @@ public class OrderDAO {
         } catch (Exception e) {
         }
     }
+    
+    public Order getOrderById(String id) {
+        String sql = "select * from [ORDER] where orderID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Order(rs.getInt(1),
+                        rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getInt(8));
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+    
+    public void editOrder( String customerID, String productId, String timeBegin, String timeEnd,
+            String address, int totalMoney, String status, String oid) {
+        String query = "update [ORDER]\n"
+                + "set customerID = ?,\n"
+                + "	productID =?,\n"
+                + "	timeBegin =?,\n"
+                + "	timeEnd = ?,\n"
+                + "	address = ?,\n"
+                + "    totalMoney = ?,\n"
+                + "	status = ?\n"
+                + "Where orderID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, customerID);
+            ps.setString(2, productId);
+            ps.setString(3, timeBegin);
+            ps.setString(4, timeEnd);
+            ps.setString(5, address);
+            ps.setInt(6, totalMoney);
+            ps.setString(7, status);
+            ps.setString(8, oid);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void deleteOrder (String oid) {
+        String query = "delete from [ORDER]\n"
+                + "where orderID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, oid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }

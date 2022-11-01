@@ -86,11 +86,11 @@
                                     <td>Đang thuê</td>
                                 </c:if>
                                 <td style="text-align:center;">
-                                    <a href="" class="btn">
+                                    <a href="load_to_edit_order?oid=${o.orderId}" class="btn">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                         <span><strong>Chỉnh sửa</strong></span>
                                     </a>
-                                    <a href="" class="btn">
+                                    <a href="delete_order?oid=${o.orderId}" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xoá</strong></span>
                                     </a>
@@ -204,6 +204,11 @@
                                 null,
                                 {orderSequence: false},
                                 {orderSequence: false},
+                                null,
+                                {orderSequence: false},
+                                {orderSequence: false},
+                                null,
+                                null,
                                 {orderSequence: false},
                             ],
                             language: {
