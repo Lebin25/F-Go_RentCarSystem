@@ -49,10 +49,12 @@
                     <div class="padding-left-25 text-bold col-6">Trạng thái tài khoản:</div>
                     <div class="col-6"><c:if test="${detail.isVerify == 0}">
                                 Chưa xác thực
+                                <a href="verify_customer?cid=${detail.customerId}" class="btn btn-primary ml-3">Xác thực</a>
                             </c:if>
                             <c:if test="${detail.isVerify == 1}">
                                 Đã xác thực
-                            </c:if><a href="verify_customer?pid=${detail.accountId}" class="btn btn-primary ml-3">Xác thực</a></div>
+                            </c:if>
+                    </div>       
                 </div>
                 <div class="row">
                     <div class="col-12 mt-3 mb-3 text-center">

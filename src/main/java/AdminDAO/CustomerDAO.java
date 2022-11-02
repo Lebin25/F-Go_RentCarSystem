@@ -102,4 +102,17 @@ public class CustomerDAO {
         }
     }
     
+    public void verifyCustomer (String cid) {
+        String query = "UPDATE CUSTOMER\n" +
+                        "SET isVerify = 1\n" +
+                        "WHERE customerID = ? ";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, cid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
 }
