@@ -1,8 +1,7 @@
-package Controllers.Authenication.Login;
+package Controllers.Authenication.Logout;
 
-import AuthenicationDAO.LoginDAO;
-import entity.Account;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +13,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Bin
  */
-@WebServlet(name = "LoginControl", urlPatterns = {"/LoginControl"})
-public class LoginControl extends HttpServlet {
+@WebServlet(name = "LogoutControl", urlPatterns = {"/logout"})
+public class LogoutControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,21 +28,9 @@ public class LoginControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            String acc = request.getParameter("account");
-            String pass = request.getParameter("password");
-            LoginDAO loginDAO = new LoginDAO();
-            Account a = loginDAO.checkLogin(acc, pass);
-            if(a == null){
-                response.sendRedirect("signup.jsp");
-            }else{
-                HttpSession session = request.getSession();
-                session.setAttribute("acc", a);
-                session.setMaxInactiveInterval(900);
-                response.sendRedirect("home.jsp");
-            }
-        } catch (Exception e) {
-        }
+        HttpSession session = request.getSession();
+        session.removeAttribute("acc");
+        response.sendRedirect("home.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
