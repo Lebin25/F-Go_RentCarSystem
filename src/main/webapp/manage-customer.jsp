@@ -129,13 +129,6 @@
                                             </label>
                                             <input id="email" name="email" type="text" class="form-control validate" required />
                                         </div>
-                                        
-                                        <div class="form-group mb-3">
-                                            <label name="isVerify" for="isVerify">Trạng thái
-                                            </label>
-                                            <input id="isVerify" name="isVerify" type="text" class="form-control validate" required readonly value="Chưa xác thực"/>
-                                        </div>
-                                        
                                     </div>
                                 </div>
                                 <div class="row" style="justify-content: center">
@@ -143,7 +136,7 @@
                                         <button type="submit" class="btn btn-primary text-uppercase">Thêm khách hàng</button>
                                     </div>  
                                     <div class="col-3 mt-3 text-center">
-                                        <button type="button" class="btn btn-back">Trở lại</button>
+                                        <a href="managecustomer" type="button" class="btn btn-back">Trở lại</a>
                                     </div> 
                                 </div>
                             </form>

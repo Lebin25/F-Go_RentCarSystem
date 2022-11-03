@@ -1,20 +1,157 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-:root {
+:root{
     --primary-color: #FF9933;
 }
 
 body {
-    text-align: justify;
-    line-height: 1.6;
+    background-color: #fff;
 }
 
-.active {
-    color: var(--primary-color) !important;
+.card {
+    background-color: #f2f2f2;
+    padding: 14px;
+    border: none
+}
+
+
+.demo {
+    width: 100%
+}
+
+ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom: 0
+}
+
+li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor: pointer
+}
+
+img {
+    display: block;
+    height: auto;
+    width: 100%
+}
+
+.stars i {
+    color: #f6d151
+}
+
+.stars span {
+    font-size: 13px
+}
+
+hr {
+    color: #d4d4d4
+}
+
+.badge {
+    padding: 5px !important;
+    padding-bottom: 6px !important
+}
+
+.badge i {
+    font-size: 10px
+}
+
+.name{
+    font-size:14px;
+}
+
+.comment-ratings i {
+    font-size: 13px
+}
+
+.comment  {
+    font-size: 12px
+}
+
+.comment-profile {
+    line-height: 17px
+}
+
+.date span {
+    font-size: 12px
+}
+
+.p-ratings i {
+    color: #f6d151;
+    font-size: 12px
+}
+
+.btn-long {
+    padding-left: 35px;
+    padding-right: 35px
+}
+
+.buttons {
+    margin-top: 15px
+}
+
+.btn-more {
+    height: 40px;
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    width: 30%;
+    border-radius: 20px;
+}
+
+.btn-more:hover{
+    color: var(--primary-color);
+    background-color: #fff;
+    border-color: var(--primary-color);
+}
+
+.buttons .btn {
+    height: 46px;
+}
+
+.buttons .buy {
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.buttons .buy:hover {
+    color: var(--primary-color);
+    background-color: #fff;
+    border-color: var(--primary-color);
+}
+
+.buttons .wishlist {
+    background-color: #fff;
+    border-color: var(--primary-color)
+}
+
+.buttons .wishlist:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff
+}
+
+.buttons .wishlist:hover i {
+    color: #fff
+}
+
+.buttons .wishlist i {
+    color: var(--primary-color)
+}
+
+.comment-ratings i {
+    color: #f6d151
+}
+
+.my-color {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.card-body {
+    padding: 0.3rem 0.3rem 0.2rem
 }
 
 #logo {
@@ -25,7 +162,7 @@ body {
 
 .navbar {
     padding: 0;
-    background-color: #f2f2f2!important;
+    background-color: #f2f2f2 !important;
 }
 
 .navbar-brand {
@@ -82,35 +219,34 @@ body {
     font-weight: 450;
 }
 
-.user-pic{
-    width:40px;
+.user-pic {
+    width: 40px;
     border-radius: 50%;
     cursor: pointer;
-    margin-left: 8px;
     z-index: 999;
 }
 
-.sub-menu-wrap{
+.sub-menu-wrap {
     position: absolute;
     top: 100%;
-    right:20%;
+    right: 20%;
     width: 220px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s;
 }
 
-.sub-menu-wrap.open-menu{
+.sub-menu-wrap.open-menu {
     max-height: 582px;
 }
 
-.sub-menu{
+.sub-menu {
     background: #f2f2f2;
     padding: 20px;
     margin: 10px;
 }
 
-.sub-menu-link{
+.sub-menu-link {
     display: flex;
     align-items: center;
     text-align: center;
@@ -118,197 +254,39 @@ body {
     margin: 12px 0;
 }
 
-.sub-menu-link p{
+.sub-menu-link p {
     width: 100%;
 }
 
-.sub-menu-link:last-child p{
+.sub-menu-link:last-child p {
     margin-bottom: 0;
 }
 
-.sub-menu-link:hover p{
+.sub-menu-link:hover p {
     color: var(--primary-color) !important;
     font-weight: 600;
 }
 
-#banner {
-    margin-top: 50px;
-    position: relative;
-    padding-top: 40%;
-    background: url('/IMG/banner.jpg') top center / cover no-repeat;
+.container-fluid{
+    margin-top: 5.5rem!important;
+    max-width: 1000px;
 }
 
-.text-content {
-    position: absolute;
-    bottom: 36%;
-    color: #fff;
-    width: 25%;
-    left: 30%;
-    text-align: left !important;
-}
-
-.text-content h1 span {
-    color: var(--primary-color);
-    font-size: 100%;
-}
-
-.text-content a {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-@media screen and (max-width: 1199px) {
-    .text-content {
-        position: absolute;
-        bottom: 14%;
-        color: #fff;
-        width: 25%;
-        left: 30%;
-        text-align: left !important;
-    }
-}
-
-@media screen and (max-width: 991px) {
-    .text-content {
-        position: absolute;
-        bottom: 40%;
-        color: #fff;
-        width: 25%;
-        height: 30%;
-        left: 30%;
-        text-align: left !important;
-    }
-}
-
-.line {
-    display: inline-block;
-    width: 30px;
-    vertical-align: middle;
-    border-bottom: 2px solid var(--primary-color);
-    border-bottom-style: solid;
-}
-
-.service {
-    margin: 20px 0 20px 0;
-    position: relative;
-}
-
-.service-heading {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.heading-text {
-    display: inline-block;
-    margin: 0 15px;
-    font-weight: bold;
-    font-size: 1.6em;
-}
-
-.service-slider {
-    position: absolute;
-    overflow: hidden;
-    left: calc((100% - 1280px)/2);
-    width: 1280px;
-    display: grid;
-}
-
-.service-container {
-    display: flex;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: calc(300px * 10);
-    animation: scroll 30s linear infinite;
-}
-
-.service-container:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(calc(-300px * 5));
-    }
-}
-
-.service-item {
-    padding-right: 15px;
-    text-align: center;
-    width: 300px;
-}
-
-.icon-box:hover {
-    cursor: pointer;
-}
-
-.icon-box:hover .icon-inner {
+.bg-primary-color{
     background-color: var(--primary-color);
 }
 
-.icon-box-img {
-    margin-bottom: 1em;
-    max-width: 100%;
-    position: relative;
-    margin-left: 40%;
+.car-info{
+    width: 152px;
 }
 
-.icon {
-    padding-top: 100%;
-    height: 0;
+.relate-header{
+    margin-top: 5.5rem;
+    margin-bottom: 1.5rem;
+    font-size:  1.2rem;;
+    font-weight: 700;
 }
-
-.icon-inner {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    border: 2px solid currentColor;
-    border-radius: 100%;
-    transition: all .3s;
-    color: var(--primary-color);
-}
-
-.icon-inner img {
-    position: absolute;
-    left: 3px;
-    object-fit: cover;
-    padding: 0;
-    top: 50%;
-    margin: 0;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-    max-width: 100%;
-    height: auto;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.product-list {
-    margin-top: 275px;
-    text-align: center;
-}
-
-.product-list-heading {
-    margin-bottom: 20px;
-}
-
-a,
-a:hover,
-a:active {
-    text-decoration: none;
-    color: #525c65;
-    transition: color 0.3s ease;
-}
-
+ 
 .product-card {
     position: relative;
     margin: 10px 0px;
@@ -447,38 +425,3 @@ a:active {
     color: inherit;
     text-decoration: none;
 }
-
-.watchmore-btn{
-    margin-top: 20px;
-}
-
-button.button {
-    display: inline-block;
-    padding: 6px 16px;
-    font-size: 20px;
-    cursor: pointer!important;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 4px #999;
-  }
-  
-  .click-button:hover {background-color: #ff7f00;}
-  
-  .click-button:active {
-    background-color: #ff7f00;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-
-  .order-btn-text:active{
-    transform: translateY(4px);
-  }
-
-  button.button:focus{
-    outline: none;
-  }

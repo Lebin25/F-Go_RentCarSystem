@@ -398,7 +398,8 @@ a:active {
 }
 
 .product-card:hover {
-    box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2)
+    box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+    cursor: pointer;
 }
 
 .product-card .card-thumbnail {

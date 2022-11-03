@@ -149,12 +149,14 @@
                                             <textarea name="address" class="form-control validate" rows="3" required></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-3 offset-3 mt-3">
+                                </div>
+                                <div class="row" style="justify-content: center">
+                                    <div class="col-3 mt-3 text-center">
                                         <button type="submit" class="btn btn-primary text-uppercase">Thêm đơn thuê</button>
                                     </div>  
-                                    <div class="col-3 mt-3">
-                                        <button type="button" class="btn btn-back">Trở lại</button>
-                                    </div>  
+                                    <div class="col-3 mt-3 text-center">
+                                        <a href="manageorder" type="button" class="btn btn-back">Trở lại</a>
+                                    </div> 
                                 </div>
                             </form>
                         </div>

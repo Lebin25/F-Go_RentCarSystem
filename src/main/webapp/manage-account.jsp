@@ -124,7 +124,7 @@
                                         <button type="submit" class="btn btn-primary text-uppercase">Thêm tài khoản</button>
                                     </div>  
                                     <div class="col-3 mt-3 text-center">
-                                        <button type="button" class="btn btn-back">Trở lại</button>
+                                        <a href="manageaccount" type="button" class="btn btn-back">Trở lại</a>
                                     </div> 
                                 </div>
                             </form>

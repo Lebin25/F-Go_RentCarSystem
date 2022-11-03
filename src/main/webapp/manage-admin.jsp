@@ -16,45 +16,45 @@
     </head>
     <body>
         <jsp:include page="navbar.jsp"></jsp:include>
-        
-        <div class="content">
-            <div class="header">
-                <h2>Quản lý Admin</h2>
-            </div>
-            <div class="group-function">
 
-                <!-- <div class="searchBar">
-                    <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
-                </div> -->
+            <div class="content">
+                <div class="header">
+                    <h2>Quản lý Admin</h2>
+                </div>
+                <div class="group-function">
 
-                <button class="add-btn btn btn-primary text-uppercase">Thêm Adnin mới</button>
+                    <!-- <div class="searchBar">
+                        <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
+                    </div> -->
+
+                    <button class="add-btn btn btn-primary text-uppercase">Thêm Adnin mới</button>
 
 
 
-                <!-- <div class="sortby">
-                    <div class="dropdown">
-                        <button class="dropdown-btn">Sắp xếp theo</button>
-                        <div class="dropdown-content">
-                            <a href="#">Chỗ ngồi</a>
-                            <a href="#">Giá tiền</a>
-                            <a href="#">Năm sản xuất</a>
+                    <!-- <div class="sortby">
+                        <div class="dropdown">
+                            <button class="dropdown-btn">Sắp xếp theo</button>
+                            <div class="dropdown-content">
+                                <a href="#">Chỗ ngồi</a>
+                                <a href="#">Giá tiền</a>
+                                <a href="#">Năm sản xuất</a>
+                            </div>
                         </div>
-                    </div>
-                </div> -->
-            </div>
-            <div class="container mb-3 mt-3">
-                <table class="table table-striped table-bordered mydatatable" style="width: 100%">
-                    <thead style="text-align:center;">
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên Admin</th>
-                            <th>Số điện thoại</th>
-                            <th>Căn cước công dân</th>
-                            <th>Mã tài khoản</th>
-                            <th>Chức năng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    </div> -->
+                </div>
+                <div class="container mb-3 mt-3">
+                    <table class="table table-striped table-bordered mydatatable" style="width: 100%">
+                        <thead style="text-align:center;">
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên Admin</th>
+                                <th>Số điện thoại</th>
+                                <th>Căn cước công dân</th>
+                                <th>Mã tài khoản</th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <c:forEach items="${listAdmin}" var="o">
                             <tr>
                                 <td>${o.adminId}</td>
@@ -103,9 +103,9 @@
                                             </label>
                                             <input id="phone" name="phone" type="text" class="form-control validate" required />
                                         </div>
-                                        
-                                        
-                                        
+
+
+
 
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
@@ -127,13 +127,15 @@
                                             </label>
                                             <input id="accountID" name="accountID" type="text" class="form-control validate" required />
                                         </div>
-                                        
+
                                     </div>
-                                    <div class="col-3 offset-3 mt-3">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm Admin mới</button>
+                                </div>
+                                <div class="row justify-content-center">        
+                                    <div class="col-3 text-center mt-3">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm Admin</button>
                                     </div>  
-                                    <div class="col-3 mt-3">
-                                        <button type="button" class="btn btn-back">Trở lại</button>
+                                    <div class="col-3 text-center mt-3">
+                                        <a href="manageadmin" type="button" class="btn btn-back">Trở lại</a>
                                     </div>  
                                 </div>
                             </form>
@@ -150,52 +152,52 @@
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script>
-                        let modal = document.querySelector(".add-modal");
-                        var btnOpen = document.querySelector(".add-btn");
-                        var btnCancel = document.querySelector(".btn-back");
-                        function toggleModal(e) {
-                            console.log(e.target);
-                            modal.classList.toggle("hide")
-                        }
-                        btnOpen.addEventListener('click', toggleModal);
-                        btnCancel.addEventListener('click', toggleModal);
+            let modal = document.querySelector(".add-modal");
+            var btnOpen = document.querySelector(".add-btn");
+            var btnCancel = document.querySelector(".btn-back");
+            function toggleModal(e) {
+                console.log(e.target);
+                modal.classList.toggle("hide")
+            }
+            btnOpen.addEventListener('click', toggleModal);
+            btnCancel.addEventListener('click', toggleModal);
 
-                        $(function () {
-                            $('.product-card').hover(function () {
-                                $(this).find('.description').animate({
-                                    height: "toggle",
-                                    opacity: "toggle"
-                                }, 300);
-                            });
-                        });
-                        let subMenu = document.getElementById("subMenu");
-                        const $menu = $('.sub-menu-wrap')
-                        function toggleMenu() {
-                            subMenu.classList.toggle("open-menu")
-                        }
-                        $(document).mouseup(function (e) {
-                            var container = $(".user-pic");
-                            if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
-                                subMenu.classList.toggle("open-menu")
-                            }
-                        });
-                        $('.mydatatable').DataTable({
-                            aoColumns: [
-                                null,
-                                {orderSequence: false},
-                                {orderSequence: false},
-                                {orderSequence: false},
-                                null,
-                                {orderSequence: false},
-                            ],
-                            language: {
-                                lengthMenu: 'Hiển thị _MENU_ xe',
-                                zeroRecords: 'Không tìm thấy kết quả nào!',
-                                info: 'Trang _PAGE_ trên _PAGES_',
-                                infoEmpty: 'No records available',
-                                infoFiltered: '(filtered from _MAX_ total records)',
-                            },
-                        });
+            $(function () {
+                $('.product-card').hover(function () {
+                    $(this).find('.description').animate({
+                        height: "toggle",
+                        opacity: "toggle"
+                    }, 300);
+                });
+            });
+            let subMenu = document.getElementById("subMenu");
+            const $menu = $('.sub-menu-wrap')
+            function toggleMenu() {
+                subMenu.classList.toggle("open-menu")
+            }
+            $(document).mouseup(function (e) {
+                var container = $(".user-pic");
+                if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+                    subMenu.classList.toggle("open-menu")
+                }
+            });
+            $('.mydatatable').DataTable({
+                aoColumns: [
+                    null,
+                    {orderSequence: false},
+                    {orderSequence: false},
+                    {orderSequence: false},
+                    null,
+                    {orderSequence: false},
+                ],
+                language: {
+                    lengthMenu: 'Hiển thị _MENU_ xe',
+                    zeroRecords: 'Không tìm thấy kết quả nào!',
+                    info: 'Trang _PAGE_ trên _PAGES_',
+                    infoEmpty: 'No records available',
+                    infoFiltered: '(filtered from _MAX_ total records)',
+                },
+            });
         </script>
     </body>
 </html>

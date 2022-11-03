@@ -22,39 +22,38 @@
                                 <h2 class="tm-block-title">Đổi mật khẩu</h2>
                             </div>
                         </div>
-                        <form action="changePassword">
-                            <div class="row tm-edit-product-row">
-                                <div class="col-xl-6 col-lg-6 col-md-12">
-                                    <div class="form-group mb-3">
+                        <form action="changePassword" method="post">
+                            <div class="row tm-edit-product-row text-center justify-content-center">
+                                <div class="col-12 col-sm-6">
+                                    <c:if test="${sessionScope.acc.password != null}">
+                                        <div class="form-group mb-3">
                                         <label for="pass">Mật khẩu cũ
                                         </label>
-                                        <input name="pass" type="text" class="form-control validate" required />
+                                        <input name="pass" type="text" class="form-control validate" style="text-align: center;" required />
+                                        <p style="color: red">${requestScope.mess}</p>
                                     </div>
+                                    </c:if>
+                                    
                                     <input type="hidden" name="user" value="${sessionScope.acc.account}" />
                                     <div class="form-group mb-3">
                                         <label for="newpass">Mật khẩu mới
                                         </label>
-                                        <input id="newpass" name="newpass" type="text" class="form-control validate" required />
+                                        <input id="newpass" name="newpass" type="text" class="form-control validate" style="text-align: center;" required />
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="repass">Nhập lại mật khẩu mới
                                         </label>
-                                        <input id="repass" name="repass" type="text" class="form-control validate"required />
+                                        <input id="repass" name="repass" type="text" class="form-control validate" style="text-align: center;" required />
                                     </div>
-                                    
-                                    
-
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                                   
-                                    
-                                </div>
-                                <div class="col-3 offset-3 mt-3">
+                            </div>
+                            <div class="row justify-content-center">        
+                                <div class="col-3 text-center mt-3">
                                     <button type="submit" class="btn btn-primary text-uppercase">Lưu</button>
                                 </div>  
-                                <div class="col-3 mt-3">
-                                    <button type="button" class="btn btn-back">Trở lại</button>
+                                <div class="col-3 text-center mt-3">
+                                    <a href="home.jsp" type="button" class="btn btn-back">Trở lại</a>
                                 </div>  
                             </div>
                         </form>

@@ -34,9 +34,30 @@ public class ChangePassword extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-
-        
+        String u = request.getParameter("user");
+        String opass = request.getParameter("pass");
+        String pass = request.getParameter("newpass");
+        String repass = request.getParameter("repass");
+        AccountDAO adao = new AccountDAO();
+        Account a = adao.check(u, opass);
+        Account ggacc = adao.checkGoogleAccount(u);
+        if(opass == null && ggacc != null){
+            Account ggac = new Account (ggacc.getAccountID(), u, pass, ggacc.getRole());
+            adao.changepassword(ggac);
+            HttpSession session = request.getSession();
+            session.setAttribute("acc", ggac);
+            response.sendRedirect("home.jsp");
+        } else if(a == null || !pass.equals(repass)){
+            String mess = "Mật khẩu hiện tại không chính xác";
+            request.setAttribute("mess", mess);
+            request.getRequestDispatcher("changePassword.jsp").forward(request, response);
+        } else {
+            Account ac = new Account(a.getAccountID(), u, pass, a.getRole());
+            adao.changepassword(ac);
+            HttpSession session = request.getSession();
+            session.setAttribute("acc", ac);
+            response.sendRedirect("home.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,21 +72,7 @@ public class ChangePassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String u = request.getParameter("user");
-        String opass = request.getParameter("pass");
-        String pass = request.getParameter("newpass");
-        String repass = request.getParameter("repass");
-        AccountDAO adao = new AccountDAO();
-        Account a = adao.check(u, opass);
-        if(a == null || !pass.equals(repass)){
-            request.getRequestDispatcher("changePassword.jsp").forward(request, response);
-        } else {
-            Account ac = new Account(a.getAccountID(), u, pass, a.getRole());
-            adao.changepassword(ac);
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", ac);
-            response.sendRedirect("home.jsp");
-        }
+        
     }
 
     /**

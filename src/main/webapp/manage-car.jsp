@@ -173,11 +173,13 @@
                                             <textarea name="des" class="form-control validate" rows="3" required></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-3 offset-3 mt-3">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm xe mới</button>
+                                </div>
+                                <div class="row justify-content-center">        
+                                    <div class="col-3 text-center mt-3">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Thêm xe</button>
                                     </div>  
-                                    <div class="col-3 mt-3">
-                                        <button type="button" class="btn btn-back">Trở lại</button>
+                                    <div class="col-3 text-center mt-3">
+                                        <a href="manageproduct" type="button" class="btn btn-back">Trở lại</a>
                                     </div>  
                                 </div>
                             </form>

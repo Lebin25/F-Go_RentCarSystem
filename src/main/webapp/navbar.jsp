@@ -32,7 +32,7 @@
             </c:if>
             <c:if test="${sessionScope.acc != null}">
                 <span class="navbar-nav d-flex justify-content-end">
-                    <a class="nav-link" href="login.jsp">Hello ${sessionScope.acc.account}</a>
+                    <span class="nav-link" style="cursor: default;">Hello ${sessionScope.acc.account}</span>
                     <!--<a class="nav-link" href="signup.jsp">Đăng ký</a>-->
                     <img src="./IMG/user.png" alt="" class="user-pic" onClick="toggleMenu()">
                     <div class="sub-menu-wrap" id="subMenu">
@@ -73,7 +73,7 @@
                                     <p>Thông tin thuê xe</p>
                                 </a> 
                             </c:if>
-                            <a href="changePassword" class="sub-menu-link">
+                            <a href="changePassword.jsp" class="sub-menu-link">
                                 <p>Đổi mật khẩu</p>
                             </a>
                             <a href="logout" class="sub-menu-link">

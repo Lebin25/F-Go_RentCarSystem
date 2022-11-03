@@ -25,10 +25,8 @@
                         <form action="edit_customer" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
                             <div class="row tm-edit-product-row">
                                 <div class="col-xl-6 col-lg-6 col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label for="id">ID
-                                        </label>
-                                        <input name="id" type="text" class="form-control validate" value="${edit.customerId}" required readonly />
+                                    <div class="form-group">
+                                        <input name="id" type="hidden" class="form-control validate" value="${edit.customerId}" required  />
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="name">Tên khách hàng
@@ -47,16 +45,14 @@
                                         </label>
                                         <input id="email" name="email" type="text" class="form-control validate" value="${edit.email}" required />
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label for="accountId">Mã tài khoản
-                                        </label>
-                                        <input id="accountId" name="accountId" type="text" class="form-control validate" value="${edit.accountId}" required readonly />
+                                    <div class="form-group">
+                                        <input id="accountId" name="accountId" type="hidden" class="form-control validate" value="${edit.accountId}" required />
                                     </div>
-                                    
+
 
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                                    <div class="form-group mb-3">
+                                    <div class="form-group mt-3 mb-3">
                                         <label>Căn cước công dân</label>
                                         <input name="nationalId" type="file" class="form-control" required>
                                     </div>
@@ -64,17 +60,14 @@
                                         <label>Bằng lái xe</label>
                                         <input name="drivinglicense" type="file" class="form-control" required>
                                     </div>
-                                    
-                                    
-                                    
-                                   
-                                    
                                 </div>
-                                <div class="col-3 offset-3 mt-3">
+                            </div>
+                            <div class="row justify-content-center">        
+                                <div class="col-3 text-center mt-3">
                                     <button type="submit" class="btn btn-primary text-uppercase">Lưu</button>
                                 </div>  
-                                <div class="col-3 mt-3">
-                                    <button type="button" class="btn btn-back">Trở lại</button>
+                                <div class="col-3 text-center mt-3">
+                                    <a href="managecustomer" type="button" class="btn btn-back">Trở lại</a>
                                 </div>  
                             </div>
                         </form>

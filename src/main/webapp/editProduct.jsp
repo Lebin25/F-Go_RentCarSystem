@@ -134,14 +134,16 @@
                                         <label for="description">Mô tả</label>
                                         <textarea name="des" class="form-control validate" rows="3" required>${edit.productTitle}</textarea>
                                     </div>
-                                </div>
-                                <div class="col-3 offset-3 mt-3">
+                                </div> 
+                            </div>
+                            <div class="row justify-content-center">        
+                                <div class="col-3 text-center mt-3">
                                     <button type="submit" class="btn btn-primary text-uppercase">Lưu</button>
                                 </div>  
-                                <div class="col-3 mt-3">
-                                    <button type="button" class="btn btn-back">Trở lại</button>
+                                <div class="col-3 text-center mt-3">
+                                    <a href="manageproduct" type="button" class="btn btn-back">Trở lại</a>
                                 </div>  
-                            </div>
+                            </div>        
                         </form>
                     </div>
                 </div>
