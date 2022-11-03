@@ -2,17 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package AdminControl;
+package UserControl;
 
-import AdminDAO.ProductDAO;
-import entity.Category;
-import java.io.File;
-import java.io.FileOutputStream;
+import AdminDAO.CustomerDAO;
+import entity.Customer;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +27,11 @@ import javax.servlet.http.Part;
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
 )
-@WebServlet(name = "AddProductControl", urlPatterns = {"/addproduct"})
-public class AddProductControl extends HttpServlet {
+@WebServlet(name = "EditCustomerControl", urlPatterns = {"/edit_customer"})
+public class EditCustomerControl extends HttpServlet {
+
     private static final long SerialVersionUID = 1L;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,61 +45,70 @@ public class AddProductControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String pname = request.getParameter("name");
-        String pcategory = request.getParameter("category");
-        String pprice = request.getParameter("price");
-        String pseat = request.getParameter("seat");
-        String pgear = request.getParameter("gear");
-        String plicensePlate = request.getParameter("licensePlate");
-        String pfuel = request.getParameter("fuel");
-        String pcolor = request.getParameter("color");
-        String pyearRelease = request.getParameter("yearRelease");
-        String pdes = request.getParameter("des");
-        String pstatus = "1";
-        
-        
-        Part partImg = request.getPart("image");
-        String pimage = getFileName(partImg);
+        String cid = request.getParameter("id");
+        String cname = request.getParameter("name");
+        String cphone = request.getParameter("phone");
+        String cemail = request.getParameter("email");
+
+        Part partImg = request.getPart("nationalId");
+        String cnationalId = getFileName(partImg);
+        Part partImg2 = request.getPart("drivinglicense");
+        String cdrivinglicense = getFileName(partImg2);
         try {
-            Part partUpload = request.getPart("image");
+            Part partUpload = request.getPart("nationalId");
             partUpload.write(getFileName(partUpload));
         } catch (Exception e) {
         }
+        try {
+            Part partUpload = request.getPart("drivinglicense");
+            partUpload.write(getFileName(partUpload));
+        } catch (Exception e) {
+        }
+
+        CustomerDAO cdao = new CustomerDAO();
+        Customer c = cdao.getCustomerByID(cid);
         
-        System.out.println(pname + " " + pcategory + " " +pprice + " " +pseat+ " " +pgear + " " +plicensePlate+ " " +pfuel+ " " +pcolor+ " " +pimage+ " " +pyearRelease+ " " +pdes+ " " +pstatus);
+        int caccountId = c.getAccountId();
         
-        ProductDAO productdao = new ProductDAO();
-        productdao.addProduct(pname,pdes,pimage,pprice,
-                pstatus,pcategory,pseat,pgear,pcolor,plicensePlate, pfuel, pyearRelease );
-        response.sendRedirect("manageproduct");
+        System.out.println(cname+" "+cphone+" "+cemail+" "+cnationalId+" "+cdrivinglicense+" "+cid);
+
+        cdao.editCustomer(cname, cphone, cemail, cnationalId, cdrivinglicense, cid);
+        response.sendRedirect("viewprofile?accountID=" + caccountId);
+
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
-    
-    private String  getFileName(Part part){
-        final String  partHeader = part.getHeader("content-disposition");
-        System.out.println("*****partHeader :"+ partHeader);
-        for(String content : part.getHeader("content-disposition").split(";")){
-            if(content.trim().startsWith("filename")){
-                return content.substring(content.indexOf('=')+1).trim().replace("\"", "" );
+
+    private String getFileName(Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        System.out.println("*****partHeader :" + partHeader);
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
             }
         }
         return null;
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";

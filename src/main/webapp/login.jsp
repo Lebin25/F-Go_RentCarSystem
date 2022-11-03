@@ -47,8 +47,8 @@
                                 <p>Hoặc</p>
                                 <div class="social-login row">
                                     <div class="col-md-6 mb-2">
-                                        <a class="btn btn-outline-dark social-login-btn" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/loginGoogle/GoogleSigninServlet&response_type=code
-                                           &client_id=232345260601-tkgeu01pblme49pruq8qpl65lmoikj54.apps.googleusercontent.com&approval_prompt=force" role="button">
+                                        <a class="btn btn-outline-dark social-login-btn" href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/GoogleLoginServlet&response_type=code
+                                           &client_id=610265253425-dq7bkc7t5dv5ogd4q0ol2b58sv3bfj3d.apps.googleusercontent.com&approval_prompt=force" role="button">
                                             <img width="20px" alt="Google sign-in"
                                                  src="IMG/google_logo.png" />
                                             Đăng nhập bằng Google

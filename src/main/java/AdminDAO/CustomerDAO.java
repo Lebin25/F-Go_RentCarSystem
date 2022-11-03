@@ -74,6 +74,38 @@ public class CustomerDAO {
         return null;
     }
     
+    public Customer getCustomerByID(String id) {
+        String query = "Select * From CUSTOMER where customerID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Customer(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public Customer getCustomerByAccID(String id) {
+        String query = "Select * From CUSTOMER where accountID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Customer(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
     public Customer getCustomerByPhone(String phone) {
         String query = "select * from CUSTOMER WHERE phone = ?";
         try {
@@ -115,4 +147,26 @@ public class CustomerDAO {
         }
     }
     
+    public void editCustomer(String name, String phone, String email, String nationalId, String drivinglicense, String cusid) {
+        String query = "update CUSTOMER\n"
+                + "set customerName = ?,\n"
+                + "	phone =?,\n"
+                + "	email =?,\n"
+                + "	nationalID = ?,\n"
+                + "	drivingLicense = ?\n"
+                + "Where customerID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, phone);
+            ps.setString(3, email);
+            ps.setString(4, nationalId);
+            ps.setString(5, drivinglicense);
+            ps.setString(6, cusid);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }

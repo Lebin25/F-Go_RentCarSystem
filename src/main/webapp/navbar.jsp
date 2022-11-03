@@ -66,7 +66,7 @@
                                 </a>
                             </c:if>
                             <c:if test="${sessionScope.acc.role == 0}">
-                                <a href="#" class="sub-menu-link">
+                                <a href="viewprofile?accountID=${sessionScope.acc.accountID}" class="sub-menu-link">
                                     <p>Thông tin cá nhân</p>
                                 </a>
                                 <a href="#" class="sub-menu-link">

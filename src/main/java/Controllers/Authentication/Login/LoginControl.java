@@ -1,4 +1,4 @@
-package Controllers.Authenication.Login;
+package Controllers.Authentication.Login;
 
 import AuthenicationDAO.LoginDAO;
 import entity.Account;
@@ -40,7 +40,7 @@ public class LoginControl extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("acc", a);
                 session.setMaxInactiveInterval(900);
-                response.sendRedirect("home.jsp");
+                request.getRequestDispatcher("home.jsp").forward(request, response);
             }
         } catch (Exception e) {
         }
