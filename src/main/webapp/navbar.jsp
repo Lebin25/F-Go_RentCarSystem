@@ -73,7 +73,7 @@
                                     <p>Thông tin thuê xe</p>
                                 </a> 
                             </c:if>
-                            <a href="#" class="sub-menu-link">
+                            <a href="changePassword" class="sub-menu-link">
                                 <p>Đổi mật khẩu</p>
                             </a>
                             <a href="logout" class="sub-menu-link">

@@ -81,4 +81,40 @@ public class AccountDAO {
         } catch (Exception e) {
         }
     }
+    
+    public void changepassword( Account a ) {
+        String query = "update ACCOUNT\n"
+                + "set password = ?\n"
+                + "Where account = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, a.getPassword());
+            ps.setString(2, a.getAccount());
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    public Account check(String accountname, String password){
+//                List<Account> list = new ArrayList<>();
+
+        String sql ="select * from ACCOUNT where account=? and password = ?";
+        try{
+           conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql); 
+            ps.setString(1, accountname);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Account(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4));
+            }
+        } catch (Exception e) {
+            
+        }
+        return null;
+    }
+    
 }
