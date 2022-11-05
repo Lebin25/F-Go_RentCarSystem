@@ -31,10 +31,10 @@
                 </span>
             </c:if>
             <c:if test="${sessionScope.acc != null}">
-                <span class="navbar-nav d-flex justify-content-end">
-                    <span class="nav-link" style="cursor: default;">Hello ${sessionScope.acc.account}</span>
-                    <!--<a class="nav-link" href="signup.jsp">Đăng ký</a>-->
-                    <img src="./IMG/user.png" alt="" class="user-pic" onClick="toggleMenu()">
+                <span class="navbar-nav d-flex justify-content-end align-items-center">
+                    <span style="text-align: center;cursor: default;margin-right: 1.5rem;">Hello ${sessionScope.acc.account}</span>
+                    <a style="text-align: center;margin-right: 0.5rem;" type="button" href="#"><img id="wishlist" src="./IMG/wishlist.png" alt="Danh sách yêu thích" width="40"/></a>
+                    <span style="text-align: center;" ><img src="./IMG/user.png" alt="" class="user-pic" onClick="toggleMenu()"></span>
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <c:if test="${sessionScope.acc.role == 2}">
