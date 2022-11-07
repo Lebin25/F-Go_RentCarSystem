@@ -35,12 +35,14 @@ public class WishListDAO {
 
     }
     
-    public List<WishList> getAllWishlist() {
+    public List<WishList> getAllWishlistByCusId(int cid) {
         List<WishList> list = new ArrayList<>();
-        String query = "Select * from WISHLIST";
+        String query = "Select * from WISHLIST where customerID = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
+            ps.setInt(1, cid);
+
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new WishList(rs.getInt(1),

@@ -93,7 +93,7 @@
                                     <div class="text-right cross"><button class="btn btn-back" data-toggle="modal" data-target="#form"><i class="fa fa-times mr-2"></i></button> </div>
                                     <div class="card-body text-center"> <img src="IMG/feedback.png" height="100" width="100">
                                         <form action="Rating" method="post">
-                                            <div class="comment-box text-center">
+                                            <div class="comment-box text-center" onsubmit="feedback()">
                                                 <h4>Nhận xét của bạn</h4>
                                                 <div class="rating"> 
                                                     <input type="radio" name="rate" value="5" id="5_${o.orderId}"><label for="5_${o.orderId}">☆</label>
@@ -122,7 +122,8 @@
             </article>
         </div>
 
-
+        
+        <jsp:include page="footer.jsp"></jsp:include>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -146,6 +147,9 @@
                     subMenu.classList.toggle("open-menu");
                 }
             });
+            function feedback() {
+                alert("Đã đánh giá xe thành công");
+            }
         </script>
     </body>
 </html>

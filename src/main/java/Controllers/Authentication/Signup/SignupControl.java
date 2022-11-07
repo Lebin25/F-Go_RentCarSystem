@@ -39,7 +39,9 @@ public class SignupControl extends HttpServlet {
         String repass = request.getParameter("repass");
         String role = "0";
         if(!pass.equals(repass)){
-            response.sendRedirect("login.jsp");
+                String mess = "Nhập lại mật khẩu không chính xác";
+                request.setAttribute("mess", mess);
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
         } else {
             SignupDAO signupdao = new SignupDAO();
             Account a = signupdao.checkAccountExist(user);
@@ -53,7 +55,8 @@ public class SignupControl extends HttpServlet {
                 request.getRequestDispatcher("Home").forward(request, response);
 
             }else {
-                response.sendRedirect("login.jsp");
+                request.setAttribute("messS", "Tên tài khoản đã tồn tại");
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
             }
         }
 

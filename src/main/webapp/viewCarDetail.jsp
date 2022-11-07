@@ -27,6 +27,13 @@
                         <h6 class="text-center">Nhận xét và Đánh giá</h6>
                         <div class="d-flex flex-row justify-content-center">
                             <div class="stars">
+                                <c:if test="${avg == 0}">
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </c:if>
                                 <c:if test="${avg > 0 && avg <=1}">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-o"></i>
@@ -255,6 +262,8 @@
                 </div>
             </div>
         </div>
+                            
+                            <jsp:include page="footer.jsp"></jsp:include>
         <script src="https://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

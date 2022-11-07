@@ -167,7 +167,7 @@
                 </div>
             </div>
         </div>
-
+        
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -230,7 +230,7 @@
                 var form = document.getElementById("form");
                 var phone = document.getElementById("phone").value;
                 var textphone = document.getElementById("textphone");
-                var pattern = "(84|0[3|5|7|8|9])+([0-9]{8})\b";
+                var pattern = "^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$";
                 if(phone.match(pattern)){
                     form.classList.add("valid");
                     form.classList.remove("invalid");
@@ -258,7 +258,7 @@
                 var form = document.getElementById("form");
                 var name = document.getElementById("name").value;
                 var textname = document.getElementById("textname");
-                var pattern = "^[a-zA-Z\\s]+$";
+                var pattern = "^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$";
                 if(name.match(pattern)){
                     form.classList.add("valid");
                     form.classList.remove("invalid");

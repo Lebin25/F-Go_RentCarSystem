@@ -49,6 +49,8 @@ public class ViewCarDetailControl extends HttpServlet {
 
         RatingDAO rdao = new RatingDAO();
         CustomerDAO cdao = new CustomerDAO();
+        
+        
 
         List<Rate> rlist = rdao.getRateByProductId(id);
         List<Customer> clist = new ArrayList<>();

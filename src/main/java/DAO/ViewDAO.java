@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AdminDAO;
+package DAO;
 
 import context.DBContext;
 import java.sql.Connection;

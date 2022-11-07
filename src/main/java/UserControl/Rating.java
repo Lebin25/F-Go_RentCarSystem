@@ -1,11 +1,11 @@
 package UserControl;
 
-
 import DAO.CustomerDAO;
 import UserDAO.RatingDAO;
 import entity.Account;
 import entity.Customer;
 import entity.Order;
+import entity.Rate;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -39,19 +39,28 @@ public class Rating extends HttpServlet {
 
         request.setAttribute("customerID", idkhach);
         request.setAttribute("productID", idxe);
-        
+
         String comment = request.getParameter("comment");
         String rate = request.getParameter("rate");
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String date = dtf.format(now);
-        
-        System.out.println(idkhach+" "+idxe+" "+comment+" "+rate+" "+date);
+
+        System.out.println(idkhach + " " + idxe + " " + comment + " " + rate + " " + date);
 
         RatingDAO ratingdao = new RatingDAO();
-        ratingdao.rating(idkhach, idxe, comment, rate, date);
+
+        Rate rated = ratingdao.checkRated(idkhach, idxe);
+        if (rated != null) {
+            ratingdao.editRating(comment, rate, date, rated.getRateID());
+            System.out.println("cap nhat");
+        } else {
+            ratingdao.rating(idkhach, idxe, comment, rate, date);
+            System.out.println("tao moi");
+        }
         response.sendRedirect("load_to_view_order?accid=" + accid);
+
     }
 
     @Override

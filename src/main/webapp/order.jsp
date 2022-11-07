@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <p class="dis fw-bold mb-2" style="font-size:1rem">Hạn trả xe</p>
-                            <div class="d-flex w-50 mb-5">
+                            <div class="d-flex w-50 mb-3">
                                 <div class="d-flex w-100">
                                     <input type="date" name="dateEnd" class="form-control validate px-0" required>
                                 </div>
@@ -79,10 +79,20 @@
 
                             <div class="address">
                                 <p class="dis fw-bold mb-3">Hình thức thanh toán: Chỉ nhận thanh toán online</p>
-<!--                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <p class="fw-bold">Tổng cộng</p>
-                                    <p class="fw-bold"><i class="fas fa-money-check"></i>&nbsp;3200000đ</p>
-                                </div>-->
+                                <!--                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                                    <p class="fw-bold">Tổng cộng</p>
+                                                                    <p class="fw-bold"><i class="fas fa-money-check"></i>&nbsp;3200000đ</p>
+                                                                </div>-->
+                                <div class="payment">
+                                    <input id="payment_default" type="radio" name="payment_method" value="momo">
+                                    <label for="payment_default" data-toggle="collapse" data-target="#collapsedefult"
+                                               aria-controls="collapsedefult">Momo</label>
+                                </div>
+                                <div class="payment">
+                                    <input id="payment_default" type="radio" name="payment_method" value="vnpay">
+                                    <label for="payment_default" data-toggle="collapse" data-target="#collapsedefult"
+                                               aria-controls="collapsedefult">VNPay</label>
+                                </div>
                                 <button class="btn btn-block btn-primary mt-2" type="submit">Thanh toán</button>
                                 <a href="view_car_detail?pid=${product.productID}" class="btn btn-back mt-2" data-abc="true" style="float: right"> <i class="fa fa-chevron-left"></i>Trở về</a>
                             </div>
@@ -91,7 +101,8 @@
                 </div>
             </div>
         </div>
-    </div>
+                            
+                            <jsp:include page="footer.jsp"></jsp:include>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

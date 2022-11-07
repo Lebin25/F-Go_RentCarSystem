@@ -28,6 +28,8 @@
                                 </div>
                                 <p class="signup-card-description">Đăng ký tài khoản F-Go</p>
                                 <form action="signup" method="post">
+                                    <p style="color: red">${mess}</p>
+                                    <p style="color: red">${messS}</p>
                                     <div class="form-group">
                                         <label for="user" class="sr-only">Tài khoản</label>
                                         <input type="text" name="user"  class="form-control"

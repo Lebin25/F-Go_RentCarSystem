@@ -9,29 +9,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Danh sách yêu thích</title>
         <link rel="stylesheet" href="./CSS/wishlistStyle.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     </head>
 
     <body>
         <jsp:include page="navbar.jsp"></jsp:include>
 
-        <section class="pt-5 pb-5 mt-5">
-            <div class="container">
-                <div class="row w-100">
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <h3 class="display-5 mb-2 text-center">Danh sách xe yêu thích</h3>
-                        <table id="wishlist" class="table table-condensed table-responsive mt-5">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" style="width:40%">Thông tin của xe</th>
-                                    <th class="text-center" style="width:18%">Hãng xe</th>
-                                    <th class="text-center" style="width:20%">Giá thuê/ngày</th>
-                                    <th class="text-center" style="width:20%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
+        <section class="pt-5 pb-5 mt-5" style="min-height: 80vh">
+                <div class="container">
+                    <div class="row w-100">
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <h3 class="display-5 mb-2 text-center">Danh sách xe yêu thích</h3>
+                            <table id="wishlist" class="table table-condensed table-responsive mt-5">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:40%">Thông tin của xe</th>
+                                        <th class="text-center" style="width:18%">Hãng xe</th>
+                                        <th class="text-center" style="width:20%">Giá thuê/ngày</th>
+                                        <th class="text-center" style="width:20%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <c:forEach items="${wlist}" var="wl">
                                     <tr>
                                         <c:forEach items="${plist}" var="p">
@@ -61,32 +63,32 @@
                                                         <a href="view_car_detail?pid=${p.productID}" class=" view-btn btn btn-white border-secondary bg-white btn-md mb-2">
                                                             <i class="far fa-eye"></i>
                                                         </a>
-                                                            <a href="delete_wishlist?wlid=${wl.wishlistID}" class="delete-btn btn btn-white border-secondary bg-white btn-md mb-2">
+                                                        <a href="delete_wishlist?wlid=${wl.wishlistID}" class="delete-btn btn btn-white border-secondary bg-white btn-md mb-2">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </div>
                                                 </td>
                                             </c:if>
-                                           </c:forEach>     
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row w-100 d-flex align-items-center">
-                        <div class="col-12 mb-3 mb-m-1 order-md-1 text-md-right">
-                            <a href="allproduct">
-                                <i class="fas fa-arrow-left mr-2"></i>Trở về xem danh sách xe</a>
-                        </div>
+                                        </c:forEach>     
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </section>
+                <div class="row w-100 d-flex align-items-center">
+                    <div class="col-12 mb-3 mb-m-1 order-md-1 text-md-right">
+                        <a href="allproduct" class="btn btn-back">
+                            <i class="fas fa-arrow-left mr-2"></i>Trở về xem danh sách xe</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-            <script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
             $(function () {
                 $('.product-card').hover(function () {
                     $(this).find('.description').animate({
@@ -107,6 +109,6 @@
                 }
             });
         </script>
-        </body>
+    </body>
 
-    </html>
+</html>

@@ -33,7 +33,9 @@
             <c:if test="${sessionScope.acc != null}">
                 <span class="navbar-nav d-flex justify-content-end align-items-center">
                     <span style="text-align: center;cursor: default;margin-right: 1.5rem;">Hello ${sessionScope.acc.account}</span>
+                    <c:if test="${sessionScope.acc.role == 0}">
                     <a style="text-align: center;margin-right: 0.5rem;width: 40px!important;" type="button" href="wishlist"><img id="wishlist" src="./IMG/wishlist.png" alt="Danh sách yêu thích" width="40"/></a>
+                    </c:if>
                     <span style="text-align: center;" ><img src="./IMG/user.png" alt="" class="user-pic" onClick="toggleMenu()"></span>
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">

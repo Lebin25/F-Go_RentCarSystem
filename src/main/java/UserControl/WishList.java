@@ -6,6 +6,9 @@ package UserControl;
 
 import DAO.ProductDAO;
 import AdminDAO.WishListDAO;
+import DAO.CustomerDAO;
+import entity.Account;
+import entity.Customer;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +42,15 @@ public class WishList extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         WishListDAO wldao = new WishListDAO();
         ProductDAO pdao = new ProductDAO();
-        List<entity.WishList> wlist = wldao.getAllWishlist();
+        CustomerDAO cdao = new CustomerDAO();
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        int accid = a.getAccountID();
+        
+        Customer c = cdao.getCustomerByAccIDInt(accid);
+        int cusid = c.getCustomerId();
+        
+        List<entity.WishList> wlist = wldao.getAllWishlistByCusId(cusid);
         List<Product> plist = new ArrayList<>();
         if (wlist != null) {
             for (entity.WishList wl : wlist) {

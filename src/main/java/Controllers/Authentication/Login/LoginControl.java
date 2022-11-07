@@ -35,7 +35,9 @@ public class LoginControl extends HttpServlet {
             LoginDAO loginDAO = new LoginDAO();
             Account a = loginDAO.checkLogin(acc, pass);
             if(a == null){
-                response.sendRedirect("signup.jsp");
+                String mess = "Tài khoản hoặc mật khẩu không chính xác";
+                request.setAttribute("mess", mess);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             }else{
                 HttpSession session = request.getSession();
                 session.setAttribute("acc", a);

@@ -290,7 +290,7 @@
         </div>
     </div>
 
-    <footer style="height: 50px"></footer>
+    <jsp:include page="footer.jsp"></jsp:include>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
                     function loadMore() {

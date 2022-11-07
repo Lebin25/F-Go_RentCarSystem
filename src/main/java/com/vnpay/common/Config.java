@@ -1,4 +1,3 @@
-
 package com.vnpay.common;
 
 import java.io.UnsupportedEncodingException;
@@ -72,7 +71,7 @@ public class Config {
         }
         return digest;
     }
-    
+
     public static String hmacSHA512(final String key, final String data) {
         try {
 
@@ -95,7 +94,7 @@ public class Config {
             return "";
         }
     }
-    
+
     //Util for VNPAY
     public static String hashAllFields(Map fields) {
         // create a list and sort it

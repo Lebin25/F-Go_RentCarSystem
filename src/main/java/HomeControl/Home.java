@@ -6,6 +6,7 @@
 package HomeControl;
 
 import DAO.ProductDAO;
+import DAO.ViewDAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,14 +37,22 @@ public class Home extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            ProductDAO productdao = new ProductDAO();
-            List<Product> listHome = productdao.getTop6most();
-            request.setAttribute("listP", listHome);
-//            out.print(listHome);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
 
+        ViewDAO viewDAO = new ViewDAO();
+
+        HttpSession session = request.getSession();
+        try {
+            if (session.isNew()) {
+                viewDAO.updateView();
+            }
+        } catch (Exception e) {
         }
+
+        ProductDAO productdao = new ProductDAO();
+        List<Product> listHome = productdao.getTop6most();
+        request.setAttribute("listP", listHome);
+//            out.print(listHome);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     @Override
@@ -51,7 +61,6 @@ public class Home extends HttpServlet {
         processRequest(request, response);
     }
 
- 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

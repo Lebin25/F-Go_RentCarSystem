@@ -5,7 +5,7 @@
  */
 package AdminControl;
 
-import AdminDAO.ViewDAO;
+import DAO.ViewDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -26,28 +26,25 @@ public class Static extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            ViewDAO viewDAO = new ViewDAO();
+        ViewDAO viewDAO = new ViewDAO();
 
-            HttpSession session = request.getSession();
-            if(session.isNew()){
-                viewDAO.updateView();
-            }
-            int view=viewDAO.getViews();
-            String formatted = String.format("%05d",view);
-            request.setAttribute("view",formatted);
-            float total = viewDAO.getTotal();
-            request.setAttribute("total",total);
-            int num=viewDAO.getNumberGuests();
-            request.setAttribute("num",num);
-            int rate=viewDAO.getRate();
-            request.setAttribute("rate",rate);     
-            Map<Integer, Float> map = new HashMap<Integer, Float>();
-            map = viewDAO.getMonthly();
-            request.getRequestDispatcher("Static.jsp").forward(request, response);
-        }catch(Exception e){
-            
+        HttpSession session = request.getSession();
+        if (session.isNew()) {
+            viewDAO.updateView();
         }
+        int view = viewDAO.getViews();
+        String formatted = String.format("%05d", view);
+        request.setAttribute("view", formatted);
+        long total = (long) viewDAO.getTotal();
+        request.setAttribute("total", total);
+        int num = viewDAO.getNumberGuests();
+        request.setAttribute("num", num);
+        int rate = viewDAO.getRate();
+        request.setAttribute("rate", rate);
+        Map<Integer, Float> map = new HashMap<Integer, Float>();
+        map = viewDAO.getMonthly();
+        request.getRequestDispatcher("static.jsp").forward(request, response);
+
     }
 
     @Override

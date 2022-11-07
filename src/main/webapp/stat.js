@@ -10,7 +10,7 @@ var barColors = ["orange","orange","orange","orange","orange","orange","orange",
 $(document).ready(function () {
 //Call api 
     $.ajax({
-        url: "http://localhost:8080/F-Go/getStatic",
+        url: "http://localhost:8080/getStatic",
 //        dataType: json,
         type: 'GET',
         dataType: "json",

@@ -26,6 +26,7 @@
                                 </div>
                                 <p class="login-card-description">Đăng nhập vào F-Go</p>
                                 <form action="LoginControl" method="post">
+                                    <p style="color: red">${mess}</p>
                                     <div class="form-group">
                                         <label for="text" class="sr-only">Tài khoản</label>
                                         <input type="text" name="account" id="account" class="form-control"
