@@ -2,26 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package AdminControl;
+package UserControl;
 
-import AdminDAO.ProductDAO;
-import entity.Category;
-import entity.Product;
+import DAO.CustomerDAO;
+import AdminDAO.WishListDAO;
+import entity.Account;
+import entity.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author This PC
  */
-@WebServlet(name = "AllProduct", urlPatterns = {"/allproduct"})
-public class AllProduct extends HttpServlet {
+@WebServlet(name = "WishListControl", urlPatterns = {"/add_to_wishlist"})
+public class WishListControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,14 +36,19 @@ public class AllProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ProductDAO productdao = new ProductDAO();
-        List<Product> list = productdao.getTop6();
-        List<Category> listC = productdao.getAllCategory();
+        String pid = request.getParameter("pid");
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        int accid = a.getAccountID();
         
-        request.setAttribute("listP", list);
-        request.setAttribute("listC", listC);
-        request.getRequestDispatcher("allProducts.jsp").forward(request, response);
+        CustomerDAO cdao = new CustomerDAO();
+        Customer c = cdao.getCustomerByAccIDInt(accid);
+        int cusid = c.getCustomerId();
         
+        WishListDAO wdao = new WishListDAO();
+        wdao.addWishList(cusid, pid);
+        
+        response.sendRedirect("wishlist");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

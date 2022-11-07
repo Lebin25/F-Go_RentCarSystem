@@ -27,7 +27,7 @@
                         <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
                     </div> -->
 
-                    <button class="add-btn btn btn-primary text-uppercase">Thêm Adnin mới</button>
+                    <button class="add-btn btn btn-primary text-uppercase">Thêm Admin mới</button>
 
 
 
@@ -87,7 +87,7 @@
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="tm-block-title">Thêm xe mới</h2>
+                                    <h2 class="tm-block-title">Thêm Admin mới</h2>
                                 </div>
                             </div>
                             <form action="addadmin" method="post" class="tm-edit-product-form" enctype="multipart/form-data">

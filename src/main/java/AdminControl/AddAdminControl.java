@@ -4,7 +4,7 @@
  */
 package AdminControl;
 
-import AdminDAO.AdminDAO;
+import DAO.AdminDAO;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import javax.servlet.http.Part;
  * @author ADMIN
  */
 @MultipartConfig(
-        location = "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\F-GO\\F-Go\\src\\main\\webapp\\images",
+        location = "E:\\study\\Semester_5\\SWP391\\Project_FGO\\F-Go\\src\\main\\webapp\\images",
         fileSizeThreshold = 1024 * 1024 * 10,
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
@@ -47,6 +47,8 @@ public class AddAdminControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
 
         String aname = request.getParameter("name");
         String aphone = request.getParameter("phone");
@@ -64,7 +66,15 @@ public class AddAdminControl extends HttpServlet {
 
         AdminDAO admindao = new AdminDAO();
         admindao.addAdmin(aname, aphone, aimage, aaccountId);
-        response.sendRedirect("manageadmin");
+//        response.sendRedirect("manageadmin");
+//        String url = "viewprofile?accountID=" + caccountId;
+        out.println("<meta http-equiv='refresh' content='3;URL=manageadmin'>");//redirects after 3 seconds
+        out.println("<div style=\"width: 100vw; height: 100vh;\">\n"
+                + "<div class=\"success-msg\" style=\"color: #270;background-color: #DFF2BF;margin: 10px 0;padding: 10px;border-radius: 3px 3px 3px 3px; width: 640px; margin:0 auto;\">\n"
+                + "  <img src=\"https://cdn-icons-png.flaticon.com/512/5290/5290058.png\" style=\"width: 16px;\">\n"
+                + "  Cập nhật thông tin thành công! Hệ thống đang cập nhật thông tin của bạn.\n"
+                + "</div>\n"
+                + "</div>");
 
     }
 

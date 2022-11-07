@@ -8,14 +8,18 @@ package AdminControl;
 import AdminDAO.ViewDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+@WebServlet(name = "Static", urlPatterns = {"/static"})
 
 public class Static extends HttpServlet {
 
@@ -23,7 +27,7 @@ public class Static extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-                        ViewDAO viewDAO = new ViewDAO();
+            ViewDAO viewDAO = new ViewDAO();
 
             HttpSession session = request.getSession();
             if(session.isNew()){
@@ -32,6 +36,14 @@ public class Static extends HttpServlet {
             int view=viewDAO.getViews();
             String formatted = String.format("%05d",view);
             request.setAttribute("view",formatted);
+            float total = viewDAO.getTotal();
+            request.setAttribute("total",total);
+            int num=viewDAO.getNumberGuests();
+            request.setAttribute("num",num);
+            int rate=viewDAO.getRate();
+            request.setAttribute("rate",rate);     
+            Map<Integer, Float> map = new HashMap<Integer, Float>();
+            map = viewDAO.getMonthly();
             request.getRequestDispatcher("Static.jsp").forward(request, response);
         }catch(Exception e){
             

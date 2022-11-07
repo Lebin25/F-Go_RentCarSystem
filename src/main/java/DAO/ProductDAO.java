@@ -1,4 +1,4 @@
-package AdminDAO;
+package DAO;
 
 import context.DBContext;
 import entity.Category;
@@ -61,6 +61,25 @@ public class ProductDAO {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, cid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),
+                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    public List<Product> getAllProductByCIDInt(int cid) {
+        List<Product> list = new ArrayList<>();
+        String sql = "Select * from PRODUCT\n"
+                + "where categoryID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, cid);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Product(rs.getInt(1),
@@ -226,5 +245,47 @@ public class ProductDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+
+    public List<Product> getTop6most() {
+        List<Product> list = new ArrayList<>();
+        String query = "select top 6 PRODUCT.productID,productName,productTitle,productImg,PRODUCT.productPrice,PRODUCT.productStatus,PRODUCT.categoryID,PRODUCT.seat,PRODUCT.gear,PRODUCT.color,PRODUCT.licensePlate,PRODUCT.fuel,PRODUCT.yearRelease,avg(rate.rate) as rating,count(rate.rate) as Soluongrate from RATE LEFT JOIN PRODUCT\n"
+                + "on PRODUCT.productID=rate.productID \n"
+                + "group by PRODUCT.productID,productName,productTitle,productImg,PRODUCT.productPrice,PRODUCT.productStatus,PRODUCT.categoryID,PRODUCT.seat,PRODUCT.gear,PRODUCT.color,PRODUCT.licensePlate,PRODUCT.fuel,PRODUCT.yearRelease\n"
+                + "order by avg(rate.rate) desc";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            float rating = 0;
+            int cmt = 0;
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),
+                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rating = rs.getFloat("rating"), cmt = rs.getInt("Soluongrate")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public Product getProductByIdInt(int id) {
+        String sql = "select * from PRODUCT where productID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Product(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),
+                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 }

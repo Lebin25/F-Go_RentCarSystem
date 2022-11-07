@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package AdminControl;
+package HomeControl;
 
-import AdminDAO.ProductDAO;
+import DAO.ProductDAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;

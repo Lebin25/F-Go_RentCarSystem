@@ -15,27 +15,29 @@ import java.sql.ResultSet;
  * @author ADMIN
  */
 public class SignupDAO {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    public Account checkAccountExist(String acc){
+
+    public Account checkAccountExist(String acc) {
         try {
             String query = "select * from ACCOUNT where account = ?";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, acc);
             rs = ps.executeQuery();
-            while(rs.next()){
-                Account a = new Account(rs.getInt(1) ,rs.getString(2), rs.getString(3), rs.getString(4));
+            while (rs.next()) {
+                Account a = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 return a;
             }
         } catch (Exception e) {
         }
-        
+
         return null;
     }
-    
-    public void signup(String user, String pass, String role){
+
+    public void signup(String user, String pass, String role) {
         String query = "insert into ACCOUNT values(?,?,?)";
         try {
             conn = new DBContext().getConnection();
@@ -45,6 +47,18 @@ public class SignupDAO {
             ps.setString(3, role);
             ps.executeUpdate();
 
+        } catch (Exception e) {
+        }
+    }
+
+    public void addAccIDToCustomer(int accid) {
+        String query = "INSERT INTO CUSTOMER (accountID, isVerify)\n"
+                + "VALUES (?, 0)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, accid);
+            ps.executeUpdate();
         } catch (Exception e) {
         }
     }

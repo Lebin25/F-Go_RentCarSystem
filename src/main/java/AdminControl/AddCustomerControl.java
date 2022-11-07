@@ -4,7 +4,7 @@
  */
 package AdminControl;
 
-import AdminDAO.CustomerDAO;
+import DAO.CustomerDAO;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,6 +42,8 @@ public class AddCustomerControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        
         String cname = request.getParameter("name");
         String cphone = request.getParameter("phone");
         String caccountID = request.getParameter("accountID");
@@ -73,8 +75,14 @@ public class AddCustomerControl extends HttpServlet {
 
         CustomerDAO cdao = new CustomerDAO();
         cdao.addCustomer(cname, cphone, cemail, cnationalId, cdrivingLicense, caccountID, cisVerify);
-                response.sendRedirect("managecustomer");
-            //request.getRequestDispatcher("managecustomer").forward(request, response);
+//                response.sendRedirect("managecustomer");
+        out.println("<meta http-equiv='refresh' content='3;URL=managecustomer'>");//redirects after 3 seconds
+        out.println("<div style=\"width: 100vw; height: 100vh;\">\n"
+                + "<div class=\"success-msg\" style=\"color: #270;background-color: #DFF2BF;margin: 10px 0;padding: 10px;border-radius: 3px 3px 3px 3px; width: 640px; margin:0 auto;\">\n"
+                + "  <img src=\"https://cdn-icons-png.flaticon.com/512/5290/5290058.png\" style=\"width: 16px;\">\n"
+                + "  Cập nhật thông tin thành công! Hệ thống đang cập nhật thông tin của bạn.\n"
+                + "</div>\n"
+                + "</div>");
 
     }
 

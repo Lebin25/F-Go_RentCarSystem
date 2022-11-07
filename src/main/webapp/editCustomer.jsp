@@ -67,7 +67,7 @@
                                     <button type="submit" class="btn btn-primary text-uppercase">Lưu</button>
                                 </div>  
                                 <div class="col-3 text-center mt-3">
-                                    <a href="managecustomer" type="button" class="btn btn-back">Trở lại</a>
+                                    <a href="viewprofile?accountID=${edit.accountId}" type="button" class="btn btn-back">Trở lại</a>
                                 </div>  
                             </div>
                         </form>

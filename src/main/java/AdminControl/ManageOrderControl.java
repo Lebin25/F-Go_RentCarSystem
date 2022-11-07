@@ -4,9 +4,9 @@
  */
 package AdminControl;
 
-import AdminDAO.CustomerDAO;
-import AdminDAO.OrderDAO;
-import AdminDAO.ProductDAO;
+import DAO.CustomerDAO;
+import DAO.OrderDAO;
+import DAO.ProductDAO;
 import entity.Customer;
 import entity.Order;
 import entity.Product;

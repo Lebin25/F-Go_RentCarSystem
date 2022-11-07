@@ -95,19 +95,21 @@
                                     <h2 class="tm-block-title">Thêm khách hàng mới</h2>
                                 </div>
                             </div>
-                            <form action="addcustomer" method="post" class="tm-edit-product-form" enctype="multipart/form-data" >
+                            <form id="form" action="addcustomer" method="post" class="tm-edit-product-form" enctype="multipart/form-data" >
                                 <div class="row tm-edit-product-row" style="justify-content: center">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="name">Họ và tên
                                             </label>
-                                            <input id="name" name="name" type="text" class="form-control validate" required />
+                                            <input id="name" name="name" type="text" class="form-control validate" required onkeydown="validationname()"/>
+                                            <span id="textname"></span>
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label for="phone">Số điện thoại
                                             </label>
-                                            <input id="phone" name="phone" type="text" class="form-control validate" required />
+                                            <input id="phone" name="phone" type="text" class="form-control validate" required onkeydown="validationphone()" />
+                                            <span id="textphone"></span>
                                         </div>
 
                                         <div class="form-group mb-3">
@@ -127,7 +129,8 @@
                                         <div class="form-group mb-3">
                                             <label for="email">Email
                                             </label>
-                                            <input id="email" name="email" type="text" class="form-control validate" required />
+                                            <input id="email" name="email" type="text" class="form-control validate" required onkeydown="validation()" />
+                                            <span id="text"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -200,6 +203,89 @@
                     infoFiltered: '(filtered from _MAX_ total records)',
                 },
             });
+        </script>
+        <script type="text/javascript">
+            function validation(){
+                var form = document.getElementById("form");
+                var email = document.getElementById("email").value;
+                var text = document.getElementById("text");
+                var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+                if(email.match(pattern)){
+                    form.classList.add("valid");
+                    form.classList.remove("invalid");
+                    text.innerHTML = "Đúng định dạng"
+                    text.style.color = "#00ff00"
+                } else {
+                    form.classList.remove("valid");
+                    form.classList.add("invalid");
+                    text.innerHTML = "Chưa đúng định dạng"
+                    text.style.color = "#ff0000"
+
+                }
+                if(email == ""){
+                    form.classList.remove("valid");
+                    form.classList.remove("invalid");
+                    text.innerHTML = ""
+                }
+            }
+            
+            
+        </script>
+        
+        <script type="text/javascript">
+            function validationphone(){
+                var form = document.getElementById("form");
+                var phone = document.getElementById("phone").value;
+                var textphone = document.getElementById("textphone");
+                var pattern = "^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$";
+                if(phone.match(pattern)){
+                    form.classList.add("valid");
+                    form.classList.remove("invalid");
+                    textphone.innerHTML = "Đúng định dạng"
+                    textphone.style.color = "#00ff00"
+                } else {
+                    form.classList.remove("valid");
+                    form.classList.add("invalid");
+                    textphone.innerHTML = "Chưa đúng định dạng"
+                    textphone.style.color = "#ff0000"
+
+                }
+                if(phone == ""){
+                    form.classList.remove("valid");
+                    form.classList.remove("invalid");
+                    textphone.innerHTML = ""
+                }
+            }
+            
+            
+        </script>
+        
+        <script type="text/javascript">
+            function validationname(){
+                var form = document.getElementById("form");
+                var name = document.getElementById("name").value;
+                var textname = document.getElementById("textname");
+                var pattern = "^[a-zA-Z\\s]+$";
+                if(name.match(pattern)){
+                    form.classList.add("valid");
+                    form.classList.remove("invalid");
+                    textname.innerHTML = "Đúng định dạng"
+                    textname.style.color = "#00ff00"
+
+                } else {
+                    form.classList.remove("valid");
+                    form.classList.add("invalid");
+                    textname.innerHTML = "Chưa đúng định dạng"
+                    textname.style.color = "#ff0000"
+                }
+                if(name == ""){
+                    form.classList.remove("valid");
+                    form.classList.remove("invalid");
+                    textphone.innerHTML = ""
+                }
+            }
+            
+            
         </script>
     </body>
 </html>

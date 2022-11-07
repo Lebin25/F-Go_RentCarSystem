@@ -1,6 +1,6 @@
 package Controllers.Authentication.GoogleLogin;
 
-import AdminDAO.AccountDAO;
+import DAO.AccountDAO;
 import AuthenicationDAO.LoginDAO;
 import entity.Account;
 import java.io.IOException;
@@ -23,7 +23,6 @@ public class GoogleLoginServlet extends HttpServlet {
         String code = request.getParameter("code");
         String accessToken = GoogleUtils.getToken(code);
         GoogleDTO user = GoogleUtils.getUserInfo(accessToken);
-        System.out.println(user.getEmail() + " " + user.getName());
 
         String account = user.getEmail();
         String role = "0";
@@ -39,12 +38,12 @@ public class GoogleLoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("acc", ggaccount);
             session.setMaxInactiveInterval(900);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("Home").forward(request, response);
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("acc", a);
             session.setMaxInactiveInterval(900);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("Home").forward(request, response);
         }
 
     }

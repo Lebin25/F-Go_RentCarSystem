@@ -186,7 +186,7 @@ a:hover {
 
 .btn-primary:active,
 .btn-primary:hover {
-    color: var(--primary-color);
+    color: var(--primary-color)!important;
     background-color: transparent!important;
     border: 2px solid var(--primary-color) !important;
 }
@@ -221,6 +221,10 @@ a:hover {
     text-align: center;
 }
 
+.card-header{
+    text-align: center;
+}
+
 .track{
     position: relative;
     background-color: #ddd;
@@ -241,7 +245,7 @@ a:hover {
     position: relative
 }
 .track .step.active:before{
-    background: #FF5722
+    background: var(--primary-color);
 }
 .track .step::before{
     height: 7px;
@@ -252,7 +256,7 @@ a:hover {
     top: 18px
 }
 .track .step.active .icon{
-    background: #ee5435;
+    background: var(--primary-color);
     color: #fff
 }
 .track .icon{
@@ -269,4 +273,86 @@ a:hover {
 }.track .text{
     display: block;
     margin-top: 7px
+}
+
+.cross {
+    padding: 10px;
+color: var(--primary-color);
+cursor: pointer;
+font-size: 23px;
+}
+
+.cross i{
+
+margin-top: -5px;
+cursor: pointer;
+}
+
+.comment-box {
+padding: 5px
+}
+
+.comment-area textarea {
+resize: none;
+border: 1px solid #525255;
+}
+
+.form-control:focus {
+color: #495057;
+background-color: #fff;
+border-color: #ffffff;
+outline: 0;
+border-color: var(--primary-color)!important;
+box-shadow: none!important;
+}
+
+.send {
+color: #fff!important;
+background-color: var(--primary-color)!important;
+border-color: var(--primary-color)!important;
+}
+
+.send:hover {
+color: var(--primary-color)!important;
+background-color: #fff!important;
+border-color: var(--primary-color)!important;
+}
+
+.rating {
+display: inline-flex;
+margin-top: -10px;
+flex-direction: row-reverse;
+
+
+}
+
+.rating>input {
+display: none
+}
+
+.rating>label {
+position: relative;
+width: 28px;
+font-size: 35px;
+color: var(--primary-color) !important;
+cursor: pointer;
+}
+
+.rating>label::before {
+content: "\2605";
+position: absolute;
+opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+opacity: 0.4
 }

@@ -1,6 +1,6 @@
 package AdminControl;
 
-import AdminDAO.ProductDAO;
+import DAO.ProductDAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;

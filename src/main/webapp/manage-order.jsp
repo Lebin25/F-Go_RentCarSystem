@@ -112,23 +112,26 @@
                                     <h2 class="tm-block-title">Thêm đơn thuê mới</h2>
                                 </div>
                             </div>
-                            <form action="addorder" method="post" class="tm-edit-product-form">
+                            <form id="form" action="addorder" method="post" class="tm-edit-product-form">
                                 <div class="row tm-edit-product-row">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="name">Họ tên khách hàng
                                             </label>
-                                            <input id="name" name="name" type="text" class="form-control validate" required />
+                                            <input id="name" name="name" type="text" class="form-control validate" required onkeydown="validationname()" />
+                                            <span id="textname"></span>
                                         </div>    
                                         <div class="form-group mb-3">
                                             <label for="namecar">Id xe thuê
                                             </label>
                                             <input id="carid" name="carid" type="text" class="form-control validate" required />
+                                            
                                         </div>  
                                         <div class="form-group mb-3">
                                             <label for="phone">Số điện thoại
                                             </label>
-                                            <input id="phone" name="phone" type="text" class="form-control validate" required />
+                                            <input id="phone" name="phone" type="text" class="form-control validate" required onkeydown="validationphone()" />
+                                            <span id="textphone"></span>
                                         </div>  
                                         
 
@@ -221,6 +224,61 @@
                                 infoFiltered: '(filtered from _MAX_ total records)',
                             },
                         });
+        </script>
+        <script type="text/javascript">
+            function validationphone(){
+                var form = document.getElementById("form");
+                var phone = document.getElementById("phone").value;
+                var textphone = document.getElementById("textphone");
+                var pattern = "(84|0[3|5|7|8|9])+([0-9]{8})\b";
+                if(phone.match(pattern)){
+                    form.classList.add("valid");
+                    form.classList.remove("invalid");
+                    textphone.innerHTML = "Đúng định dạng"
+                    textphone.style.color = "#00ff00"
+                } else {
+                    form.classList.remove("valid");
+                    form.classList.add("invalid");
+                    textphone.innerHTML = "Chưa đúng định dạng"
+                    textphone.style.color = "#ff0000"
+
+                }
+                if(phone == ""){
+                    form.classList.remove("valid");
+                    form.classList.remove("invalid");
+                    textphone.innerHTML = ""
+                }
+            }
+            
+            
+        </script>
+        
+        <script type="text/javascript">
+            function validationname(){
+                var form = document.getElementById("form");
+                var name = document.getElementById("name").value;
+                var textname = document.getElementById("textname");
+                var pattern = "^[a-zA-Z\\s]+$";
+                if(name.match(pattern)){
+                    form.classList.add("valid");
+                    form.classList.remove("invalid");
+                    textname.innerHTML = "Đúng định dạng"
+                    textname.style.color = "#00ff00"
+
+                } else {
+                    form.classList.remove("valid");
+                    form.classList.add("invalid");
+                    textname.innerHTML = "Chưa đúng định dạng"
+                    textname.style.color = "#ff0000"
+                }
+                if(name == ""){
+                    form.classList.remove("valid");
+                    form.classList.remove("invalid");
+                    textphone.innerHTML = ""
+                }
+            }
+            
+            
         </script>
     </body>
 </html>

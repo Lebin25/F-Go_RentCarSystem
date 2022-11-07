@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,11 +45,15 @@ public class SignupControl extends HttpServlet {
             Account a = signupdao.checkAccountExist(user);
             if(a == null){
                 signupdao.signup(user,pass,role);
-                response.sendRedirect("home.jsp");
+                Account acc = signupdao.checkAccountExist(user);
+                signupdao.addAccIDToCustomer(acc.getAccountID());
+                HttpSession session = request.getSession();
+                session.setAttribute("acc", acc);
+                session.setMaxInactiveInterval(900);
+                request.getRequestDispatcher("Home").forward(request, response);
 
             }else {
                 response.sendRedirect("login.jsp");
-
             }
         }
 

@@ -4,7 +4,7 @@
  */
 package AdminControl;
 
-import AdminDAO.OrderDAO;
+import DAO.OrderDAO;
 import entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package AdminDAO;
+package DAO;
 
 import context.DBContext;
 import entity.Order;
@@ -31,8 +31,8 @@ public class OrderDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Order(rs.getInt(1),
-                        rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7), rs.getInt(8)));
+                        rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getInt(7), rs.getInt(8)));
             }
         } catch (Exception e) {
         }
@@ -66,8 +66,8 @@ public class OrderDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Order(rs.getInt(1),
-                        rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7), rs.getInt(8));
+                        rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getInt(7), rs.getInt(8));
             }
         } catch (Exception e) {
 
@@ -114,4 +114,6 @@ public class OrderDAO {
         } catch (Exception e) {
         }
     }
+    
+    
 }

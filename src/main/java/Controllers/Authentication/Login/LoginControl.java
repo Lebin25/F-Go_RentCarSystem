@@ -40,7 +40,7 @@ public class LoginControl extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("acc", a);
                 session.setMaxInactiveInterval(900);
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                request.getRequestDispatcher("Home").forward(request, response);
             }
         } catch (Exception e) {
         }

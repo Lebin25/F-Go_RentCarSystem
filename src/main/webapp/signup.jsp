@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div style=" margin-top: 20px;">
-                                    <a class="btn-back" href="home.jsp">Quay lại Trang chủ</a>
+                                    <a class="btn-back" href="Home">Quay lại Trang chủ</a>
                                 </div>
                             </div>
                         </div>

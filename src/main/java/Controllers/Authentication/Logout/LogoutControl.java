@@ -30,7 +30,7 @@ public class LogoutControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         session.removeAttribute("acc");
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("Home");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

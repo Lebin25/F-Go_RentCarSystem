@@ -4,8 +4,8 @@
  */
 package AdminControl;
 
-import AdminDAO.AccountDAO;
-import AdminDAO.ProductDAO;
+import DAO.AccountDAO;
+import DAO.ProductDAO;
 import entity.Account;
 import entity.Role;
 import java.io.IOException;

@@ -4,7 +4,7 @@
  */
 package AdminControl;
 
-import AdminDAO.ProductDAO;
+import DAO.ProductDAO;
 import entity.Account;
 import entity.Category;
 import entity.Product;

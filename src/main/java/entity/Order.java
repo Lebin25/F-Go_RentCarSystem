@@ -11,17 +11,17 @@ package entity;
 public class Order {
     private int orderId;
     private int customerID;
-    private String productId;
+    private int productId;
     private String timeBegin;
     private String timeEnd;
     private String address;
-    private String totalMoney;
+    private int totalMoney;
     private int status;
 
     public Order() {
     }
 
-    public Order(int orderId, int customerID, String productId, String timeBegin, String timeEnd, String address, String totalMoney, int status) {
+    public Order(int orderId, int customerID, int productId, String timeBegin, String timeEnd, String address, int totalMoney, int status) {
         this.orderId = orderId;
         this.customerID = customerID;
         this.productId = productId;
@@ -48,11 +48,11 @@ public class Order {
         this.customerID = customerID;
     }
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -80,11 +80,11 @@ public class Order {
         this.address = address;
     }
 
-    public String getTotalMoney() {
+    public int getTotalMoney() {
         return totalMoney;
     }
 
-    public void setTotalMoney(String totalMoney) {
+    public void setTotalMoney(int totalMoney) {
         this.totalMoney = totalMoney;
     }
 
@@ -94,6 +94,11 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderId=" + orderId + ", customerID=" + customerID + ", productId=" + productId + ", timeBegin=" + timeBegin + ", timeEnd=" + timeEnd + ", address=" + address + ", totalMoney=" + totalMoney + ", status=" + status + '}';
     }
 
     

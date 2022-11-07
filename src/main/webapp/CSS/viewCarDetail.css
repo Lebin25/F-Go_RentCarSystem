@@ -6,6 +6,11 @@ body {
     background-color: #fff;
 }
 
+a:focus,
+a:hover {
+    text-decoration: none !important;
+}
+
 .card {
     background-color: #f2f2f2;
     padding: 14px;
@@ -111,6 +116,7 @@ hr {
 }
 
 .buttons .buy {
+    line-height: 32px;
     color: #fff;
     background-color: var(--primary-color);
     border-color: var(--primary-color);
@@ -424,4 +430,12 @@ hr {
 .product-card .card-content .post-meta a {
     color: inherit;
     text-decoration: none;
+}
+
+.btn-back:hover{
+    color: var(--primary-color)!important;
+}
+
+.btn-back:focus{
+    box-shadow: none;
 }

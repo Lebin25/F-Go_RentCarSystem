@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package AdminDAO;
+package DAO;
 
 import context.DBContext;
 import entity.Customer;
@@ -57,7 +57,7 @@ public class CustomerDAO {
         }
 
     }
-    
+
     public Customer getCustomerById(String id) {
         String query = "Select * From CUSTOMER where customerID = ?";
         try {
@@ -73,7 +73,7 @@ public class CustomerDAO {
         }
         return null;
     }
-    
+
     public Customer getCustomerByID(String id) {
         String query = "Select * From CUSTOMER where customerID = ?";
         try {
@@ -89,7 +89,7 @@ public class CustomerDAO {
         }
         return null;
     }
-    
+
     public Customer getCustomerByAccID(String id) {
         String query = "Select * From CUSTOMER where accountID = ?";
         try {
@@ -105,7 +105,7 @@ public class CustomerDAO {
         }
         return null;
     }
-    
+
     public Customer getCustomerByPhone(String phone) {
         String query = "select * from CUSTOMER WHERE phone = ?";
         try {
@@ -121,8 +121,8 @@ public class CustomerDAO {
         }
         return null;
     }
-    
-    public void deleteCustomer (String cusid) {
+
+    public void deleteCustomer(String cusid) {
         String query = "delete from CUSTOMER\n"
                 + "where customerID = ?";
         try {
@@ -133,11 +133,11 @@ public class CustomerDAO {
         } catch (Exception e) {
         }
     }
-    
-    public void verifyCustomer (String cid) {
-        String query = "UPDATE CUSTOMER\n" +
-                        "SET isVerify = 1\n" +
-                        "WHERE customerID = ? ";
+
+    public void verifyCustomer(String cid) {
+        String query = "UPDATE CUSTOMER\n"
+                + "SET isVerify = 1\n"
+                + "WHERE customerID = ? ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -146,14 +146,15 @@ public class CustomerDAO {
         } catch (Exception e) {
         }
     }
-    
-    public void editCustomer(String name, String phone, String email, String nationalId, String drivinglicense, String cusid) {
+
+    public void editCustomer(String name, String phone, String email, String nationalId, String drivinglicense, int isVerify, String cusid) {
         String query = "update CUSTOMER\n"
                 + "set customerName = ?,\n"
                 + "	phone =?,\n"
                 + "	email =?,\n"
                 + "	nationalID = ?,\n"
-                + "	drivingLicense = ?\n"
+                + "	drivingLicense = ?,\n"
+                + "	isVerify = ?\n"
                 + "Where customerID = ?";
         try {
             conn = new DBContext().getConnection();
@@ -163,10 +164,43 @@ public class CustomerDAO {
             ps.setString(3, email);
             ps.setString(4, nationalId);
             ps.setString(5, drivinglicense);
-            ps.setString(6, cusid);
+            ps.setInt(6, isVerify);
+            ps.setString(7, cusid);
 
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+
+    public Customer getCustomerByAccIDInt(int id) {
+        String query = "Select * From CUSTOMER where accountID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Customer(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public Customer getCustomerByIdInt(int id) {
+        String query = "Select * From CUSTOMER where customerID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Customer(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+            }
+        } catch (Exception e) {
+        }
+        return null;
     }
 }

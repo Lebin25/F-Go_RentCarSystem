@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand mr-auto font-weight-bold" href="home.jsp">
+        <a class="navbar-brand mr-auto font-weight-bold" href="Home">
             <img id="logo" src="./IMG/logo.png"></a>
         <span class="v-line"></span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="active nav-link" href="home.jsp">Trang chủ</a>
+                    <a class="active nav-link" href="Home">Trang chủ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Về chúng tôi</a>
@@ -33,15 +33,15 @@
             <c:if test="${sessionScope.acc != null}">
                 <span class="navbar-nav d-flex justify-content-end align-items-center">
                     <span style="text-align: center;cursor: default;margin-right: 1.5rem;">Hello ${sessionScope.acc.account}</span>
-                    <a style="text-align: center;margin-right: 0.5rem;" type="button" href="#"><img id="wishlist" src="./IMG/wishlist.png" alt="Danh sách yêu thích" width="40"/></a>
+                    <a style="text-align: center;margin-right: 0.5rem;width: 40px!important;" type="button" href="wishlist"><img id="wishlist" src="./IMG/wishlist.png" alt="Danh sách yêu thích" width="40"/></a>
                     <span style="text-align: center;" ><img src="./IMG/user.png" alt="" class="user-pic" onClick="toggleMenu()"></span>
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <c:if test="${sessionScope.acc.role == 2}">
-                                <a href="#" class="sub-menu-link">
+                                <a href="static" class="sub-menu-link">
                                     <p>Thống kê chính</p>
                                 </a>
-                                <a href="#" class="sub-menu-link">
+                                <a href="Stat.jsp" class="sub-menu-link">
                                     <p>Theo dõi doanh thu</p>
                                 </a>
                                 <a href="manageadmin" class="sub-menu-link">
@@ -69,7 +69,7 @@
                                 <a href="viewprofile?accountID=${sessionScope.acc.accountID}" class="sub-menu-link">
                                     <p>Thông tin cá nhân</p>
                                 </a>
-                                <a href="#" class="sub-menu-link">
+                                <a href="load_to_view_order?accid=${sessionScope.acc.accountID}" class="sub-menu-link">
                                     <p>Thông tin thuê xe</p>
                                 </a> 
                             </c:if>

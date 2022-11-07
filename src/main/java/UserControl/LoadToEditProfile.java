@@ -4,7 +4,7 @@
  */
 package UserControl;
 
-import AdminDAO.CustomerDAO;
+import DAO.CustomerDAO;
 import entity.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;

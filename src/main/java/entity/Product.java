@@ -20,6 +20,9 @@ public class Product {
     private String fuel;
     private String yearRelease;
 
+    private float rating;
+    private int cmt;
+
     public Product() {
     }
 
@@ -37,6 +40,41 @@ public class Product {
         this.licensePlate = licensePlate;
         this.fuel = fuel;
         this.yearRelease = yearRelease;
+    }
+
+    public int getCmt() {
+        return cmt;
+    }
+
+    public void setCmt(int cmt) {
+        this.cmt = cmt;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public Product(int productID, String productName, String productTitle, String productImg, int price, int productStatus, int categoryID, String seat, String gear, String color, String licensePlate, String fuel, String yearRelease, float rating, int cmt) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productTitle = productTitle;
+        this.productImg = productImg;
+        this.price = price;
+        this.productStatus = productStatus;
+        this.categoryID = categoryID;
+        this.seat = seat;
+        this.gear = gear;
+        this.color = color;
+        this.licensePlate = licensePlate;
+        this.fuel = fuel;
+        this.yearRelease = yearRelease;
+        this.rating = rating;
+        this.cmt = cmt;
+
     }
 
     public int getProductID() {

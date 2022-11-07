@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package AdminControl;
+package UserControl;
 
-import AdminDAO.ProductDAO;
-import entity.Category;
+import DAO.ProductDAO;
+import AdminDAO.WishListDAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ADMIN
+ * @author This PC
  */
-@WebServlet(name = "CategoryServlet", urlPatterns = {"/category"})
-public class CategoryServlet extends HttpServlet {
+@WebServlet(name = "WishList", urlPatterns = {"/wishlist"})
+public class WishList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +36,22 @@ public class CategoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String cateId = request.getParameter("cid");
-        
-        ProductDAO productdao = new ProductDAO();
-        List<Product> list = productdao.getAllProductByCID(cateId);
-        List<Category> listC = productdao.getAllCategory();
+        WishListDAO wldao = new WishListDAO();
+        ProductDAO pdao = new ProductDAO();
+        List<entity.WishList> wlist = wldao.getAllWishlist();
+        List<Product> plist = new ArrayList<>();
+        if (wlist != null) {
+            for (entity.WishList wl : wlist) {
+                int pid = wl.getProductID();
+                Product p = pdao.getProductByIdInt(pid);
+                plist.add(p);
+            }
+            
+            request.setAttribute("wlist", wlist);
+            request.setAttribute("plist", plist);
+            request.getRequestDispatcher("wishList.jsp").forward(request, response);
+        }
 
-        
-        request.setAttribute("listP", list);
-        request.setAttribute("listC", listC);
-
-
-        request.getRequestDispatcher("allProducts.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

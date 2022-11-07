@@ -4,7 +4,7 @@
  */
 package AdminControl;
 
-import AdminDAO.ProductDAO;
+import DAO.ProductDAO;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import javax.servlet.http.Part;
  * @author ADMIN
  */
 @MultipartConfig(
-        location = "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\F-GO\\F-Go\\src\\main\\webapp\\images",
+        location = "E:\\study\\Semester_5\\SWP391\\Project_FGO\\F-Go\\src\\main\\webapp\\images",
         fileSizeThreshold = 1024 * 1024 * 10,
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
@@ -47,6 +47,8 @@ public class EditProductControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        
         String pid = request.getParameter("id");
         String pname = request.getParameter("name");
         String pcategory = request.getParameter("category");
@@ -71,7 +73,14 @@ public class EditProductControl extends HttpServlet {
         ProductDAO pdao = new ProductDAO();
         pdao.editProduct(pname, pdes, pimage, pprice, pstatus, pcategory, pseat, pgear, pcolor, plicensePlate, pfuel, pyearRelease, pid);
         System.out.println(pname + " " + pcategory + " " + pprice + " " + pseat + " " + pgear + " " + plicensePlate + " " + pfuel + " " + pcolor + " " + pimage + " " + pyearRelease + " " + pdes + " " + pstatus + " " + pid);
-        response.sendRedirect("manageproduct");
+        //response.sendRedirect("manageproduct");
+        out.println("<meta http-equiv='refresh' content='3;URL=manageproduct'>");//redirects after 3 seconds
+        out.println("<div style=\"width: 100vw; height: 100vh;\">\n"
+                + "<div class=\"success-msg\" style=\"color: #270;background-color: #DFF2BF;margin: 10px 0;padding: 10px;border-radius: 3px 3px 3px 3px; width: 640px; margin:0 auto;\">\n"
+                + "  <img src=\"https://cdn-icons-png.flaticon.com/512/5290/5290058.png\" style=\"width: 16px;\">\n"
+                + "  Cập nhật thông tin thành công! Hệ thống đang cập nhật thông tin của bạn.\n"
+                + "</div>\n"
+                + "</div>");
     }
 
 

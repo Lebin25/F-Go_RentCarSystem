@@ -1,26 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-package AdminControl;
+package UserControl;
 
-import AdminDAO.ProductDAO;
+import DAO.CustomerDAO;
+import DAO.ProductDAO;
+import entity.Account;
+import entity.Customer;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author Bin
  */
-@WebServlet(name = "SearchControl", urlPatterns = {"/search"})
-public class SearchControl extends HttpServlet {
+@WebServlet(name = "OrderControl", urlPatterns = {"/load_to_order"})
+public class LoadToOrderControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,14 +34,31 @@ public class SearchControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String txtSearch = request.getParameter("txt");
-        ProductDAO productdao = new ProductDAO();
-        List<Product> list = productdao.searchProductByName(txtSearch);
-//        List<Category> listC = dao.getAllCategory();
+        try {
+            HttpSession session = request.getSession(true);
+            Account a = (Account) session.getAttribute("acc");
+            int accid = a.getAccountID();
 
-        request.setAttribute("listP", list);
-//        request.setAttribute("listC", listC);
-        request.getRequestDispatcher("allProducts.jsp").forward(request, response);
+            CustomerDAO cdao = new CustomerDAO();
+            Customer c = cdao.getCustomerByAccIDInt(accid);
+            int verify = c.getIsVerify();
+
+            String pid = request.getParameter("pid");
+
+            ProductDAO pdao = new ProductDAO();
+            Product p = pdao.getProductById(pid);
+
+            if (verify == 1) {
+                request.setAttribute("product", p);
+                request.getRequestDispatcher("order.jsp").forward(request, response);
+            } else {
+                request.setAttribute("mess", "Tài khoản của quý khách chưa được xác nhận, vui lòng cập nhật thông tin cá nhân hoặc liên hệ với chúng tôi.");
+                request.getRequestDispatcher("/view_car_detail?"+p.getProductID()).forward(request, response);
+            }
+        } catch (Exception e) {
+            response.sendRedirect("login.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

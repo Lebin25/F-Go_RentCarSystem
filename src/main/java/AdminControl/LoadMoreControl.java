@@ -4,7 +4,7 @@
  */
 package AdminControl;
 
-import AdminDAO.ProductDAO;
+import DAO.ProductDAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,62 +34,64 @@ public class LoadMoreControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         ProductDAO productdao = new ProductDAO();
         String ammount = request.getParameter("exits");
         int iammount = Integer.parseInt(ammount);
         List<Product> list = productdao.getNext6Products(iammount);
         PrintWriter out = response.getWriter();
-        
+
         for (Product p : list) {
-            out.println("<div class=\"product col-sm-4\">\n" +
-"                            <div class=\"product-card\">\n" +
-"                                <div class=\"card-thumbnail\">\n" +
-"                                    <img class=\"img-responsive\" src=\"/IMG/"+p.getProductImg()+"\">\n" +
-"                                </div>\n" +
-"                                <div class=\"card-content\">\n" +
-"                                    <div class=\"order-btn\">\n" +
-"                                        <p class=\"order-btn-text\">Đặt xe</p>\n" +
-"                                    </div>\n" +
-"                                    <h1 class=\"card-title\">\n" +
-"                                        "+p.getProductName()+"\n" +
-"                                    </h1>\n" +
-"                                    <h2 class=\"card-sub-title\">\n" +
-"                                        "+p.getYearRelease()+"\n" +
-"                                    </h2>\n" +
-"                                    <div class=\"description\">\n" +
-"                                        <ul>\n" +
-"                                            <li>\n" +
-"                                                <i class=\"fa fa-th hidden-xs hidden-sm\"></i>\n" +
-"                                                <span>\n" +
-"                                                    <span class=\"attri\">"+p.getLicensePlate()+"</span> </span>\n" +
-"                                            </li>\n" +
-"                                            <li>\n" +
-"                                                <i class=\"fa fa-users hidden-xs hidden-sm\"></i>\n" +
-"                                                <span>\n" +
-"                                                    <span class=\"attri\">"+p.getSeat()+"</span> </span>\n" +
-"                                            </li>\n" +
-"                                            <li>\n" +
-"                                                <i class=\"fa fa-cogs hidden-xs hidden-sm\"></i>\n" +
-"                                                <span>\n" +
-"                                                    <span class=\"attri\">"+p.getGear()+"</span> </span>\n" +
-"                                            </li>\n" +
-"                                        </ul>\n" +
-"                                    </div>\n" +
-"                                    <div class=\"price\">\n" +
-"                                        <div class=\"price-text\">"+p.getPrice()+"</div>\n" +
-"                                    </div>\n" +
-"                                    <ul class=\"list-inline post-meta\">\n" +
-"                                        <li class=\"time-stamp\">\n" +
-"                                            <i class=\"fa fa-star\"></i> 5\n" +
-"                                        </li>\n" +
-"                                        <li class=\"card-comment\">\n" +
-"                                            <i class=\"fa fa-comments\"></i><a href=\"#\"> 22 bình luận</a>\n" +
-"                                        </li>\n" +
-"                                    </ul>\n" +
-"                                </div>\n" +
-"                            </div>\n" +
-"                        </div>");
+            out.println("<div class=\"product col-sm-4\">\n"
+                    + "     <a href=\"view_car_detail?pid=" + p.getProductID() + "\">\n"
+                    + "                            <div class=\"product-card\">\n"
+                    + "                                <div class=\"card-thumbnail\">\n"
+                    + "                                    <img class=\"img-responsive\" src=\"/IMG/" + p.getProductImg() + "\">\n"
+                    + "                                </div>\n"
+                    + "                                <div class=\"card-content\">\n"
+                    + "                                    <div class=\"order-btn\">\n"
+                    + "                                        <a class=\"order-btn-text\" href=\"view_car_detail?pid=" + p.getProductID() + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></a>\n"
+                    + "                                    </div>\n"
+                    + "                                    <h1 class=\"card-title\">\n"
+                    + "                                        " + p.getProductName() + "\n"
+                    + "                                    </h1>\n"
+                    + "                                    <h2 class=\"card-sub-title\">\n"
+                    + "                                        " + p.getYearRelease() + "\n"
+                    + "                                    </h2>\n"
+                    + "                                    <div class=\"description\">\n"
+                    + "                                        <ul>\n"
+                    + "                                            <li>\n"
+                    + "                                                <i class=\"fa fa-th hidden-xs hidden-sm\"></i>\n"
+                    + "                                                <span>\n"
+                    + "                                                    <span class=\"attri\">" + p.getLicensePlate() + "</span> </span>\n"
+                    + "                                            </li>\n"
+                    + "                                            <li>\n"
+                    + "                                                <i class=\"fa fa-users hidden-xs hidden-sm\"></i>\n"
+                    + "                                                <span>\n"
+                    + "                                                    <span class=\"attri\">" + p.getSeat() + "</span> </span>\n"
+                    + "                                            </li>\n"
+                    + "                                            <li>\n"
+                    + "                                                <i class=\"fa fa-cogs hidden-xs hidden-sm\"></i>\n"
+                    + "                                                <span>\n"
+                    + "                                                    <span class=\"attri\">" + p.getGear() + "</span> </span>\n"
+                    + "                                            </li>\n"
+                    + "                                        </ul>\n"
+                    + "                                    </div>\n"
+                    + "                                    <div class=\"price\">\n"
+                    + "                                        <div class=\"price-text\">" + p.getPrice() + "</div>\n"
+                    + "                                    </div>\n"
+                    + "                                    <ul class=\"list-inline post-meta\">\n"
+                    + "                                        <li class=\"time-stamp\">\n"
+                    + "                                            <i class=\"fa fa-star\"></i> 5\n"
+                    + "                                        </li>\n"
+                    + "                                        <li class=\"card-comment\">\n"
+                    + "                                            <i class=\"fa fa-comments\"></i><a href=\"#\"> 22 bình luận</a>\n"
+                    + "                                        </li>\n"
+                    + "                                    </ul>\n"
+                    + "                                </div>\n"
+                    + "                            </div>\n"
+                    + "                          </a>\n"        
+                    + "                        </div>");
         }
     }
 

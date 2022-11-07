@@ -4,7 +4,7 @@
  */
 package AdminControl;
 
-import AdminDAO.CategoriesDAO;
+import DAO.CategoriesDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

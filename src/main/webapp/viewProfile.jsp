@@ -18,7 +18,7 @@
                 <div class="header">
                     <h2>Chi tiết thông tin tài khoản</h2>
                 </div>
-
+                <!--<p class="font-italic"></p>-->
                 <div class="container mb-3 mt-5 ">
                     <div class="row user-info mb-3 pt-3">
                         <div class="padding-left-25 text-bold col-6">Họ và Tên:</div>
@@ -58,36 +58,36 @@
                         <a href="load_to_edit_profile?cusid=${detail.customerId}" class="btn btn-primary">Chỉnh sửa</a>
                     </div>
                     <div class="col-6 col-sm-2 col-md-2 mt-3 mb-3 text-center">
-                        <a href="home.jsp" class="btn btn-back">Quay lại</a>
+                        <a href="Home" class="btn btn-back">Quay lại</a>
                     </div>
                 </div>
             </div>
         </div>
-
+                    
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script>
-                    $(function () {
+                        $(function () {
                         $('.product-card').hover(function () {
-                            $(this).find('.description').animate({
-                                height: "toggle",
+                        $(this).find('.description').animate({
+                        height: "toggle",
                                 opacity: "toggle"
-                            }, 300);
+                        }, 300);
                         });
-                    });
-                    let subMenu = document.getElementById("subMenu");
-                    const $menu = $('.sub-menu-wrap');
-                    function toggleMenu() {
+                        });
+                        let subMenu = document.getElementById("subMenu");
+                        const $menu = $('.sub-menu-wrap');
+                        function toggleMenu() {
                         subMenu.classList.toggle("open-menu");
-                    }
-                    $(document).mouseup(function (e) {
-                        var container = $(".user-pic");
-                        if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
-                            subMenu.classList.toggle("open-menu");
                         }
-                    });
+                $(document).mouseup(function (e) {
+                var container = $(".user-pic");
+                        if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+                subMenu.classList.toggle("open-menu");
+                }
+                });
         </script>
     </body>
 

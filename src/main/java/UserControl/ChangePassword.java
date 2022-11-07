@@ -4,7 +4,7 @@
  */
 package UserControl;
 
-import AdminDAO.AccountDAO;
+import DAO.AccountDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,7 +46,7 @@ public class ChangePassword extends HttpServlet {
             adao.changepassword(ggac);
             HttpSession session = request.getSession();
             session.setAttribute("acc", ggac);
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("Home");
         } else if(a == null || !pass.equals(repass)){
             String mess = "Mật khẩu hiện tại không chính xác";
             request.setAttribute("mess", mess);
@@ -56,7 +56,7 @@ public class ChangePassword extends HttpServlet {
             adao.changepassword(ac);
             HttpSession session = request.getSession();
             session.setAttribute("acc", ac);
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("Home");
         }
     }
 

@@ -4,7 +4,7 @@
  */
 package UserControl;
 
-import AdminDAO.CustomerDAO;
+import DAO.CustomerDAO;
 import entity.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +22,7 @@ import javax.servlet.http.Part;
  * @author ADMIN
  */
 @MultipartConfig(
-        location = "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\F-GO\\F-Go\\src\\main\\webapp\\images",
+        location = "E:\\study\\Semester_5\\SWP391\\Project_FGO\\F-Go\\src\\main\\webapp\\images",
         fileSizeThreshold = 1024 * 1024 * 10,
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
@@ -45,6 +45,7 @@ public class EditCustomerControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
         String cid = request.getParameter("id");
         String cname = request.getParameter("name");
         String cphone = request.getParameter("phone");
@@ -67,14 +68,21 @@ public class EditCustomerControl extends HttpServlet {
 
         CustomerDAO cdao = new CustomerDAO();
         Customer c = cdao.getCustomerByID(cid);
-        
+
         int caccountId = c.getAccountId();
-        
-        System.out.println(cname+" "+cphone+" "+cemail+" "+cnationalId+" "+cdrivinglicense+" "+cid);
 
-        cdao.editCustomer(cname, cphone, cemail, cnationalId, cdrivinglicense, cid);
-        response.sendRedirect("viewprofile?accountID=" + caccountId);
+        System.out.println(cname + " " + cphone + " " + cemail + " " + cnationalId + " " + cdrivinglicense + " " + cid);
 
+        cdao.editCustomer(cname, cphone, cemail, cnationalId, cdrivinglicense, 0, cid);
+//          response.sendRedirect("viewprofile?accountID=" + caccountId);
+        String url = "viewprofile?accountID=" + caccountId;
+        out.println("<meta http-equiv='refresh' content='3;URL=" + url + "'>");//redirects after 3 seconds
+        out.println("<div style=\"width: 100vw; height: 100vh;\">\n"
+                + "<div class=\"success-msg\" style=\"color: #270;background-color: #DFF2BF;margin: 10px 0;padding: 10px;border-radius: 3px 3px 3px 3px; width: 640px; margin:0 auto;\">\n"
+                + "  <img src=\"https://cdn-icons-png.flaticon.com/512/5290/5290058.png\" style=\"width: 16px;\">\n"
+                + "  Cập nhật thông tin thành công! Hệ thống đang cập nhật thông tin của bạn.\n"
+                + "</div>\n"
+                + "</div>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
