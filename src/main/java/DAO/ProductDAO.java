@@ -72,6 +72,7 @@ public class ProductDAO {
         }
         return list;
     }
+
     public List<Product> getAllProductByCIDInt(int cid) {
         List<Product> list = new ArrayList<>();
         String sql = "Select * from PRODUCT\n"
@@ -269,7 +270,7 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     public Product getProductByIdInt(int id) {
         String sql = "select * from PRODUCT where productID = ?";
         try {
@@ -287,5 +288,19 @@ public class ProductDAO {
 
         }
         return null;
+    }
+
+    public void changeProductStatus(int id, String status) {
+        String query = "update PRODUCT\n"
+                + "set productStatus = ?\n"
+                + "where productID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 }

@@ -17,7 +17,7 @@
     <body>
         <jsp:include page="navbar.jsp"></jsp:include>
 
-            <div class="container" style="margin-top:7rem!important;">
+            <div class="container" style="margin-top:7rem!important;min-height: 54vh;">
                 <article class="card">
                     <header class="card-header"> <h4>Tình Trạng Đơn Thuê</h4> </header>
                     <c:forEach items="${orderDetailList}" var="o">

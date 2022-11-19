@@ -156,7 +156,8 @@ hr {
 }
 
 .buttons .wishlist i {
-    color: var(--primary-color)
+    color: var(--primary-color);
+    margin-top: 8px;
 }
 
 .comment-ratings i {
@@ -502,4 +503,14 @@ footer li{
 
 .footer-copyright p{
     margin-bottom: 0px;
+}
+
+hr{
+    margin-top: 0!important;
+}
+
+@media screen and (min-width: 1200px){
+    .navbar .container {
+        max-width: 1280px;
+    }
 }

@@ -49,11 +49,16 @@ public class LoadToOrderControl extends HttpServlet {
             Product p = pdao.getProductById(pid);
 
             if (verify == 1) {
-                request.setAttribute("product", p);
-                request.getRequestDispatcher("order.jsp").forward(request, response);
+                if (p.getProductStatus() == 1) {
+                    request.setAttribute("product", p);
+                    request.getRequestDispatcher("order.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mess", "Hiện tại xe này đang được thuê!");
+                    request.getRequestDispatcher("/view_car_detail?" + p.getProductID()).forward(request, response);
+                }
             } else {
                 request.setAttribute("mess", "Tài khoản của quý khách chưa được xác nhận, vui lòng cập nhật thông tin cá nhân hoặc liên hệ với chúng tôi.");
-                request.getRequestDispatcher("/view_car_detail?"+p.getProductID()).forward(request, response);
+                request.getRequestDispatcher("/view_car_detail?" + p.getProductID()).forward(request, response);
             }
         } catch (Exception e) {
             response.sendRedirect("login.jsp");

@@ -27,7 +27,7 @@
                         <input type="text" id="searchBar" placeholder="Nhập tên xe bạn muốn tìm kiếm">
                     </div> -->
 
-                    <button class="add-btn btn btn-primary text-uppercase">Thêm khách hàng</button>
+                    <button class="add-btn btn btn-primary text-uppercase" style="display: none;">Thêm khách hàng</button>
 
 
 
@@ -73,7 +73,7 @@
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xem chi tiết</strong></span>
                                     </a>
-                                    <a href="delete_customer" class="btn">
+                                    <a href="delete_customer" style="display: none;" class="btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         <span><strong>Xoá</strong></span>
                                     </a>
@@ -101,14 +101,14 @@
                                         <div class="form-group mb-3">
                                             <label for="name">Họ và tên
                                             </label>
-                                            <input id="name" name="name" type="text" class="form-control validate" required onkeydown="validationname()"/>
+                                            <input id="name" name="name" type="text" class="form-control validate" required onkeyup="validationname()"/>
                                             <span id="textname"></span>
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label for="phone">Số điện thoại
                                             </label>
-                                            <input id="phone" name="phone" type="text" class="form-control validate" required onkeydown="validationphone()" />
+                                            <input id="phone" name="phone" type="text" class="form-control validate" required onkeyup="validationphone()" />
                                             <span id="textphone"></span>
                                         </div>
 
@@ -129,7 +129,7 @@
                                         <div class="form-group mb-3">
                                             <label for="email">Email
                                             </label>
-                                            <input id="email" name="email" type="text" class="form-control validate" required onkeydown="validation()" />
+                                            <input id="email" name="email" type="text" class="form-control validate" required onkeyup="validation()" />
                                             <span id="text"></span>
                                         </div>
                                     </div>

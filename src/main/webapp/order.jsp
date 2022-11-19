@@ -67,13 +67,13 @@
                             <p class="dis fw-bold mb-2" style="font-size:1rem">Ngày thuê xe</p>
                             <div class="d-flex w-50 mb-3">
                                 <div class="d-flex w-100">
-                                    <input type="date" name="dateBegin" class="form-control validate px-0" required>
+                                    <input id="dateBeginPickerId" type="date" name="dateBegin" class="form-control validate px-0" required>
                                 </div>
                             </div>
                             <p class="dis fw-bold mb-2" style="font-size:1rem">Hạn trả xe</p>
                             <div class="d-flex w-50 mb-3">
                                 <div class="d-flex w-100">
-                                    <input type="date" name="dateEnd" class="form-control validate px-0" required>
+                                    <input id="dateEndPickerId" type="date" name="dateEnd" class="form-control validate px-0" required>
                                 </div>
                             </div>
 
@@ -86,12 +86,12 @@
                                 <div class="payment">
                                     <input id="payment_default" type="radio" name="payment_method" value="momo">
                                     <label for="payment_default" data-toggle="collapse" data-target="#collapsedefult"
-                                               aria-controls="collapsedefult">Momo</label>
+                                           aria-controls="collapsedefult">Momo</label>
                                 </div>
                                 <div class="payment">
                                     <input id="payment_default" type="radio" name="payment_method" value="vnpay">
                                     <label for="payment_default" data-toggle="collapse" data-target="#collapsedefult"
-                                               aria-controls="collapsedefult">VNPay</label>
+                                           aria-controls="collapsedefult">VNPay</label>
                                 </div>
                                 <button class="btn btn-block btn-primary mt-2" type="submit">Thanh toán</button>
                                 <a href="view_car_detail?pid=${product.productID}" class="btn btn-back mt-2" data-abc="true" style="float: right"> <i class="fa fa-chevron-left"></i>Trở về</a>
@@ -101,34 +101,70 @@
                 </div>
             </div>
         </div>
-                            
-                            <jsp:include page="footer.jsp"></jsp:include>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(function () {
-            $('.product-card').hover(function () {
-                $(this).find('.description').animate({
-                    height: "toggle",
-                    opacity: "toggle"
-                }, 300);
+        <jsp:include page="footer.jsp"></jsp:include>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(function () {
+                $('.product-card').hover(function () {
+                    $(this).find('.description').animate({
+                        height: "toggle",
+                        opacity: "toggle"
+                    }, 300);
+                });
             });
-        });
-        let subMenu = document.getElementById("subMenu");
-        const $menu = $('.sub-menu-wrap');
-        function toggleMenu() {
-            subMenu.classList.toggle("open-menu");
-        }
-        $(document).mouseup(function (e) {
-            var container = $(".user-pic");
-            if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+            let subMenu = document.getElementById("subMenu");
+            const $menu = $('.sub-menu-wrap');
+            function toggleMenu() {
                 subMenu.classList.toggle("open-menu");
             }
-        });
-    </script>
-</body>
+            $(document).mouseup(function (e) {
+                var container = $(".user-pic");
+                if (!container.is(e.target) && subMenu.classList.toggle("open-menu")) {
+                    subMenu.classList.toggle("open-menu");
+                }
+            });
+
+            var today = new Date();
+            var tomorrow = new Date();
+
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+
+            tomorrow = yyyy + '-' + mm + '-' + (dd + 1);
+
+            document.getElementById("dateBeginPickerId").setAttribute("min", today);
+            document.getElementById("dateEndPickerId").setAttribute("min", tomorrow);
+
+            function DateCheck() {
+                var StartDate = document.getElementById('dateBeginPickerId').value;
+                var EndDate = document.getElementById('dateEndPickerId').value;
+                var eDate = new Date(EndDate);
+                var sDate = new Date(StartDate);
+                if (StartDate !== '' && StartDate !== '' && sDate > eDate){
+                    alert("Ngày trả xe phải sau ngày nhận xe!");
+                    document.getElementById('dateEndPickerId').value = null;
+                }
+            }
+            ;
+            $(document).ready(function () {
+                $("#dateEndPickerId").change(function () {
+                    DateCheck();
+                });
+            });
+        </script>
+    </body>
 
 </html>

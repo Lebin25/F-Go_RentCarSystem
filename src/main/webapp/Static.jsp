@@ -32,7 +32,7 @@
                 <div class="group-function">
                 </div>
                 <div class="container mb-3 mt-3">
-                    <table class="table table-striped table-bordered mydatatable" style="width: 100%">
+                    <table class="table table-striped table-bordered mydatatable text-center" style="width: 100%">
                         <thead style="text-align:center;">
                             <tr>
                                 <th>Số lượt truy cập</th>

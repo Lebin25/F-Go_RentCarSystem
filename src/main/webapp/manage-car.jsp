@@ -69,7 +69,7 @@
                                     <td>Còn xe</td>
                                 </c:if>
                                 <c:if test="${o.productStatus == 0}">
-                                    <td>Hết xe</td>
+                                    <td>Đang được thuê</td>
                                 </c:if>
                                 <td style="text-align:center;">
                                     <a href="load_to_view?pid=${o.productID}" class="btn">

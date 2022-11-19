@@ -118,7 +118,7 @@
                                         <div class="form-group mb-3">
                                             <label for="name">Họ tên khách hàng
                                             </label>
-                                            <input id="name" name="name" type="text" class="form-control validate" required onkeydown="validationname()" />
+                                            <input id="name" name="name" type="text" class="form-control validate" required onkeyup="validationname()" />
                                             <span id="textname"></span>
                                         </div>    
                                         <div class="form-group mb-3">
@@ -130,7 +130,7 @@
                                         <div class="form-group mb-3">
                                             <label for="phone">Số điện thoại
                                             </label>
-                                            <input id="phone" name="phone" type="text" class="form-control validate" required onkeydown="validationphone()" />
+                                            <input id="phone" name="phone" type="text" class="form-control validate" required onkeyup="validationphone()" />
                                             <span id="textphone"></span>
                                         </div>  
                                         

@@ -20,7 +20,7 @@ body {
 
 a:focus,
 a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .active {
@@ -427,7 +427,7 @@ a:active {
 
 .description ul{
     list-style: none;
-    display:flex; 
+    display:flex;
     justify-content: space-between;
 }
 
@@ -476,24 +476,26 @@ button.button {
     border: none;
     border-radius: 15px;
     box-shadow: 0 4px #999;
-  }
-  
-  .click-button:hover {background-color: #ff7f00;}
-  
-  .click-button:active {
+}
+
+.click-button:hover {
+    background-color: #ff7f00;
+}
+
+.click-button:active {
     background-color: #ff7f00;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-  }
+}
 
-  .order-btn-text:active{
+.order-btn-text:active{
     transform: translateY(4px);
-  }
+}
 
-  button.button:focus{
+button.button:focus{
     outline: none;
-  }
-  
+}
+
 a{
     text-decoration: none;
 }
@@ -544,4 +546,10 @@ footer li{
 
 .footer-copyright p{
     margin-bottom: 0px;
+}
+
+@media screen and (min-width: 1200px){
+    .navbar .container {
+        max-width: 1280px;
+    }
 }

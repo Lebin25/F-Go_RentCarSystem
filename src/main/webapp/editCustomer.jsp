@@ -29,9 +29,10 @@
                                         <input name="id" type="hidden" class="form-control validate" value="${edit.customerId}" required  />
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="name">Tên khách hàng
+                                        <label for="name">Họ và tên
                                         </label>
-                                        <input id="name" name="name" type="text" class="form-control validate" value="${edit.customerName}" required />
+                                        <input id="name" name="name" type="text" class="form-control validate" value="${edit.customerName}" required "/>
+                                        <span id="textname"></span>
                                     </div>
 
 

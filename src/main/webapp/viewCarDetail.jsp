@@ -156,13 +156,21 @@
                 <div class="col-md-7">
                     <div class="card">
                         <div class="about d-flex justify-content-between align-items-center">
-                            <h3 class="font-weight-bold">${detail.productName}</h3>
-                            <h4 class="font-weight-bold mt-1">${detail.price}đ/ngày</h4>
+                            <h4 class="font-weight-bold">${detail.productName}</h4>
+                            <h5 class="font-weight-bold mt-1">${detail.price}đ/ngày</h5>
+                            <span style="margin-right: 13px; color: #FF9933; cursor: default; font-size: 1.2rem;">
+                                <c:if test="${detail.productStatus == 1}">
+                                    <td>Còn xe</td>
+                                </c:if>
+                                <c:if test="${detail.productStatus == 0}">
+                                    <td>Đang được thuê</td>
+                                </c:if>
+                            </span>
                         </div>
                         <div class="buttons">
                             <a href="load_to_order?pid=${detail.productID}" class="btn btn-long buy mr-2">Đặt xe</a>
                             <a class="btn wishlist" id="wishlist" href="add_to_wishlist?pid=${detail.getProductID()}"> <i class="fa fa-heart" ></i></a>
-                            <a href="allproduct" class="btn btn-back" data-abc="true" style="float: right"> <i class="fa fa-chevron-left"></i>Trở về</a>
+                            <a href="allproduct" class="btn btn-back" data-abc="true" style="float: right; margin-top: 8px;"> <i class="fa fa-chevron-left"></i>Trở về</a>
                         </div>
                         <p class="text-danger font-italic mt-2">${mess}</p>
                         <hr>
@@ -262,8 +270,8 @@
                 </div>
             </div>
         </div>
-                            
-                            <jsp:include page="footer.jsp"></jsp:include>
+
+        <jsp:include page="footer.jsp"></jsp:include>
         <script src="https://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

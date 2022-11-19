@@ -43,7 +43,7 @@ public class SearchByAjax extends HttpServlet {
             out.println("<div class=\"product col-sm-4\">\n" +
 "                            <div class=\"product-card\">\n" +
 "                                <div class=\"card-thumbnail\">\n" +
-"                                    <img class=\"img-responsive\" src=\"/IMG/"+p.getProductImg()+"\">\n" +
+"                                    <img class=\"img-responsive\" src=\"/images/"+p.getProductImg()+"\">\n" +
 "                                </div>\n" +
 "                                <div class=\"card-content\">\n" +
 "                                    <div class=\"order-btn\">\n" +
