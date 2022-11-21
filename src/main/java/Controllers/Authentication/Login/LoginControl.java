@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -33,17 +34,32 @@ public class LoginControl extends HttpServlet {
             String acc = request.getParameter("account");
             String pass = request.getParameter("password");
             LoginDAO loginDAO = new LoginDAO();
-            Account a = loginDAO.checkLogin(acc, pass);
-            if(a == null){
-                String mess = "Tài khoản hoặc mật khẩu không chính xác";
+            Account account = loginDAO.getAccountByAcc(acc);
+            if (account != null) {
+                String password = null;
+                if (account.getRole().equals("0")) {
+                    String md5_pass = DigestUtils.md5Hex(pass).toUpperCase();
+                    password = md5_pass;
+                } else {
+                    password = pass;
+                }
+                Account a = loginDAO.checkLogin(acc, password);
+                if (a == null) {
+                    String mess = "Mật khẩu không chính xác!";
+                    request.setAttribute("mess", mess);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                } else {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("acc", a);
+                    session.setMaxInactiveInterval(900);
+                    request.getRequestDispatcher("Home").forward(request, response);
+                }
+            } else {
+                String mess = "Tài khoản không tồn tại! Vui lòng đăng ký tài khoản để đăng nhập vào hệ thống.";
                 request.setAttribute("mess", mess);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-            }else{
-                HttpSession session = request.getSession();
-                session.setAttribute("acc", a);
-                session.setMaxInactiveInterval(900);
-                request.getRequestDispatcher("Home").forward(request, response);
             }
+
         } catch (Exception e) {
         }
     }

@@ -50,6 +50,22 @@ public class LoginDAO {
         }
         return null;
     }
+    
+    public Account getAccountByAcc(String account) {
+        String query = "select * from ACCOUNT WHERE account =?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, account);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                return a;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
     public Account addEmailToAccount(String account, String role) {
         String query = "INSERT INTO ACCOUNT (account, roleID)\n"

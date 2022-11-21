@@ -30,7 +30,7 @@
                                         <label for="pass">Mật khẩu cũ
                                         </label>
                                         <input name="pass" type="text" class="form-control validate" style="text-align: center;" required />
-                                        <p style="color: red">${requestScope.mess}</p>
+                                        <p style="color: red">${requestScope.mess1}</p>
                                     </div>
                                     </c:if>
                                     
@@ -45,6 +45,7 @@
                                         <label for="repass">Nhập lại mật khẩu mới
                                         </label>
                                         <input id="repass" name="repass" type="text" class="form-control validate" style="text-align: center;" required />
+                                        <p style="color: red">${requestScope.mess2}</p>
                                     </div>
                                 </div>
                             </div>

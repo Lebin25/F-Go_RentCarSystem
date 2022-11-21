@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -36,23 +37,32 @@ public class ChangePassword extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String u = request.getParameter("user");
         String opass = request.getParameter("pass");
-        String pass = request.getParameter("newpass");
+        String newpass = request.getParameter("newpass");
         String repass = request.getParameter("repass");
+        
+        String md5_opass = DigestUtils.md5Hex(opass).toUpperCase();
+        String md5_newpass = DigestUtils.md5Hex(newpass).toUpperCase();
+        String md5_repass = DigestUtils.md5Hex(repass).toUpperCase();
+        
         AccountDAO adao = new AccountDAO();
-        Account a = adao.check(u, opass);
+        Account a = adao.check(u, md5_opass);
         Account ggacc = adao.checkGoogleAccount(u);
         if(opass == null && ggacc != null){
-            Account ggac = new Account (ggacc.getAccountID(), u, pass, ggacc.getRole());
+            Account ggac = new Account (ggacc.getAccountID(), u, md5_newpass, ggacc.getRole());
             adao.changepassword(ggac);
             HttpSession session = request.getSession();
             session.setAttribute("acc", ggac);
             response.sendRedirect("Home");
-        } else if(a == null || !pass.equals(repass)){
-            String mess = "Mật khẩu hiện tại không chính xác";
-            request.setAttribute("mess", mess);
+        } else if(a == null){
+            String mess1 = "Mật khẩu hiện tại không chính xác!";
+            request.setAttribute("mess1", mess1);
             request.getRequestDispatcher("changePassword.jsp").forward(request, response);
-        } else {
-            Account ac = new Account(a.getAccountID(), u, pass, a.getRole());
+        } else if(!md5_newpass.equals(md5_repass)){
+            String mess2 = "Nhập lại mật khẩu không chính xác!";
+            request.setAttribute("mess2", mess2);
+            request.getRequestDispatcher("changePassword.jsp").forward(request, response);
+        }else {
+            Account ac = new Account(a.getAccountID(), u, md5_newpass, a.getRole());
             adao.changepassword(ac);
             HttpSession session = request.getSession();
             session.setAttribute("acc", ac);

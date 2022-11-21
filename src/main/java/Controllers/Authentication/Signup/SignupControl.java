@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -43,10 +44,11 @@ public class SignupControl extends HttpServlet {
                 request.setAttribute("mess", mess);
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
         } else {
+            String md5_pass = DigestUtils.md5Hex(pass).toUpperCase();
             SignupDAO signupdao = new SignupDAO();
             Account a = signupdao.checkAccountExist(user);
             if(a == null){
-                signupdao.signup(user,pass,role);
+                signupdao.signup(user,md5_pass,role);
                 Account acc = signupdao.checkAccountExist(user);
                 signupdao.addAccIDToCustomer(acc.getAccountID());
                 HttpSession session = request.getSession();

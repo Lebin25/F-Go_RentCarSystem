@@ -54,17 +54,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 col-sm-2 col-md-2 mt-3 mb-3 text-center edit-btn">
+                    <div class="col-6 col-sm-3 col-md-3 mt-3 mb-3 text-center edit-btn">
                         <a href="load_to_edit_profile?cusid=${detail.customerId}" class="btn btn-primary">Chỉnh sửa</a>
                     </div>
-                    <div class="col-6 col-sm-2 col-md-2 mt-3 mb-3 text-center">
+                    <div class="col-6 col-sm-3 col-md-3 mt-3 mb-3 text-center">
                         <a href="Home" class="btn btn-back">Quay lại</a>
                     </div>
                 </div>
             </div>
         </div>
-            
-                    <jsp:include page="footer.jsp"></jsp:include>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
