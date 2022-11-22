@@ -64,7 +64,7 @@
                                         <select name = "status" class="custom-select tm-select-accounts" id="status">
                                             <option value="${edit.status}" selected hidden>
                                                 <c:if test="${edit.status == 0}">
-                                                    Chưa thuê
+                                                    Đã trả xe
                                                 </c:if>
                                                 <c:if test="${edit.status == 1}">
                                                     Đang thuê

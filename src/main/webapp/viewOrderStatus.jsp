@@ -57,10 +57,10 @@
                                         <div style="margin-bottom: 14px!important;""><strong>Trạng thái</strong></div> 
                                         <br> 
                                         <i class="fas fa-thumbtack"></i>
-                                        <c:if test="${o.status==1}">
+                                        <c:if test="${o.status == 1}">
                                             Đang thuê xe
                                         </c:if>
-                                        <c:if test="${o.status== 0} ">
+                                        <c:if test="${o.status == 0}">
                                             Đã trả xe
                                         </c:if>
                                     </div>

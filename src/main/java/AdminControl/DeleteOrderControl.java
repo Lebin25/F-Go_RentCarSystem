@@ -5,6 +5,8 @@
 package AdminControl;
 
 import DAO.OrderDAO;
+import DAO.ProductDAO;
+import entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,6 +36,9 @@ public class DeleteOrderControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String oid = request.getParameter("oid");
         OrderDAO odao = new OrderDAO();
+        ProductDAO pdao = new ProductDAO();
+        Order o = odao.getOrderById(oid);
+        pdao.changeProductStatus(o.getProductId(), "1");
         odao.deleteOrder(oid);
         response.sendRedirect("manageorder");
     }

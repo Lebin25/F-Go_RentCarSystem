@@ -52,7 +52,7 @@ public class LoadToViewOrder extends HttpServlet {
         
         List<Product> plist = new ArrayList<>();
 
-        if (olist != null) {
+        if (!olist.isEmpty()) {
             for (Order o : olist) {
                 int idxe = o.getProductId();
                 ProductDAO pdao = new ProductDAO();

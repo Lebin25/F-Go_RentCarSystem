@@ -37,7 +37,7 @@ public class RatingDAO {
 
     public List<Order> getOrderingByCusID(int customerID) {
         List<Order> list = new ArrayList<>();
-        String query = "SELECT * FROM [ORDER] WHERE customerID = ? AND [status] = 1";
+        String query = "SELECT * FROM [ORDER] WHERE customerID = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
