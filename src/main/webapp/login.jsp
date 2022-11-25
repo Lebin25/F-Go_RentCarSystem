@@ -37,7 +37,7 @@
                                         <input type="password" name="password" id="password" class="form-control"
                                                placeholder="Mật khẩu">
                                     </div>
-                                    <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
+                                    <a href="forgotPassword.jsp" class="forgot-password-link">Quên mật khẩu?</a>
                                     <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit"
                                            value="Đăng nhập">
                                 </form>

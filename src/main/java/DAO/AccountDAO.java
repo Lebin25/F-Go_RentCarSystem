@@ -18,6 +18,7 @@ import java.util.List;
  * @author ADMIN
  */
 public class AccountDAO {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -37,7 +38,7 @@ public class AccountDAO {
         }
         return list;
     }
-    
+
     public List<Role> getAllRole() {
         List<Role> list = new ArrayList<>();
         String query = "Select * from ROLE";
@@ -53,7 +54,7 @@ public class AccountDAO {
         }
         return list;
     }
-    
+
     public void addAccount(String username, String pass, String role) {
         String query = "insert into ACCOUNT\n"
                 + "values (?, ?, ?)";
@@ -69,7 +70,7 @@ public class AccountDAO {
         }
 
     }
-    
+
     public void deleteAccount(String aid) {
         String query = "delete from ACCOUNT\n"
                 + "where accountID = ?";
@@ -81,8 +82,8 @@ public class AccountDAO {
         } catch (Exception e) {
         }
     }
-    
-    public void changepassword( Account a ) {
+
+    public void changepassword(Account a) {
         String query = "update ACCOUNT\n"
                 + "set password = ?\n"
                 + "Where account = ?";
@@ -96,12 +97,12 @@ public class AccountDAO {
         } catch (Exception e) {
         }
     }
-    
-    public Account check(String accountname, String password){
-        String sql ="select * from ACCOUNT where account=? and password = ?";
-        try{
-           conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql); 
+
+    public Account check(String accountname, String password) {
+        String sql = "select * from ACCOUNT where account=? and password = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
             ps.setString(1, accountname);
             ps.setString(2, password);
             rs = ps.executeQuery();
@@ -110,16 +111,16 @@ public class AccountDAO {
                         rs.getString(2), rs.getString(3), rs.getString(4));
             }
         } catch (Exception e) {
-            
+
         }
         return null;
     }
-    
-    public Account checkGoogleAccount(String email){
-        String sql = "select * from ACCOUNT where account=?";
-        try{
-           conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql); 
+
+    public Account checkGoogleAccount(String email) {
+        String sql = "select * from ACCOUNT where account=? and [password] is Null";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -127,9 +128,29 @@ public class AccountDAO {
                         rs.getString(2), rs.getString(3), rs.getString(4));
             }
         } catch (Exception e) {
-            
+
         }
         return null;
     }
-    
+
+    public Account getAccountByEmail(String email) {
+        String sql = "Select [ACCOUNT].accountID, [ACCOUNT].account, "
+                + "[ACCOUNT].[password], [ACCOUNT].roleID from [ACCOUNT] join "
+                + "[CUSTOMER] on [ACCOUNT].accountID = [CUSTOMER].accountID and "
+                + "[CUSTOMER].email = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Account(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getString(4));
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+
 }

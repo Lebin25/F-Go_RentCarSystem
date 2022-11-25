@@ -39,35 +39,40 @@ public class ChangePassword extends HttpServlet {
         String opass = request.getParameter("pass");
         String newpass = request.getParameter("newpass");
         String repass = request.getParameter("repass");
-        
-        String md5_opass = DigestUtils.md5Hex(opass).toUpperCase();
+//        String md5_opass = DigestUtils.md5Hex(opass).toUpperCase();
         String md5_newpass = DigestUtils.md5Hex(newpass).toUpperCase();
         String md5_repass = DigestUtils.md5Hex(repass).toUpperCase();
-        
         AccountDAO adao = new AccountDAO();
-        Account a = adao.check(u, md5_opass);
+//        Account a = adao.check(u, md5_opass);
         Account ggacc = adao.checkGoogleAccount(u);
-        if(opass == null && ggacc != null){
-            Account ggac = new Account (ggacc.getAccountID(), u, md5_newpass, ggacc.getRole());
+        if (opass == null && ggacc != null) {
+            Account ggac = new Account(ggacc.getAccountID(), u, md5_newpass, ggacc.getRole());
             adao.changepassword(ggac);
             HttpSession session = request.getSession();
             session.setAttribute("acc", ggac);
             response.sendRedirect("Home");
-        } else if(a == null){
-            String mess1 = "Mật khẩu hiện tại không chính xác!";
-            request.setAttribute("mess1", mess1);
-            request.getRequestDispatcher("changePassword.jsp").forward(request, response);
-        } else if(!md5_newpass.equals(md5_repass)){
-            String mess2 = "Nhập lại mật khẩu không chính xác!";
-            request.setAttribute("mess2", mess2);
-            request.getRequestDispatcher("changePassword.jsp").forward(request, response);
-        }else {
-            Account ac = new Account(a.getAccountID(), u, md5_newpass, a.getRole());
-            adao.changepassword(ac);
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", ac);
-            response.sendRedirect("Home");
+        } else {
+            
+            String md5_opass = DigestUtils.md5Hex(opass).toUpperCase();
+            Account a = adao.check(u, md5_opass);
+            
+            if (a == null) {
+                String mess1 = "Mật khẩu hiện tại không chính xác!";
+                request.setAttribute("mess1", mess1);
+                request.getRequestDispatcher("changePassword.jsp").forward(request, response);
+            } else if (!md5_newpass.equals(md5_repass)) {
+                String mess2 = "Nhập lại mật khẩu không chính xác!";
+                request.setAttribute("mess2", mess2);
+                request.getRequestDispatcher("changePassword.jsp").forward(request, response);
+            } else {
+                Account ac = new Account(a.getAccountID(), u, md5_newpass, a.getRole());
+                adao.changepassword(ac);
+                HttpSession session = request.getSession();
+                session.setAttribute("acc", ac);
+                response.sendRedirect("Home");
+            }
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -82,7 +87,7 @@ public class ChangePassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
