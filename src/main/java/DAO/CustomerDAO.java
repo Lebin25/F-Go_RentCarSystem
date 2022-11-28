@@ -206,4 +206,26 @@ public class CustomerDAO {
         }
         return null;
     }
+
+    public List<Customer> getcustomerTime() {
+        List<Customer> list = new ArrayList<>();
+        String query = "select top 5 [CUSTOMER].accountID, [ORDER].customerID, [CUSTOMER].customerName,\n"
+                + "count( [ORDER].customerID) as solansudung\n"
+                + "FROM [ORDER]\n"
+                + "INNER JOIN [CUSTOMER] on [ORDER].customerID=[CUSTOMER].customerID\n"
+                + "Group by [CUSTOMER].accountID, [ORDER].customerID, [CUSTOMER].customerName\n"
+                + "ORDER by solansudung desc";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Customer(rs.getInt(1),
+                        rs.getInt(2), rs.getString(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 }

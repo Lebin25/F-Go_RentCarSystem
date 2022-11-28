@@ -5,10 +5,14 @@
  */
 package AdminControl;
 
+import DAO.CustomerDAO;
+import DAO.ProductDAO;
 import DAO.ViewDAO;
+import entity.Customer;
+import entity.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +31,8 @@ public class Static extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         ViewDAO viewDAO = new ViewDAO();
-
+        ProductDAO pdao = new ProductDAO();
+        CustomerDAO cdao = new CustomerDAO();
         HttpSession session = request.getSession();
         if (session.isNew()) {
             viewDAO.updateView();
@@ -43,6 +48,13 @@ public class Static extends HttpServlet {
         request.setAttribute("rate", rate);
         Map<Integer, Float> map = new HashMap<Integer, Float>();
         map = viewDAO.getMonthly();
+        
+        List<Product> listcar = pdao.getproductTime();
+        request.setAttribute("listcar", listcar);
+        
+        List<Customer> listperson = cdao.getcustomerTime();
+        request.setAttribute("listperson", listperson);
+        
         request.getRequestDispatcher("static.jsp").forward(request, response);
 
     }

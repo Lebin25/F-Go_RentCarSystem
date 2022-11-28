@@ -303,4 +303,25 @@ public class ProductDAO {
         } catch (Exception e) {
         }
     }
+
+    public List<Product> getproductTime() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT top 5 [ORDER].productID, [PRODUCT].productName, [PRODUCT].productImg, count([ORDER].productID) as solanthue\n"
+                + "FROM [ORDER]\n"
+                + "INNER JOIN [PRODUCT] ON [ORDER].productID=[PRODUCT].productID\n"
+                + "Group by [ORDER].productID, [PRODUCT].productName, [PRODUCT].productImg\n"
+                + "ORDER by solanthue desc";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2), rs.getString(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 }

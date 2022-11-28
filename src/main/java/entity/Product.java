@@ -41,7 +41,7 @@ public class Product {
         this.fuel = fuel;
         this.yearRelease = yearRelease;
     }
-
+    
     public int getCmt() {
         return cmt;
     }
@@ -76,6 +76,24 @@ public class Product {
         this.cmt = cmt;
 
     }
+    
+        private int productTime;
+
+    public Product(int productID, String productName, String productImg, int productTime) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productImg = productImg;
+        this.productTime = productTime;
+    }
+
+    public int getProductTime() {
+        return productTime;
+    }
+
+    public void setProductTime(int productTime) {
+        this.productTime = productTime;
+    }
+
 
     public int getProductID() {
         return productID;

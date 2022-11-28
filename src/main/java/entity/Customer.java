@@ -34,7 +34,22 @@ public class Customer {
         this.faceImg = faceImg;
     }
     
-    
+    private int customerTime;
+
+    public Customer(int accountId, int customerId, String customerName, int customerTime) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.accountId = accountId;
+        this.customerTime = customerTime;
+    }
+
+    public int getCustomerTime() {
+        return customerTime;
+    }
+
+    public void setCustomerTime(int customerTime) {
+        this.customerTime = customerTime;
+    }
 
     public int getCustomerId() {
         return customerId;
