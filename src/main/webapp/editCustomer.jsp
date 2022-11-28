@@ -54,6 +54,10 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                                     <div class="form-group mt-3 mb-3">
+                                        <label>hình ảnh khuôn mặt</label>
+                                        <input name="faceImg" type="file" class="form-control" required>
+                                    </div>
+                                    <div class="form-group mt-3 mb-3">
                                         <label>Căn cước công dân</label>
                                         <input name="nationalId" type="file" class="form-control" required>
                                     </div>

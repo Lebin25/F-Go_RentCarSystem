@@ -55,6 +55,8 @@ public class EditCustomerControl extends HttpServlet {
         String cnationalId = getFileName(partImg);
         Part partImg2 = request.getPart("drivinglicense");
         String cdrivinglicense = getFileName(partImg2);
+        Part partImg3 = request.getPart("faceImg");
+        String cfaceImg = getFileName(partImg3);
         try {
             Part partUpload = request.getPart("nationalId");
             partUpload.write(getFileName(partUpload));
@@ -65,15 +67,20 @@ public class EditCustomerControl extends HttpServlet {
             partUpload.write(getFileName(partUpload));
         } catch (Exception e) {
         }
+        try {
+            Part partUpload = request.getPart("faceImg");
+            partUpload.write(getFileName(partUpload));
+        } catch (Exception e) {
+        }
 
         CustomerDAO cdao = new CustomerDAO();
         Customer c = cdao.getCustomerByID(cid);
 
         int caccountId = c.getAccountId();
 
-        System.out.println(cname + " " + cphone + " " + cemail + " " + cnationalId + " " + cdrivinglicense + " " + cid);
+        System.out.println(cname + " " + cphone + " " + cemail + " " + cnationalId + " " + cdrivinglicense + " " + cid + " " + cfaceImg);
 
-        cdao.editCustomer(cname, cphone, cemail, cnationalId, cdrivinglicense, 0, cid);
+        cdao.editCustomer(cname, cphone, cemail, cnationalId, cdrivinglicense, 0, cfaceImg, cid);
 //          response.sendRedirect("viewprofile?accountID=" + caccountId);
         String url = "viewprofile?accountID=" + caccountId;
         out.println("<meta http-equiv='refresh' content='3;URL=" + url + "'>");//redirects after 3 seconds

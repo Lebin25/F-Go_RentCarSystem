@@ -31,16 +31,16 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Customer(rs.getInt(1),
-                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
             }
         } catch (Exception e) {
         }
         return list;
     }
 
-    public void addCustomer(String name, String phone, String email, String nationalID, String drivingLicense, String accountId, String isVerify) {
+    public void addCustomer(String name, String phone, String email, String nationalID, String drivingLicense, String accountId, String isVerify, String faceImg) {
         String query = "insert into CUSTOMER\n"
-                + "values (?, ?, ?, ?, ?, ?, ?)";
+                + "values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -51,6 +51,7 @@ public class CustomerDAO {
             ps.setString(5, drivingLicense);
             ps.setString(6, accountId);
             ps.setString(7, isVerify);
+            ps.setString(8, faceImg);
 
             ps.executeUpdate();
         } catch (Exception e) {
@@ -67,7 +68,7 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Customer(rs.getInt(1),
-                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
             }
         } catch (Exception e) {
         }
@@ -83,7 +84,7 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Customer(rs.getInt(1),
-                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
             }
         } catch (Exception e) {
         }
@@ -99,7 +100,7 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Customer(rs.getInt(1),
-                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
             }
         } catch (Exception e) {
         }
@@ -115,7 +116,7 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Customer(rs.getInt(1),
-                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
             }
         } catch (Exception e) {
         }
@@ -147,14 +148,15 @@ public class CustomerDAO {
         }
     }
 
-    public void editCustomer(String name, String phone, String email, String nationalId, String drivinglicense, int isVerify, String cusid) {
+    public void editCustomer(String name, String phone, String email, String nationalId, String drivinglicense, int isVerify, String faceImg, String cusid) {
         String query = "update CUSTOMER\n"
                 + "set customerName = ?,\n"
-                + "	phone =?,\n"
-                + "	email =?,\n"
-                + "	nationalID = ?,\n"
-                + "	drivingLicense = ?,\n"
-                + "	isVerify = ?\n"
+                + "phone =?,\n"
+                + "email =?,\n"
+                + "nationalID =?,\n"
+                + "drivingLicense = ?,\n"
+                + "isVerify =?,\n"
+                + "faceImg =?\n"
                 + "Where customerID = ?";
         try {
             conn = new DBContext().getConnection();
@@ -165,7 +167,8 @@ public class CustomerDAO {
             ps.setString(4, nationalId);
             ps.setString(5, drivinglicense);
             ps.setInt(6, isVerify);
-            ps.setString(7, cusid);
+            ps.setString(7, faceImg);
+            ps.setString(8, cusid);
 
             ps.executeUpdate();
         } catch (Exception e) {
@@ -181,13 +184,13 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Customer(rs.getInt(1),
-                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
             }
         } catch (Exception e) {
         }
         return null;
     }
-    
+
     public Customer getCustomerByIdInt(int id) {
         String query = "Select * From CUSTOMER where customerID = ?";
         try {
@@ -197,7 +200,7 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new Customer(rs.getInt(1),
-                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
             }
         } catch (Exception e) {
         }

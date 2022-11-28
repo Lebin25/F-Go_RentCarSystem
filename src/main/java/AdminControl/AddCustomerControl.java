@@ -50,7 +50,7 @@ public class AddCustomerControl extends HttpServlet {
         String cisVerify = "0";
         String cemail =request.getParameter("email");
         
-        String[] imgs = new String[2];
+        String[] imgs = new String[3];
         
         try {
             Collection<Part> parts = request.getParts();
@@ -69,12 +69,13 @@ public class AddCustomerControl extends HttpServlet {
         
         String cnationalId = imgs[0];
         String cdrivingLicense = imgs[1];
+        String faceImg = imgs[2];
         
       
-        System.out.println(cname + cphone + cemail + cnationalId + cdrivingLicense + caccountID + cisVerify);
+        System.out.println(cname + cphone + cemail + cnationalId + cdrivingLicense + caccountID + cisVerify + faceImg);
 
         CustomerDAO cdao = new CustomerDAO();
-        cdao.addCustomer(cname, cphone, cemail, cnationalId, cdrivingLicense, caccountID, cisVerify);
+        cdao.addCustomer(cname, cphone, cemail, cnationalId, cdrivingLicense, caccountID, cisVerify, faceImg);
 //                response.sendRedirect("managecustomer");
         out.println("<meta http-equiv='refresh' content='3;URL=managecustomer'>");//redirects after 3 seconds
         out.println("<div style=\"width: 100vw; height: 100vh;\">\n"
