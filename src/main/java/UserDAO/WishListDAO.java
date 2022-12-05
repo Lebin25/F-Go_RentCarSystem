@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package AdminDAO;
+package UserDAO;
 
 import context.DBContext;
 import entity.WishList;
@@ -17,9 +17,11 @@ import java.util.List;
  * @author This PC
  */
 public class WishListDAO {
+    
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    
     public void addWishList(int customerID, String productID) {
         String query = "insert into WISHLIST\n"
                 + "values (?, ?)";
@@ -63,5 +65,23 @@ public class WishListDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+    
+    public WishList check(String pid, int cid) {
+        String sql = "select * from [WISHLIST] where productID = ? and customerID=?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, pid);
+            ps.setInt(2, cid);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new WishList(rs.getInt(1),
+                        rs.getInt(2), rs.getInt(3));
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 }

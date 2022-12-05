@@ -5,7 +5,7 @@
 package UserControl;
 
 import DAO.ProductDAO;
-import AdminDAO.WishListDAO;
+import UserDAO.WishListDAO;
 import DAO.CustomerDAO;
 import entity.Account;
 import entity.Customer;

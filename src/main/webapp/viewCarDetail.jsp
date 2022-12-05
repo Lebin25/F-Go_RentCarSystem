@@ -173,6 +173,7 @@
                             <a href="allproduct" class="btn btn-back" data-abc="true" style="float: right; margin-top: 8px;"> <i class="fa fa-chevron-left"></i>Trở về</a>
                         </div>
                         <p class="text-danger font-italic mt-2">${mess}</p>
+                        <p class="text-danger font-italic mt-2">${messWishlist}</p>
                         <hr>
                         <div class="product-description">
                             <div class="row justify-content-center"><span class="font-weight-bold"
@@ -221,57 +222,59 @@
                 <div class="row">
                     <c:forEach items="${Listlq}" var="o">
                         <div class="col-sm-4">
-                            <div class="product-card">
-                                <div class="card-thumbnail">
-                                    <img class="img-responsive" src="/images/${o.productImg}">
-                                </div>
-                                <div class="card-content">
+                            <a href="view_car_detail?pid=${o.productID}">
+                                <div class="product-card">
+                                    <div class="card-thumbnail">
+                                        <img class="img-responsive" src="/images/${o.productImg}">
+                                    </div>
+                                    <div class="card-content">
 
-                                    <h1 class="card-title">
-                                        ${o.productName}
-                                    </h1>
-                                    <h2 class="card-sub-title">
-                                        ${o.yearRelease}
-                                    </h2>
-                                    <div class="description">
-                                        <ul>
-                                            <li>
-                                                <i class="fa fa-th hidden-xs hidden-sm"></i>
-                                                <span>
-                                                    <span class="attri">${o.licensePlate}</span> </span>
+                                        <h1 class="card-title">
+                                            ${o.productName}
+                                        </h1>
+                                        <h2 class="card-sub-title">
+                                            ${o.yearRelease}
+                                        </h2>
+                                        <div class="description">
+                                            <ul>
+                                                <li>
+                                                    <i class="fa fa-th hidden-xs hidden-sm"></i>
+                                                    <span>
+                                                        <span class="attri">${o.licensePlate}</span> </span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-users hidden-xs hidden-sm"></i>
+                                                    <span>
+                                                        <span class="attri">${o.seat}</span> </span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-cogs hidden-xs hidden-sm"></i>
+                                                    <span>
+                                                        <span class="attri">${o.gear}</span> </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="price">
+                                            <div class="price-text">${o.price}</div>
+                                        </div>
+                                        <ul class="list-inline post-meta">
+                                            <li class="time-stamp">
+                                                <i class="fa fa-star"></i> 5
                                             </li>
-                                            <li>
-                                                <i class="fa fa-users hidden-xs hidden-sm"></i>
-                                                <span>
-                                                    <span class="attri">${o.seat}</span> </span>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-cogs hidden-xs hidden-sm"></i>
-                                                <span>
-                                                    <span class="attri">${o.gear}</span> </span>
+                                            <li class="card-comment">
+                                                <i class="fa fa-comments"></i><a href="#"> 22 bình luận</a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="price">
-                                        <div class="price-text">${o.price}</div>
-                                    </div>
-                                    <ul class="list-inline post-meta">
-                                        <li class="time-stamp">
-                                            <i class="fa fa-star"></i> 5
-                                        </li>
-                                        <li class="card-comment">
-                                            <i class="fa fa-comments"></i><a href="#"> 22 bình luận</a>
-                                        </li>
-                                    </ul>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </c:forEach>
                 </div>
             </div>
         </div>
 
-        <jsp:include page="footer.jsp"></jsp:include>
+        <%--<jsp:include page="footer.jsp"></jsp:include>--%>
         <script src="https://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

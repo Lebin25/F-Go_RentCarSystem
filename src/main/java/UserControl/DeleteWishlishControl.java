@@ -1,6 +1,6 @@
 package UserControl;
 
-import AdminDAO.WishListDAO;
+import UserDAO.WishListDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

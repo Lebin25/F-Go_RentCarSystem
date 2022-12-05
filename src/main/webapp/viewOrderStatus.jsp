@@ -78,11 +78,8 @@
                                 <span class="text">Xác nhận đơn thuê</span> </div>
                             <div class="step active"> 
                                 <span class="icon"> <i class="fa fa-truck"></i> </span> 
-                                <span class="text">Đang giao xe</span> </div>
-                            <div class="step"> 
-                                <span class="icon"> <i class="fa fa-user"></i></i> </span> 
-                                <span class="text">Đã nhận xe</span> </div>
-                            <div class="step"> 
+                                <span class="text">Đang thuê xe</span> </div>
+                            <div class="step <c:if test="${o.status == 0}">active</c:if>"> 
                                 <span class="icon"> <i class="fa fa-box"></i> </span> 
                                 <span class="text">Đã trả xe</span> </div>
                         </div>

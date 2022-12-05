@@ -5,7 +5,7 @@
 package UserControl;
 
 import DAO.CustomerDAO;
-import AdminDAO.WishListDAO;
+import UserDAO.WishListDAO;
 import entity.Account;
 import entity.Customer;
 import java.io.IOException;
@@ -40,15 +40,23 @@ public class WishListControl extends HttpServlet {
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("acc");
         int accid = a.getAccountID();
-        
+
         CustomerDAO cdao = new CustomerDAO();
         Customer c = cdao.getCustomerByAccIDInt(accid);
         int cusid = c.getCustomerId();
-        
+
         WishListDAO wdao = new WishListDAO();
-        wdao.addWishList(cusid, pid);
         
-        response.sendRedirect("wishlist");
+        System.out.println(pid+" "+cusid);
+
+        if (wdao.check(pid, cusid) == null) {
+            wdao.addWishList(cusid, pid);
+            response.sendRedirect("wishlist");
+        } else {
+            request.setAttribute("messWishlist", "Xe này đã tồn tại trong danh sách yêu thích của bạn!");
+            request.getRequestDispatcher("/view_car_detail?" + pid).forward(request, response);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
