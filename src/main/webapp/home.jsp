@@ -249,7 +249,7 @@
                                                 </ul>
                                             </div>
                                             <div class="price">
-                                                <div class="price-text">${o.price}</div>
+                                                <div class="price-text">${o.price} đ</div>
                                             </div>
                                             <ul class="list-inline post-meta">
                                                 <li class="time-stamp">

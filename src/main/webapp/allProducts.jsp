@@ -270,14 +270,14 @@
                                         <div class="price">
                                             <div class="price-text">${o.price} đ</div>
                                         </div>
-                                        <ul class="list-inline post-meta">
+<!--                                        <ul class="list-inline post-meta">
                                             <li class="time-stamp">
-                                                <i class="fa fa-star"></i> 5
+                                                <i class="fa fa-star"></i> ${o.rating}
                                             </li>
                                             <li class="card-comment">
-                                                <i class="fa fa-comments"></i><a href="#"> 22 bình luận</a>
+                                                <i class="fa fa-comments"></i><a href="#"> ${o.cmt}</a>
                                             </li>
-                                        </ul>
+                                        </ul>-->
                                     </div>
                                 </div>
                             </a>

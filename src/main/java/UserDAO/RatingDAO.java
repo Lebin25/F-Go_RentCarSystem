@@ -162,7 +162,7 @@ public class RatingDAO {
 
     public int countCmtByProductID(String pid) {
         int count = 0;
-        String query = "Select COUNT(comment) AS countCmt FROM [RATE] where productID= ? GROUP BY productID";
+        String query = "Select COUNT(comment) AS countCmt FROM [RATE] where productID= ? and LEN(comment) > 0 GROUP BY productID";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
